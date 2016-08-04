@@ -1,0 +1,8 @@
+doc/*
+
+Thumbs.db
+.DS_Store
+.dropbox
+
+!.gitignore
+!.gitkeep
