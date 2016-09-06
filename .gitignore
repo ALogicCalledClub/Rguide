@@ -1,4 +1,22 @@
-doc/*
+_book/*
+!_book/Rguide.pdf
+_bookdown_files/*
+
+_bookdown.yml
+03-chap3.Rmd
+apa.csl
+
+figure/*
+
+index.Rmd
+
+kap-grund.Rmd
+kap-konklusion.Rmd
+kap-references.Rmd
+kap-visualisering.Rmd
+reedthesis.cls
+Rguide.bib
+template.tex
 
 Thumbs.db
 .DS_Store
@@ -6,3 +24,5 @@ Thumbs.db
 
 !.gitignore
 !.gitkeep
+.rbenv-version
+.rvmrc
