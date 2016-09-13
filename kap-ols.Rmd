@@ -1,0 +1,55 @@
+---
+output: html_document
+---
+
+# OLS regression
+
+OLS regression er
+
+%The result res is a list object of class ``lm''
+%Other functions like plot() and predict() will react to res in a special way because of this class designation
+%Specifically, they will run functions called plot.lm() and predict.lm()
+
+@petersenetal2014
+
+holdningen til modtagere af velfærdsydelser
+
+```{r}
+sult <- read.csv("data/petersenetal2014.csv")
+```
+
+```{r}
+head(sult)
+```
+
+```{r}
+summary(sult)
+```
+
+## Bivariat analyse
+
+```{r}
+reg.sult <- lm(welfare ~ treatment, data=sult)
+```
+
+```{r}
+summary(reg.sult)
+```
+
+Figur \@ref(fig:stataRreg)
+
+```{r stataRreg, echo=FALSE, cache=TRUE, fig.cap="Regression i Stata og R", out.extra="scale=0.85"}
+include_graphics(path = "figure/stataRreg.png")
+```
+
+## Multivariat analyse
+
+```{r}
+reg.sult.control <- lm(welfare ~ treatment + female + ega + 
+                         income + emp_priv + emp_pub + 
+                         pubtransfer + preschool, data=sult)
+```
+
+```{r}
+summary(reg.sult.control)
+```
