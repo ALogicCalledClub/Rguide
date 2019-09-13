@@ -1,0 +1,238 @@
+---
+output: html_document
+---
+
+# OLS regression
+
+OLS (eller _mindste kvadraters metode_ på dansk) regression er et af de mest anvendte redskaber i den politologiske værktøjskasse. Den simple lineære regressionsanalyse kan skrives som:
+
+$$Y_i = \alpha + \beta X_i + \epsilon_i$$
+
+Her er $Y_i$ den afhængige variabel, vi ønsker at forklare forskelle i (eksempelvis hvor højreorienterede forskellige vælgere er). $\alpha$ er konstanten, en parameter der angiver værdien på den afhængige variabel, når den uafhængige variabel (eller de uafhængige variable) er 0. $\beta$ angiver ændringen i $Y$ når $X$ stiger med én enhed. Det er oftest $\beta$, vi er interesseret i at undersøge effekten af på $Y_i$. $\epsilon_i$ er fejlleddet.
+
+Vi vil i dette kapitel anvende den danske del af _European Social Survey_ fra 2014. Bemærk at dette ikke er det fulde datasæt, så det er ikke alle observationer (_rækker_) såvel som variable (_kolonner_), der er med. Det fulde datasæt kan hentes i forskellige formater hos [europeansocialsurvey.org](http://europeansocialsurvey.org). Det første vi gør er at indlæse vores datasæt i objektet `ess`.
+
+```{r}
+ess <- read.csv("data/ess.csv")
+```
+
+For at få et indblik i de inkluderede variable i datarammen og observationerne deri, bruger vi først `head()`-funktionen:
+
+```{r}
+head(ess)
+```
+
+Som det kan ses er der seks variable. De er alle numeriske variable. `male` er køn, hvor 1 er mand og 0 er kvinde. `age` er alder i år. `edu` er uddannelse (i ISCED kategorier). `inc` er indkomst angivet i indkomstdecil (hvorfor der er 10 værdier). `union` angiver om man er medlem af en fagforening eller ej. `lrscale` er politisk orientering målt på en venstre-højre skala (hvor 0 er meget venstreorienteret og 10 er meget højreorienteret). Vi bruger `summary()` til at få deskriptiv statistik på de respektive variable:
+
+```{r}
+summary(ess)
+```
+
+Alternativt kan vi også bruge funktionen `glimpse()`, der kan bruges, hvis du har åbnet pakken `dplyr`. Denne viser også antallet af observationer, der er i datarammen.
+
+```{r}
+glimpse(ess)
+```
+
+I den resterende del af kapitlet gives først en introduktion til bivariate regressioner (altså med én uafhængig variabel), dernæst multivariate regressioner og til sidst introduceres en række relevante forudsætningstests. 
+
+## Bivariat analyse
+
+For at lave en OLS regression bruger vi funktionen `lm()`, der står for _linear model_. Denne funktion er en del af basispakken i R og kræver dermed ikke, at du åbner en bestemt pakke. For at lave en simpel OLS regression med en afhængig variabel og én uafhængig variabel, angiver vi den afhængige variabel før '~' i funktionen og den uafhængige variabel efter. Sidst angiver vi datasættet. I nedenstående ønsker vi at undersøge om folk der har en højere indkomst, er mere højreorienteret (politisk orientering er dermed den afhængige variabel). Dette ønsker vi at undersøge med datarammen `ess`, hvilket vi gemmer i objektet `reg.lr`.
+
+```{r}
+reg.lr <- lm(lrscale ~ inc, data=ess)
+```
+
+Når vi har kørt ovenstående funktion får vi et objekt, der, når man bruger funktionen `class()` giver `lm`. Dette gør blandt andet, at når vi bruger funktioner på vores objekt, vil der blive taget højde for, at det er en lineær model (eksempelvis vil funktionen `plot()` på objektet kalde funktionen `plot.lm()`). For at se resultaterne af regressionen kan vi prøve at se, hvad der er i objektet `reg.lr`.
+
+```{r}
+reg.lr
+```
+
+Som det kan ses af ovenstående, får vi ikke anden information frem end koefficienterne i modellen. Dette betyder i dette tilfælde konstanten (altså værdien på den afhængige variabel når `inc` er 0) og koefficienten for `inc`. Konstanten er 5.13282, hvilket betyder, at når `inc` er 0, er værdien på den afhængige variabel 5,13 (skæringen med y-aksen). Koefficienten for indkomst er 0.05959, hvilket betyder, at når indkomst stiger med én enhed, stiger politisk orientering med 0,0596. Disse informationer er generelt ikke tilstrækkelige, hvorfor det anbefales, at man bruger eksempelvis `summary()`, når man skal se resultaterne fra ens regression.
+
+```{r}
+summary(reg.lr)
+```
+
+Her får vi et meget større _output_, der også indeholder signifikanstests, som vi ofte er interesseret i. Under `Estimate` ses koefficienterne (som ligeledes er angivet ovenfor). Under `Std. Error` får vi standardfejlene. `t value` viser t værdien og `Pr(>|t|)` giver p-værdien (og ved siden af disse er der, såfremt der er tale om et statistisk signifikant estimat, en indikator herfor). Nedenunder er en lang række af modelestimater, herunder frihedsgrader, determinationskoefficient, F-test m.v.
+
+Hvis man finder ovenstående uoverskueligt, er der andre måder, at få præsenteret resultaterne i R. Én metode er at anvende pakken `stargazer`, der ofte anvendes til at eksportere tabeller. Først indlæser vi pakken (husk at installere den først, såfremt du ikke har den):
+
+```{r, message=FALSE, warning=FALSE}
+library("stargazer")
+```
+
+Med pakken kan vi bruge funktionen `stargazer()`. Her angiver vi først, at vi er interesseret i objektet `reg.lr` og ønsker at få det præsenteret som tekst (standard er LaTeX-kode).
+
+```{r}
+stargazer(reg.lr, type="text")
+```
+
+Her ses et mere brugervenligt _output_, der i format ligner det, man vil finde i artikler og bøger. Her kan vi ligeledes nemt se antallet af observationer i vores model (hvilket ikke var angivet eksplicit, da vi brugte `summary()`). Hvis vi gerne vil illustrere den lineære regressionslinje, kan vi bruge `ggplot2` med tilføjelsen `geom_smooth()` og specificere, at det skal være en lineær model, der skal vises:
+
+```{r, fig.width=5, fig.height=3}
+ggplot(ess, aes(x=inc, y=lrscale)) + 
+  geom_smooth(method="lm", se=FALSE) +
+  theme_minimal()
+```
+
+Her kan det også ses, at når `inc` er 0, er værdien på y-aksen 5,13. 
+
+## Multivariat analyse
+
+Til nu har vi blot kørt en bivariat regressionsanalyse. Det er heldigvis nemt at udvide denne med flere uafhængige variable, der giver mulighed for at kontrollere for andre variable:
+
+$$Y_i = \alpha + \beta_1 X_i + \beta_2 Z_i + \epsilon_i$$
+
+For at gøre dette i `R` tilføjer vi et plus (`+`) efter den uafhængige variabel og derefter navnet på endnu en variabel, der skal inkluderes i modellen. Dette kan man fortsætte med at gøre, til ens model er korekt specificeret. I nedenstående er indkomst, køn, alder, uddannelse og fagforeningsmedlemsskab uafhængige variable.
+
+```{r}
+reg.lr.c <- lm(lrscale ~ inc + male + age + edu + union, data=ess)
+```
+
+Dette er gemt i objektet `reg.lr.c`. Ligesom i den bivariate analyse kan vi få resultaterne af modellen frem ved hjælp af funktionen `summary()`:
+
+```{r}
+summary(reg.lr.c )
+```
+
+_Outputtet_ følger samme struktur som i den bivariate analyse. Den eneste forskel er, at der nu er tilføjet fire ekstra variable og dermed fire ekstra estimater og dertilhørende standardfejl og statistiske tests. Hvis vi gerne vil sammenligne resultaterne i denne regression med den bivariate analyse, kan vi bruge `stargazer()` til at vise resultaterne fra begge modeller i én tabel. Dette gør vi ved at tilføje begge modeller til funktionen, adskilt af et komma:
+
+```{r}
+stargazer(reg.lr, reg.lr.c, type="text")
+```
+
+Tolkningen af resultaterne er anderledes i den multivariate regression. Koefficienten for `inc` skal nu tolkes partielt, og altså som korrelationen mellem `inc` og `lrscale`, når vi kontrollerer for de andre variable (køn, alder, uddannelse og fagforeningsmedlemsskab). Konstanten er i denne sammenhæng værdien på den afhængige variabel, når alle andre variable har værdien 0.
+
+## Forudsætningstests
+
+I Model 4 i Figur \@ref(fig:anscombe) kan det ses, at én observation gør det muligt at lave en regressionslinje. Dette viser vigtigheden af at kende sine data, og især om de modeller der estimeres, bygger på realistiske antagelser. Som med alle modeller vi estimerer, bygger disse på bestemte antagelser. Disse antagelser kan være meget heroiske i forhold til strukturen af vores data, og dermed blive brudt. Nogle af disse antagelser kan heldigvis belyses empirisk, hvor andre kræver viden omkring selve den proces, der har genereret vores data. 
+
+Det er for det første vigtigt, at vi har et godt forskningsdesign. Dette holder for _alt_ vi laver - ikke kun lineære regressionsanalyser. Som det siges: _You can’t fix by analysis what you bungled by design_.
+
+Det er for det andet vigtigt, at vi bruger de rigtige variable - og hverken færre eller flere. Med andre ord skal vi sikre os, at vi har den korrekte model, og ikke en fejlspecificeret model. Hvis vores model er underspecificeret, altså vi undlader vigtige variable, får vi _biased_ estimater. Det samme kan vi få, hvis vi overspecificerer vores model, eksempelvis ved at smide alle variable ind i vores model. Det er derfor vigtigt, at vi bruger vores teoretiske viden, når vi specificerer vores regression. 
+
+I den resterende del af kapitlet vil forskellige forudsætningstests blive gennemgået. Til at gøre dette vil vi bruge to forskellige pakker, `car` og `MASS`. Det første vi gør er at åbne pakkerne (husk at installere dem først, hvis du ikke har dem).
+
+```{r results='hide', message=FALSE, warning=FALSE}
+library("car")
+library("MASS")
+```
+
+
+### Linearitet
+
+Det første vi skal undersøge empirisk er, om der et lineært forhold mellem vores uafhængige og afhængige variable. Hvis der ikke er dette, vil vi få _biased_ estimater, og dermed kan vi ikke tro på resultaterne. Vi kunne gøre dette ved at kigge på punktdiagrammer for den afhængige variabel og hver af de uafhængige variable, men dette vil ikke tage højde for, at relationen mellem den afhængige variabel og én uafhængig variabel, kan ændres, når man tager højde for de andre uafhængige variable. Derfor er vi nødt til at kigge på partielle korrelationer.
+
+Til at gøre dette vil vi bruge funktionen `crp()`, der er en forkortelse for _component + residual plot_. Disse plots giver os en grafisk illustration af, om der er et lineært forhold mellem hver af den afhængige variable og hver af de uafhængige variable, når der tages højde for de andre variable.
+
+Det gode ved disse plots er, at de også tilføjer en linje, der bedst passer til data (den grønne linje). Den røde linje er den lineære relation. Vi vil gerne have, at der er et klart overlap mellem de to linjer, så der rent faktisk er et lineært forhold mellem vores variable. Her kører vi funktionen `crp()` på vores objekt med den multiple lineære regression, vi estimerede i forrige sektion.
+
+```{r, warnings=FALSE, message=FALSE}
+crp(reg.lr.c)
+```
+
+Der er et pænt overlap i de figurer, hvor det er muligt at estimere begge linjer. Dette er ikke muligt i alle tilfælde, og mere specifikt ikke for de uafhængige variable, der er binære. 
+
+Hvis der er problemer med ovenstående, skal man overveje en alternativ modelspecifikation. Dette kan være ved at inkludere variable, der giver et mere lineært forhold mellem de respektive variable i modellen, eller transformere de eksisterende variale i modellen (eksempelvis via en logaritmisk transformation).
+
+### Outliers og indflydelsesrige observationer
+
+Det næste vi skal belyse er forekomsten af outliers og indflydelsesrige observationer. En outlier er en observation, der ligger langt fra den den lineære tendenslinje og dermed ikke følger den trend, man burde forvente med udgangspunkt i de andre observationer. For at undersøge dette skal vi teste residualet for en observation. Til at gøre dette estimerer vi studentiserede residualer, der fortæller os, hvor overraskende et punkt er relativt til tendenslinjen uden det pågældende punkt. Her bruger vi funktionen `outlierTest()`.
+
+
+```{r}
+outlierTest(reg.lr.c) 
+```
+
+I outputtet er vi interesserede i Bonferonni p-værdier, og konkret vil vi gerne have, at ingen af disse er signifikante. I outputtet kan vi i ovenstående se, at der ikke er studentiserede residualer med Bonferonni p-værdier lavere end 0,05, hvorfor der ikke er et problem med ekstreme observationer.
+
+Det næste vi kigger på er såkaldte _leverage plots_, der skal belyse om der er problemer med ekstreme værdier forudsagt af hver af de uafhængige variable. Til at få dette, bruger vi funktionen `leveragePlots()`. Her finder vi en lige fordeling omkring de horisontale linjer, hvilket indikerer, at der ikke er problemer med outliers.
+
+```{r}
+leveragePlots(reg.lr.c) 
+```
+
+Lignende plots der bruges til at kigge på indflydelsesrige observationer, er _added-variable plots_, der laves med funktionen `avPlots()`. Disse undersøger effekten af de uafhængige variable på den afhængige variabel, hvor vi i nedenstående ikke finder evidens for, at enkelte observationer afviger betydeligt og ekstremt fra andre.
+
+```{r}
+avPlots(reg.lr.c)
+```
+
+Som det næste kan vi kigge på Cook's D, hvor skal se hvilke observationer der har Cook's D værdier der er større end 4/(n-k-1), hvor _n_ er antallet af observationer og _k_ er antallet af variable i vores model.
+
+```{r}
+cutoff <- 4 / (( nrow(ess) - length(reg.lr.c$coefficients) - 1 - 1 )) 
+plot(reg.lr.c, which=4, cook.levels=cutoff)
+```
+
+Vores _cutoff_ er `r cutoff`, og i figuren vises de observationer, der overskrider denne værdi. 
+
+Det næste vi kan gøre er at kigge på et 
+
+### Normalfordelte fejlled
+
+_Bliver tilføjet senere._
+
+```{r}
+qqPlot(reg.lr.c, main="QQ Plot")
+```
+
+--
+
+```{r}
+sresid <- studres(reg.lr.c) 
+hist(sresid, freq=FALSE, 
+   main="Distribution of Studentized Residuals")
+xfit<-seq(min(sresid),max(sresid),length=40) 
+yfit<-dnorm(xfit) 
+lines(xfit, yfit)
+```
+
+--
+
+### Heteroskedasticitet
+
+_Bliver tilføjet senere._
+
+```{r}
+ncvTest(reg.lr.c)
+```
+
+--
+
+```{r}
+spreadLevelPlot(reg.lr.c)
+```
+
+--
+
+```{r}
+library("lmtest")
+bptest(reg.lr.c, studentize = FALSE)
+
+```
+
+--
+
+```{r}
+library("sandwich")
+coeftest(reg.lr.c)                              
+coeftest(reg.lr.c,vcov=vcovHC(reg.lr.c,type="HC0")) 
+coeftest(reg.lr.c,vcov=vcovHC(reg.lr.c,type="HC1")) 
+```
+
+--
+
+### Multikollinaritet
+
+_Bliver tilføjet senere._
+
+```{r}
+vif(reg.lr.c) 
+sqrt(vif(reg.lr.c)) > 2 
+```
+
+--

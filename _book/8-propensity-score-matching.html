@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introduktion til R</title>
+  <meta name="description" content="Introduktion til R">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introduktion til R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduktion til R" />
+  
+  
+  
+
+<meta name="author" content="Erik Gahner Larsen">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="7-logistisk-regression.html">
+<link rel="next" href="9-regressionsdiskontinuitetsdesigns.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"></a></li>
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduktion</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#hvorfor-r-fordele-og-ulemper-ved-r"><i class="fa fa-check"></i><b>1.1</b> Hvorfor R? Fordele og ulemper ved R</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installation-af-r-og-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installation af R og RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-basics.html"><a href="2-basics.html"><i class="fa fa-check"></i><b>2</b> Fundamentet</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-basics.html"><a href="2-basics.html#objekter-og-funktioner"><i class="fa fa-check"></i><b>2.1</b> Objekter og funktioner</a></li>
+<li class="chapter" data-level="2.2" data-path="2-basics.html"><a href="2-basics.html#tal-i-objekter"><i class="fa fa-check"></i><b>2.2</b> Tal i objekter</a></li>
+<li class="chapter" data-level="2.3" data-path="2-basics.html"><a href="2-basics.html#logiske-operatorer"><i class="fa fa-check"></i><b>2.3</b> Logiske operatorer</a></li>
+<li class="chapter" data-level="2.4" data-path="2-basics.html"><a href="2-basics.html#manglende-vrdier-na"><i class="fa fa-check"></i><b>2.4</b> Manglende værdier (<code>NA</code>)</a></li>
+<li class="chapter" data-level="2.5" data-path="2-basics.html"><a href="2-basics.html#tekst-i-objekter"><i class="fa fa-check"></i><b>2.5</b> Tekst i objekter</a></li>
+<li class="chapter" data-level="2.6" data-path="2-basics.html"><a href="2-basics.html#datarammer"><i class="fa fa-check"></i><b>2.6</b> Datarammer</a></li>
+<li class="chapter" data-level="2.7" data-path="2-basics.html"><a href="2-basics.html#import-og-eksport-af-datarammer"><i class="fa fa-check"></i><b>2.7</b> Import og eksport af datarammer</a></li>
+<li class="chapter" data-level="2.8" data-path="2-basics.html"><a href="2-basics.html#ref-pakker"><i class="fa fa-check"></i><b>2.8</b> Installation af pakker</a></li>
+<li class="chapter" data-level="2.9" data-path="2-basics.html"><a href="2-basics.html#objekter-i-hukommelsen"><i class="fa fa-check"></i><b>2.9</b> Objekter i hukommelsen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-data.html"><a href="3-data.html"><i class="fa fa-check"></i><b>3</b> Databehandling</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-data.html"><a href="3-data.html#behandling-af-datarammer-med-dplyr"><i class="fa fa-check"></i><b>3.1</b> Behandling af datarammer med <code>dplyr</code></a></li>
+<li class="chapter" data-level="3.2" data-path="3-data.html"><a href="3-data.html#vlg-bestemte-variable-med-select"><i class="fa fa-check"></i><b>3.2</b> Vælg bestemte variable med <code>select()</code></a></li>
+<li class="chapter" data-level="3.3" data-path="3-data.html"><a href="3-data.html#vlg-bestemte-observationer-med-filter"><i class="fa fa-check"></i><b>3.3</b> Vælg bestemte observationer med <code>filter()</code></a></li>
+<li class="chapter" data-level="3.4" data-path="3-data.html"><a href="3-data.html#vlg-rkkeflgen-pa-observationer-med-arrange"><i class="fa fa-check"></i><b>3.4</b> Vælg rækkefølgen på observationer med <code>arrange()</code></a></li>
+<li class="chapter" data-level="3.5" data-path="3-data.html"><a href="3-data.html#skift-navnet-pa-en-variabel-med-rename"><i class="fa fa-check"></i><b>3.5</b> Skift navnet på en variabel med <code>rename()</code></a></li>
+<li class="chapter" data-level="3.6" data-path="3-data.html"><a href="3-data.html#tilfj-variabel-med-mutate"><i class="fa fa-check"></i><b>3.6</b> Tilføj variabel med <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.7" data-path="3-data.html"><a href="3-data.html#kombination-af-funktioner-med-pipe-operatoren"><i class="fa fa-check"></i><b>3.7</b> Kombination af funktioner med pipe operatoren</a></li>
+<li class="chapter" data-level="3.8" data-path="3-data.html"><a href="3-data.html#kr-funktioner-pa-variable-med-apply"><i class="fa fa-check"></i><b>3.8</b> Kør funktioner på variable med <code>apply()</code></a></li>
+<li class="chapter" data-level="3.9" data-path="3-data.html"><a href="3-data.html#aggreger-variable-med-summarize"><i class="fa fa-check"></i><b>3.9</b> Aggreger variable med <code>summarize()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-viz.html"><a href="4-viz.html"><i class="fa fa-check"></i><b>4</b> Visualisering</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-viz.html"><a href="4-viz.html#introducerende-eksempel-med-ggplot2"><i class="fa fa-check"></i><b>4.1</b> Introducerende eksempel med <code>ggplot2</code></a></li>
+<li class="chapter" data-level="4.2" data-path="4-viz.html"><a href="4-viz.html#specifikationer-med-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Specifikationer med <code>ggplot2</code></a></li>
+<li class="chapter" data-level="4.3" data-path="4-viz.html"><a href="4-viz.html#eksempel-venstre-i-meningsmalingerne-i-2015"><i class="fa fa-check"></i><b>4.3</b> Eksempel: Venstre i meningsmålingerne i 2015</a></li>
+<li class="chapter" data-level="4.4" data-path="4-viz.html"><a href="4-viz.html#afsluttende-bemrkninger"><i class="fa fa-check"></i><b>4.4</b> Afsluttende bemærkninger</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-ols-regression.html"><a href="5-ols-regression.html"><i class="fa fa-check"></i><b>5</b> OLS regression</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-ols-regression.html"><a href="5-ols-regression.html#bivariat-analyse"><i class="fa fa-check"></i><b>5.1</b> Bivariat analyse</a></li>
+<li class="chapter" data-level="5.2" data-path="5-ols-regression.html"><a href="5-ols-regression.html#multivariat-analyse"><i class="fa fa-check"></i><b>5.2</b> Multivariat analyse</a></li>
+<li class="chapter" data-level="5.3" data-path="5-ols-regression.html"><a href="5-ols-regression.html#forudstningstests"><i class="fa fa-check"></i><b>5.3</b> Forudsætningstests</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="5-ols-regression.html"><a href="5-ols-regression.html#linearitet"><i class="fa fa-check"></i><b>5.3.1</b> Linearitet</a></li>
+<li class="chapter" data-level="5.3.2" data-path="5-ols-regression.html"><a href="5-ols-regression.html#outliers-og-indflydelsesrige-observationer"><i class="fa fa-check"></i><b>5.3.2</b> Outliers og indflydelsesrige observationer</a></li>
+<li class="chapter" data-level="5.3.3" data-path="5-ols-regression.html"><a href="5-ols-regression.html#normalfordelte-fejlled"><i class="fa fa-check"></i><b>5.3.3</b> Normalfordelte fejlled</a></li>
+<li class="chapter" data-level="5.3.4" data-path="5-ols-regression.html"><a href="5-ols-regression.html#heteroskedasticitet"><i class="fa fa-check"></i><b>5.3.4</b> Heteroskedasticitet</a></li>
+<li class="chapter" data-level="5.3.5" data-path="5-ols-regression.html"><a href="5-ols-regression.html#multikollinaritet"><i class="fa fa-check"></i><b>5.3.5</b> Multikollinaritet</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-interaktionsanalyse.html"><a href="6-interaktionsanalyse.html"><i class="fa fa-check"></i><b>6</b> Interaktionsanalyse</a></li>
+<li class="chapter" data-level="7" data-path="7-logistisk-regression.html"><a href="7-logistisk-regression.html"><i class="fa fa-check"></i><b>7</b> Logistisk regression</a></li>
+<li class="chapter" data-level="8" data-path="8-propensity-score-matching.html"><a href="8-propensity-score-matching.html"><i class="fa fa-check"></i><b>8</b> Propensity Score Matching</a></li>
+<li class="chapter" data-level="9" data-path="9-regressionsdiskontinuitetsdesigns.html"><a href="9-regressionsdiskontinuitetsdesigns.html"><i class="fa fa-check"></i><b>9</b> Regressionsdiskontinuitetsdesigns</a></li>
+<li class="chapter" data-level="" data-path="konklusion.html"><a href="konklusion.html"><i class="fa fa-check"></i>Konklusion</a><ul>
+<li class="chapter" data-level="9.1" data-path="konklusion.html"><a href="konklusion.html#pakkeanbefaling-swirl"><i class="fa fa-check"></i><b>9.1</b> Pakkeanbefaling: swirl</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-funktioner.html"><a href="10-funktioner.html"><i class="fa fa-check"></i><b>10</b> Funktioner</a><ul>
+<li class="chapter" data-level="10.1" data-path="10-funktioner.html"><a href="10-funktioner.html#loops"><i class="fa fa-check"></i><b>10.1</b> Loops</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html"><i class="fa fa-check"></i><b>11</b> Genveje og udvalgte funktioner</a><ul>
+<li class="chapter" data-level="11.1" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html#funktioner-1"><i class="fa fa-check"></i><b>11.1</b> Funktioner</a></li>
+<li class="chapter" data-level="11.2" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html#genveje-i-rstudio"><i class="fa fa-check"></i><b>11.2</b> Genveje i RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="12-ref-anpakker.html"><a href="12-ref-anpakker.html"><i class="fa fa-check"></i><b>12</b> Anbefalede pakker</a></li>
+<li class="chapter" data-level="13" data-path="13-eksport-af-tabeller.html"><a href="13-eksport-af-tabeller.html"><i class="fa fa-check"></i><b>13</b> Eksport af tabeller</a></li>
+<li class="chapter" data-level="14" data-path="14-referencer.html"><a href="14-referencer.html"><i class="fa fa-check"></i><b>14</b> Referencer</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduktion til R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="propensity-score-matching" class="section level1">
+<h1><span class="header-section-number">Kapitel 8</span> Propensity Score Matching</h1>
+<p>I dette kapitel gives en introduktion til, hvordan man gennemfører analyser med matching. Der vil - som i de andre kapitler - ikke bliver givet en introduktion til statistikken bag, så for de læsere, der skulle have en interesse i at læse et par introduktionsartikler, kan <span class="citation">Ho, Imai, King, &amp; Stuart (2007)</span> og <span class="citation">Sekhon (2009)</span> anbefales.</p>
+<p>Vi vil gøre brug af tre pakker i dette kapitel. Den primære pakke, der vil gøre det meste af arbejdet, er <code>MatchIt</code> <span class="citation">(Ho, Imai, King, &amp; Stuart, 2011)</span>. Der findes forskellige pakker, der alle indeholder tilsvarende funktioner, men <code>MatchIt</code> er blandt de nemmeste at anvende, hvorfor den også vil blive brugt her. De to andre pakker vi skal bruge, er <code>ggplot2</code> (til at visualisere data) og <code>RItools</code> (til at undersøge balancen mellem ikke-matchede og matchede data). Først indlæser vi pakkerne:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;MatchIt&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;RItools&quot;</span>)</code></pre></div>
+<p>Vi vil igen gøre brug af den danske del af European Social Survey fra 2014. For en nærmere beskrivelse af disse data og de respektive variable, henvises der til kapitlet om OLS regression.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ess &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/ess.csv&quot;</span>)</code></pre></div>
+<p>I dette eksempel ønsker vi at undersøge, om personer, der er medlem af en fagforening, er mere højreorienterede end folk, der ikke er medlem. Vi har dog en idé om, at køn, alder, uddannelse og indkomst, kan være med at til at forklare forskelle mellem dem, der er medlem af en fagforening og dem der ikke er. Med andre ord er de to grupper (hhv. gruppen af medlemmer og ikke-medlemmer) ikke sammenlignelige. Det første vi gør her er at specificere, at fagforeningsmedlemsskab er relateret til køn, alder, uddannelse og indkomst. Denne information gemmer vi i objektet <code>treat.f</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">treat.f &lt;-<span class="st"> </span>union ~<span class="st"> </span>male +<span class="st"> </span>age +<span class="st"> </span>edu +<span class="st"> </span>inc</code></pre></div>
+<p>Det første vi skal gøre er at have <em>propensity scores</em>, altså sandsynlighedsværdier, for, at en person er medlem af en fagforening eller ej, som en funktion af de respektkive uafhængige variable. Til at gøre dette estimerer vi først en logistisk regression med funktionen <code>glm()</code>, der står for <em>generalized linear model</em>. Dette gemmer vi i objektet <code>fit</code>, hvorefter vi bruger funktionen <code>predict()</code> til at få sandsynlighedsværdien for hver respondent, og denne gemmes i datarammen <code>ess</code> i variablen <code>pscores</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit &lt;-<span class="st"> </span><span class="kw">glm</span>(treat.f, <span class="dt">family=</span>binomial, <span class="dt">data=</span>ess)
+
+ess$pscores &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, <span class="dt">type=</span><span class="st">&quot;response&quot;</span>)</code></pre></div>
+<p>Det næste vi gør er at bruge <em>nearest neighbor</em> matching underlagt en 0,1 kaliber (for de forskellige metoder, se hjælpefilen til <code>matchit()</code>). Resultaterne heraf gemmer vi i objektet <code>m</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">matchit</span>(treat.f, <span class="dt">method =</span> <span class="st">&quot;nearest&quot;</span>, <span class="dt">caliper=</span>.<span class="dv">1</span>, <span class="dt">data =</span> ess)
+m</code></pre></div>
+<pre><code>
+Call: 
+matchit(formula = treat.f, data = ess, method = &quot;nearest&quot;, caliper = 0.1)
+
+Sample sizes:
+          Control Treated
+All           491     794
+Matched       387     387
+Unmatched     104     407
+Discarded       0       0</code></pre>
+<p>I ovenstående kan vi se, at ikke alle cases kunne matches. Mere specifikt ender vi med 387 respondenter i hver gruppe. Vi bruger nu funktionen <code>match.data()</code> til at få en dataramme, for de respondenter, der er blevet matchet.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m.data &lt;-<span class="st"> </span><span class="kw">match.data</span>(m)</code></pre></div>
+<p>Nu kan vi så sammenligne sandsynlighedsværdierne for henholdsvis de ikke-matchede og matchede datasæt. Først kigger vi på sandsynlighedsværdierne for de ikke-matchede data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>pscores, <span class="dt">linetype=</span><span class="kw">as.factor</span>(union), 
+                 <span class="dt">fill =</span> <span class="kw">as.factor</span>(union), 
+                 <span class="dt">colour =</span> <span class="kw">as.factor</span>(union))) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> .<span class="dv">1</span>, <span class="dt">size =</span> .<span class="dv">9</span>) +
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Densitet&quot;</span>) +
+<span class="st">  </span><span class="kw">theme_minimal</span>() +
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>) +
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="st">&quot;&quot;</span>, <span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</code></pre></div>
+<p><img src="Rguide_files/figure-html/unnamed-chunk-126-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Her ses det tydeligt, at der ikke er et tilfredsstillende overlap mellem de to grupper. Som det næste kigger vi på vores overlap i de matchede data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(m.data, <span class="kw">aes</span>(<span class="dt">x=</span>distance, <span class="dt">linetype=</span><span class="kw">as.factor</span>(union), 
+                   <span class="dt">fill =</span> <span class="kw">as.factor</span>(union), 
+                   <span class="dt">colour =</span> <span class="kw">as.factor</span>(union))) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> .<span class="dv">1</span>, <span class="dt">size =</span> .<span class="dv">9</span>) +
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Densitet&quot;</span>) +
+<span class="st">  </span><span class="kw">theme_minimal</span>() +
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>) +
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="st">&quot;&quot;</span>, <span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</code></pre></div>
+<p><img src="Rguide_files/figure-html/unnamed-chunk-127-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Her ses det omvendt, at der er et langt mere tilfredsstillende overlap mellem de ikke-matchede og de matchede data. Næst ønsker vi at belyse, om matching proceduren også har skabt bedre balance mellem de respektive grupper på de inkluderede, observerede variable. Til at gøre dette bruger vi funktionen <code>xBalance()</code>, hvorefter vi laver en ny dataramme med de standardiserede forskelle på de inkluderede variable før og efter matching. Denne dataramme kalder vi <code>balance.df</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xB.unmatched &lt;-<span class="st"> </span><span class="kw">xBalance</span>(treat.f, <span class="dt">data=</span>ess, <span class="dt">report=</span><span class="kw">c</span>(<span class="st">&quot;all&quot;</span>))
+xB.unmatched &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(xB.unmatched)
+std.unmatched &lt;-<span class="st"> </span>xB.unmatched[,<span class="st">&quot;results.std.diff.unstrat&quot;</span>]
+xB.matched &lt;-<span class="st"> </span><span class="kw">xBalance</span>(treat.f, <span class="dt">data=</span>m.data, <span class="dt">report=</span><span class="kw">c</span>(<span class="st">&quot;all&quot;</span>))
+xB.matched &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(xB.matched)
+std.matched &lt;-<span class="st"> </span>xB.matched[,<span class="st">&quot;results.std.diff.unstrat&quot;</span>]
+balance.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">covariate =</span> <span class="kw">row.names</span>(xB.matched), 
+                         <span class="dt">unmatched=</span>
+                           std.unmatched[<span class="kw">row.names</span>(xB.unmatched) 
+                                      %in%<span class="st"> </span><span class="kw">row.names</span>(xB.matched)], 
+                         <span class="dt">matched=</span>std.matched)</code></pre></div>
+<p>Resultaterne fra denne dataramme visualiserer vi så i nedenstående:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(balance.df, <span class="kw">aes</span>(<span class="dt">x=</span>covariate, <span class="dt">y=</span>unmatched)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept=</span><span class="dv">0</span>, <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;gray50&quot;</span>) +
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">vjust =</span> <span class="fl">1.6</span>, <span class="kw">aes</span>(<span class="dt">label=</span><span class="st">&quot;U&quot;</span>, <span class="dt">y=</span>unmatched, <span class="dt">size=</span>.<span class="dv">9</span>), 
+            <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.9</span>) +
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>unmatched, <span class="dt">size=</span>.<span class="dv">9</span>), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>, 
+             <span class="dt">alpha =</span> <span class="fl">0.6</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">vjust =</span> <span class="fl">1.6</span>, <span class="kw">aes</span>(<span class="dt">label=</span><span class="st">&quot;M&quot;</span>, <span class="dt">y=</span>matched, <span class="dt">size=</span>.<span class="dv">9</span>), 
+            <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.9</span>) +
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>matched, <span class="dt">size=</span>.<span class="dv">9</span>), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>, 
+             <span class="dt">alpha =</span> <span class="fl">0.6</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">coord_flip</span>() +
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Kontrolvariabel&quot;</span>) +
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Standardiseret forskel&quot;</span>) +
+<span class="st">  </span><span class="kw">theme_minimal</span>() +
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>)</code></pre></div>
+<p><img src="Rguide_files/figure-html/unnamed-chunk-129-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Ovenstående viser, at de standardiserede forskelle er betydeligt mindre for de matchede data. Vi er således tilfredse med vores procedure, og kan nu køre vores analyser. Det første vi gør er at estimere en model på de ikke-matchede data. Dette gemmer vi i objektet <code>reg.unmatched</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg.unmatched &lt;-<span class="st"> </span><span class="kw">lm</span>(lrscale ~<span class="st"> </span>union +<span class="st"> </span>male +<span class="st"> </span>age +<span class="st"> </span>edu +<span class="st"> </span>inc, 
+                    <span class="dt">data=</span>ess)</code></pre></div>
+<p>Dernæst kører vi en regression på de matchede data. Dette gemmer vi i objektet <code>reg.matched</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg.matched &lt;-<span class="st"> </span><span class="kw">lm</span>(lrscale ~<span class="st"> </span>union +<span class="st"> </span>male +<span class="st"> </span>age +<span class="st"> </span>edu +<span class="st"> </span>inc, 
+                  <span class="dt">data=</span>m.data)</code></pre></div>
+<p>Vi kan så, forudsat at pakken <code>stargazer</code> er indlæst, se resultaterne med henholdsvis de ikke-matchede og de matchede data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stargazer</span>(reg.unmatched, reg.matched, <span class="dt">type=</span><span class="st">&quot;text&quot;</span>)</code></pre></div>
+<pre><code>
+===================================================================
+                                  Dependent variable:              
+                    -----------------------------------------------
+                                        lrscale                    
+                              (1)                     (2)          
+-------------------------------------------------------------------
+union                       -0.270*                 -0.316*        
+                            (0.141)                 (0.165)        
+                                                                   
+male                        0.452***                0.517***       
+                            (0.129)                 (0.166)        
+                                                                   
+age                          0.004                   0.002         
+                            (0.004)                 (0.004)        
+                                                                   
+edu                        -0.176***               -0.175***       
+                            (0.038)                 (0.047)        
+                                                                   
+inc                         0.118***                0.147***       
+                            (0.025)                 (0.031)        
+                                                                   
+Constant                    5.279***                5.158***       
+                            (0.292)                 (0.338)        
+                                                                   
+-------------------------------------------------------------------
+Observations                 1,285                    774          
+R2                           0.040                   0.055         
+Adjusted R2                  0.036                   0.049         
+Residual Std. Error    2.294 (df = 1279)        2.284 (df = 768)   
+F Statistic         10.693*** (df = 5; 1279) 8.930*** (df = 5; 768)
+===================================================================
+Note:                                   *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="7-logistisk-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="9-regressionsdiskontinuitetsdesigns.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": [["Rguide.pdf", "PDF"], ["Rguide.epub", "EPUB"], ["Rguide.docx", "Word"]],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+---
+output: html_document
+---
+
+# Logistisk regression
+
+_Bliver tilføjet senere._

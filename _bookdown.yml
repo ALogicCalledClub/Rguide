@@ -1,0 +1,4 @@
+book_filename: "Rguide"
+chapter_name: "Kapitel "
+rmd_files: ["index.Rmd", "kap-grund.Rmd", "kap-databehandling.Rmd", "kap-visualisering.Rmd", "kap-ols.Rmd", "kap-interaktion.Rmd", "kap-logistisk.Rmd", "kap-matching.Rmd", "kap-rdd.Rmd", "kap-konklusion.Rmd", "kap-references.Rmd"]
+download: [["Rguide.pdf", "PDF"], ["Rguide.epub", "EPUB"], ["Rguide.docx", "Word"]]

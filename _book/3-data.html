@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introduktion til R</title>
+  <meta name="description" content="Introduktion til R">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introduktion til R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduktion til R" />
+  
+  
+  
+
+<meta name="author" content="Erik Gahner Larsen">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="2-basics.html">
+<link rel="next" href="4-viz.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"></a></li>
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduktion</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#hvorfor-r-fordele-og-ulemper-ved-r"><i class="fa fa-check"></i><b>1.1</b> Hvorfor R? Fordele og ulemper ved R</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installation-af-r-og-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installation af R og RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-basics.html"><a href="2-basics.html"><i class="fa fa-check"></i><b>2</b> Fundamentet</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-basics.html"><a href="2-basics.html#objekter-og-funktioner"><i class="fa fa-check"></i><b>2.1</b> Objekter og funktioner</a></li>
+<li class="chapter" data-level="2.2" data-path="2-basics.html"><a href="2-basics.html#tal-i-objekter"><i class="fa fa-check"></i><b>2.2</b> Tal i objekter</a></li>
+<li class="chapter" data-level="2.3" data-path="2-basics.html"><a href="2-basics.html#logiske-operatorer"><i class="fa fa-check"></i><b>2.3</b> Logiske operatorer</a></li>
+<li class="chapter" data-level="2.4" data-path="2-basics.html"><a href="2-basics.html#manglende-vrdier-na"><i class="fa fa-check"></i><b>2.4</b> Manglende værdier (<code>NA</code>)</a></li>
+<li class="chapter" data-level="2.5" data-path="2-basics.html"><a href="2-basics.html#tekst-i-objekter"><i class="fa fa-check"></i><b>2.5</b> Tekst i objekter</a></li>
+<li class="chapter" data-level="2.6" data-path="2-basics.html"><a href="2-basics.html#datarammer"><i class="fa fa-check"></i><b>2.6</b> Datarammer</a></li>
+<li class="chapter" data-level="2.7" data-path="2-basics.html"><a href="2-basics.html#import-og-eksport-af-datarammer"><i class="fa fa-check"></i><b>2.7</b> Import og eksport af datarammer</a></li>
+<li class="chapter" data-level="2.8" data-path="2-basics.html"><a href="2-basics.html#ref-pakker"><i class="fa fa-check"></i><b>2.8</b> Installation af pakker</a></li>
+<li class="chapter" data-level="2.9" data-path="2-basics.html"><a href="2-basics.html#objekter-i-hukommelsen"><i class="fa fa-check"></i><b>2.9</b> Objekter i hukommelsen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-data.html"><a href="3-data.html"><i class="fa fa-check"></i><b>3</b> Databehandling</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-data.html"><a href="3-data.html#behandling-af-datarammer-med-dplyr"><i class="fa fa-check"></i><b>3.1</b> Behandling af datarammer med <code>dplyr</code></a></li>
+<li class="chapter" data-level="3.2" data-path="3-data.html"><a href="3-data.html#vlg-bestemte-variable-med-select"><i class="fa fa-check"></i><b>3.2</b> Vælg bestemte variable med <code>select()</code></a></li>
+<li class="chapter" data-level="3.3" data-path="3-data.html"><a href="3-data.html#vlg-bestemte-observationer-med-filter"><i class="fa fa-check"></i><b>3.3</b> Vælg bestemte observationer med <code>filter()</code></a></li>
+<li class="chapter" data-level="3.4" data-path="3-data.html"><a href="3-data.html#vlg-rkkeflgen-pa-observationer-med-arrange"><i class="fa fa-check"></i><b>3.4</b> Vælg rækkefølgen på observationer med <code>arrange()</code></a></li>
+<li class="chapter" data-level="3.5" data-path="3-data.html"><a href="3-data.html#skift-navnet-pa-en-variabel-med-rename"><i class="fa fa-check"></i><b>3.5</b> Skift navnet på en variabel med <code>rename()</code></a></li>
+<li class="chapter" data-level="3.6" data-path="3-data.html"><a href="3-data.html#tilfj-variabel-med-mutate"><i class="fa fa-check"></i><b>3.6</b> Tilføj variabel med <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.7" data-path="3-data.html"><a href="3-data.html#kombination-af-funktioner-med-pipe-operatoren"><i class="fa fa-check"></i><b>3.7</b> Kombination af funktioner med pipe operatoren</a></li>
+<li class="chapter" data-level="3.8" data-path="3-data.html"><a href="3-data.html#kr-funktioner-pa-variable-med-apply"><i class="fa fa-check"></i><b>3.8</b> Kør funktioner på variable med <code>apply()</code></a></li>
+<li class="chapter" data-level="3.9" data-path="3-data.html"><a href="3-data.html#aggreger-variable-med-summarize"><i class="fa fa-check"></i><b>3.9</b> Aggreger variable med <code>summarize()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-viz.html"><a href="4-viz.html"><i class="fa fa-check"></i><b>4</b> Visualisering</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-viz.html"><a href="4-viz.html#introducerende-eksempel-med-ggplot2"><i class="fa fa-check"></i><b>4.1</b> Introducerende eksempel med <code>ggplot2</code></a></li>
+<li class="chapter" data-level="4.2" data-path="4-viz.html"><a href="4-viz.html#specifikationer-med-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Specifikationer med <code>ggplot2</code></a></li>
+<li class="chapter" data-level="4.3" data-path="4-viz.html"><a href="4-viz.html#eksempel-venstre-i-meningsmalingerne-i-2015"><i class="fa fa-check"></i><b>4.3</b> Eksempel: Venstre i meningsmålingerne i 2015</a></li>
+<li class="chapter" data-level="4.4" data-path="4-viz.html"><a href="4-viz.html#afsluttende-bemrkninger"><i class="fa fa-check"></i><b>4.4</b> Afsluttende bemærkninger</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-ols-regression.html"><a href="5-ols-regression.html"><i class="fa fa-check"></i><b>5</b> OLS regression</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-ols-regression.html"><a href="5-ols-regression.html#bivariat-analyse"><i class="fa fa-check"></i><b>5.1</b> Bivariat analyse</a></li>
+<li class="chapter" data-level="5.2" data-path="5-ols-regression.html"><a href="5-ols-regression.html#multivariat-analyse"><i class="fa fa-check"></i><b>5.2</b> Multivariat analyse</a></li>
+<li class="chapter" data-level="5.3" data-path="5-ols-regression.html"><a href="5-ols-regression.html#forudstningstests"><i class="fa fa-check"></i><b>5.3</b> Forudsætningstests</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="5-ols-regression.html"><a href="5-ols-regression.html#linearitet"><i class="fa fa-check"></i><b>5.3.1</b> Linearitet</a></li>
+<li class="chapter" data-level="5.3.2" data-path="5-ols-regression.html"><a href="5-ols-regression.html#outliers-og-indflydelsesrige-observationer"><i class="fa fa-check"></i><b>5.3.2</b> Outliers og indflydelsesrige observationer</a></li>
+<li class="chapter" data-level="5.3.3" data-path="5-ols-regression.html"><a href="5-ols-regression.html#normalfordelte-fejlled"><i class="fa fa-check"></i><b>5.3.3</b> Normalfordelte fejlled</a></li>
+<li class="chapter" data-level="5.3.4" data-path="5-ols-regression.html"><a href="5-ols-regression.html#heteroskedasticitet"><i class="fa fa-check"></i><b>5.3.4</b> Heteroskedasticitet</a></li>
+<li class="chapter" data-level="5.3.5" data-path="5-ols-regression.html"><a href="5-ols-regression.html#multikollinaritet"><i class="fa fa-check"></i><b>5.3.5</b> Multikollinaritet</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-interaktionsanalyse.html"><a href="6-interaktionsanalyse.html"><i class="fa fa-check"></i><b>6</b> Interaktionsanalyse</a></li>
+<li class="chapter" data-level="7" data-path="7-logistisk-regression.html"><a href="7-logistisk-regression.html"><i class="fa fa-check"></i><b>7</b> Logistisk regression</a></li>
+<li class="chapter" data-level="8" data-path="8-propensity-score-matching.html"><a href="8-propensity-score-matching.html"><i class="fa fa-check"></i><b>8</b> Propensity Score Matching</a></li>
+<li class="chapter" data-level="9" data-path="9-regressionsdiskontinuitetsdesigns.html"><a href="9-regressionsdiskontinuitetsdesigns.html"><i class="fa fa-check"></i><b>9</b> Regressionsdiskontinuitetsdesigns</a></li>
+<li class="chapter" data-level="" data-path="konklusion.html"><a href="konklusion.html"><i class="fa fa-check"></i>Konklusion</a><ul>
+<li class="chapter" data-level="9.1" data-path="konklusion.html"><a href="konklusion.html#pakkeanbefaling-swirl"><i class="fa fa-check"></i><b>9.1</b> Pakkeanbefaling: swirl</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-funktioner.html"><a href="10-funktioner.html"><i class="fa fa-check"></i><b>10</b> Funktioner</a><ul>
+<li class="chapter" data-level="10.1" data-path="10-funktioner.html"><a href="10-funktioner.html#loops"><i class="fa fa-check"></i><b>10.1</b> Loops</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html"><i class="fa fa-check"></i><b>11</b> Genveje og udvalgte funktioner</a><ul>
+<li class="chapter" data-level="11.1" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html#funktioner-1"><i class="fa fa-check"></i><b>11.1</b> Funktioner</a></li>
+<li class="chapter" data-level="11.2" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html#genveje-i-rstudio"><i class="fa fa-check"></i><b>11.2</b> Genveje i RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="12-ref-anpakker.html"><a href="12-ref-anpakker.html"><i class="fa fa-check"></i><b>12</b> Anbefalede pakker</a></li>
+<li class="chapter" data-level="13" data-path="13-eksport-af-tabeller.html"><a href="13-eksport-af-tabeller.html"><i class="fa fa-check"></i><b>13</b> Eksport af tabeller</a></li>
+<li class="chapter" data-level="14" data-path="14-referencer.html"><a href="14-referencer.html"><i class="fa fa-check"></i><b>14</b> Referencer</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduktion til R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data" class="section level1">
+<h1><span class="header-section-number">Kapitel 3</span> Databehandling</h1>
+<p>Der er flere måder hvorpå man i <code>R</code> kan behandle datarammer på og herunder få lavet nye variable i datarammen. I dette kapitel vil der blive vist forskellige måder til at behandle datarammer, og der vil især blive fokuseret på behandlingen af variable i en dataramme. Her vil der ogeså blive givet et par eksempler på, hvordan vi kan lave en ny variabel baseret på værdierne på en anden variabel.</p>
+<p>Lad os tage udgangspunkt i, at vi gerne vil have lavet en binær variabel, der antager værdien 1, hvis et parti i Folketinget har fået mere end 20 procent af stemmerne, og værdien 0 hvis ikke. Vi vil gerne kalde denne variabel for <code>big</code>. For at gøre dette henter vi først de data, vi lavede i forrige kapitel.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/ft2015.csv&quot;</span>)</code></pre></div>
+<p>I nedenstående laver vi først et nyt element (en ny variabel) i vores dataramme med navnet <code>big</code>. Denne får vædierne <code>NA</code>. Dernæst angiver vi, at <code>pol$big</code> skal have værdien 1, men kun for de observationer, hvor <code>pol$vote</code> er større end eller lig med 20. Til sidst siger vi, at de observationer der fik mindre end 20 procent af stemmerne, skal værdien være 0. I dette eksempel kunne vi have undladt det sidste step og blot brugt værdien <code>0</code> i stedet for <code>NA</code>. Til sidst bruger vi funktionen <code>table()</code> til at få vist, hvilke partier der har værdien 1 på <code>pol$big</code>. Som det kan ses, er det hhv. Dansk Folkeparti og Socialdemokraterne.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol$big &lt;-<span class="st"> </span><span class="ot">NA</span>
+pol$big[pol$vote &gt;=<span class="st"> </span><span class="dv">20</span>] &lt;-<span class="st"> </span><span class="dv">1</span>
+pol$big[pol$vote &lt;<span class="st"> </span><span class="dv">20</span>] &lt;-<span class="st"> </span><span class="dv">0</span>
+
+<span class="kw">table</span>(pol$party, pol$big)</code></pre></div>
+<pre><code>                    
+                     0 1
+  Alternativet       1 0
+  Dansk Folkeparti   0 1
+  Enhedslisten       1 0
+  Konservative       1 0
+  Liberal Alliance   1 0
+  Radikale           1 0
+  SF                 1 0
+  Socialdemokraterne 0 1
+  Venstre            1 0</code></pre>
+<p>Der er mange måder hvorpå man kan rekode variable. En anden mulighed er at bruge funktionen <code>ifelse()</code>, hvor vi fortæller R, at hvis hvis noget er sandt, skal den give en bestemt værdi, og en anden værdi til de resterende observationer. I nedenstående kode undersøger vi igen, om <code>vote</code> er større eller lig med 20, og hvis dette er tilfældet, gives værdien 1. Hvis ikke, gives værdien 0.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol$big &lt;-<span class="st"> </span><span class="kw">ifelse</span>(pol$vote &gt;=<span class="st"> </span><span class="dv">20</span>, <span class="dv">1</span>, <span class="dv">0</span>)
+
+<span class="kw">table</span>(pol$party, pol$big)</code></pre></div>
+<pre><code>                    
+                     0 1
+  Alternativet       1 0
+  Dansk Folkeparti   0 1
+  Enhedslisten       1 0
+  Konservative       1 0
+  Liberal Alliance   1 0
+  Radikale           1 0
+  SF                 1 0
+  Socialdemokraterne 0 1
+  Venstre            1 0</code></pre>
+<p>Hvis vi eksempelvis manuelt ville give Socialdemokraterne og Dansk Folkeparti værdien 1, uden at bruge information omkring deres stemmetal, kunne dette også gøres. Nedenstående kode giver nogle eksempler herpå. Den første linje giver <code>big</code> værdien 1 hvis <code>party</code> er lig Socialdemokraterne <em>eller</em> Dansk Folkeparti. Den anden linje giver <code>big</code> værdien 1 hvis værdien i <code>party</code> er i (angivet ved <code>%in%</code>) vektoren med Socialdemokraterne og Dansk Folkeparti. De resterende linjer er eksempler dernæst på, hvor værdien 0 gives. Bemærk især den sidste linje, hvor funktionen <code>is.na()</code> bruges til at undersøge, om der er nogle manglende værdier, og hvis der er, gives værdien 0.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol$big[pol$party ==<span class="st"> &quot;Socialdemokraterne&quot;</span> |<span class="st"> </span>
+<span class="st">          </span>pol$party ==<span class="st"> &quot;Dansk Folkeparti&quot;</span>] &lt;-<span class="st"> </span><span class="dv">1</span>
+pol$big[pol$party %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Socialdemokraterne&quot;</span>, 
+                         <span class="st">&quot;Dansk Folkeparti&quot;</span>)] &lt;-<span class="st"> </span><span class="dv">1</span>
+
+pol$big[pol$party !=<span class="st"> &quot;Socialdemokraterne&quot;</span> &amp;<span class="st"> </span>
+<span class="st">          </span>pol$party !=<span class="st"> &quot;Dansk Folkeparti&quot;</span>] &lt;-<span class="st"> </span><span class="dv">0</span>
+pol$big[<span class="kw">is.na</span>(pol$big)] &lt;-<span class="st"> </span><span class="dv">0</span></code></pre></div>
+<div id="behandling-af-datarammer-med-dplyr" class="section level2">
+<h2><span class="header-section-number">3.1</span> Behandling af datarammer med <code>dplyr</code></h2>
+<p>Der er forskellige pakker, der kan bruges til at bearbejde datarammer, men den bedste er uden sammenligning <code>dplyr</code> <span class="citation">(Hadley Wickham &amp; Francois, 2016)</span>. Et andet eksempel på en pakke, der kan bruges til at rekode variable i datarammer er pakken <code>car</code> <span class="citation">(Fox &amp; Weisberg, 2011)</span>, der har funktionen <code>recode()</code>, men vi vil fokusere på <code>dplyr</code> i resten af kapitlet. Det første vi gør - og forudsætningen for at resterende funktioner i kapitlet virker - er, at åbne <code>dplyr</code><a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</code></pre></div>
+<p>Pakken giver nogle helt basale funktioner, der gør det nemt at bearbejde datarammer. Funktionerne heri inkluderer <code>select()</code>, <code>filter()</code>, <code>arrange()</code>, <code>rename()</code>, <code>mutate()</code> og <code>summarize()</code><a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a>. <code>select()</code> og <code>filter()</code> bruges til henholdsvis at udvælge kolonner (<em>variable</em>) og rækker (<em>observationer</em>). <code>mutate()</code> bruges til at tilføje eller ændre eksisterende kolonner. <code>arrange()</code> bruges til at sortere rækker. <code>rename()</code> bruges til at ændre navnet på en kolonne. <code>summarize()</code> bruges til at aggregere rækker.</p>
+<p>Fælles for alle disse funktioner er, at de tager udgangspunkt i en dataramme. De lader sig dermed ikke applicere på andre typer af klasser end datarammer. De returnerer ligeledes alle en ny datarammer. Ved at kunne bruge disse funktioner og kombinere dem i ens arbejde, har man styr på hvad det kræver at bearbejde datarammer.</p>
+</div>
+<div id="vlg-bestemte-variable-med-select" class="section level2">
+<h2><span class="header-section-number">3.2</span> Vælg bestemte variable med <code>select()</code></h2>
+<p>Hvis vi kun skal bruge bestemte variable i vores dataramme, eksempelvis partinavn (<code>party</code>) og om det er et højreorienteret parti (<code>rw</code>), kan vi anvende funktionen <code>select()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(pol, party, rw)</code></pre></div>
+<pre><code>               party rw
+1            Venstre  1
+2 Socialdemokraterne  0
+3       Enhedslisten  0
+4                 SF  0
+5           Radikale  0
+6       Konservative  1
+7   Dansk Folkeparti  1
+8   Liberal Alliance  1
+9       Alternativet  0</code></pre>
+<p>Der er forskellige funktioner, der kan bruges til at finde de variable, vi gerne vil vælge. Hvis vi gerne vil vælge en eller flere variable, der indeholder bestemt tekst i variabelnavnet, kan vi bruge <code>contains()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(pol, <span class="kw">contains</span>(<span class="st">&quot;par&quot;</span>))</code></pre></div>
+<pre><code>               party
+1            Venstre
+2 Socialdemokraterne
+3       Enhedslisten
+4                 SF
+5           Radikale
+6       Konservative
+7   Dansk Folkeparti
+8   Liberal Alliance
+9       Alternativet</code></pre>
+<p>Foruden <code>contains()</code> er der mulighed for at bruge blandet andet <code>starts_with()</code>, <code>ends_with()</code>, <code>matches()</code>, <code>num_range()</code>, <code>one_of()</code> og <code>everything()</code>.</p>
+<p>Hvis vi gerne vil fjerne en variabel fra en dataramme, kan vi bruge minustegnet. I dette eksempel fjerner vi <code>rw</code> fra datarammen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(pol, -rw)</code></pre></div>
+<pre><code>  X              party vote seat big
+1 1            Venstre 19.5   34   0
+2 2 Socialdemokraterne 26.3   47   1
+3 3       Enhedslisten  7.8   14   0
+4 4                 SF  4.2    7   0
+5 5           Radikale  4.6    8   0
+6 6       Konservative  3.4    6   0
+7 7   Dansk Folkeparti 21.1   37   1
+8 8   Liberal Alliance  7.5   13   0
+9 9       Alternativet  4.8    9   0</code></pre>
+</div>
+<div id="vlg-bestemte-observationer-med-filter" class="section level2">
+<h2><span class="header-section-number">3.3</span> Vælg bestemte observationer med <code>filter()</code></h2>
+<p>Hvis vi gerne vil have hele datarammen, altså alle kolonner, men blot for udvalgte rækker (observationer), kan vi bruge funktionen <code>filter()</code>. I nedenstående eksempel tager vi datarammen <code>pol</code> men viser kun rækkerne for de højreorienterede partier, altså der hvor <code>rw</code> er lig med 1.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(pol, rw ==<span class="st"> </span><span class="dv">1</span>)</code></pre></div>
+<pre><code>Warning: package &#39;bindrcpp&#39; was built under R version 3.3.2</code></pre>
+<pre><code>  X            party vote seat rw big
+1 1          Venstre 19.5   34  1   0
+2 6     Konservative  3.4    6  1   0
+3 7 Dansk Folkeparti 21.1   37  1   1
+4 8 Liberal Alliance  7.5   13  1   0</code></pre>
+<p>Det er vigtigt at nævne igen, at det at køre ovenstående kommando ikke ændrer noget i datarammen <code>pol</code>. Dette vil kun ske, hvis vi overskriver den eksisterende dataramme. Ligeledes ville ovenstående nemt kunne gemmes i sin egen dataramme, evt. ved at lave en ny dataramme med navnet <code>pol.rw</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol.rw &lt;-<span class="st"> </span><span class="kw">filter</span>(pol, rw ==<span class="st"> </span><span class="dv">1</span>)
+pol.rw</code></pre></div>
+<pre><code>  X            party vote seat rw big
+1 1          Venstre 19.5   34  1   0
+2 6     Konservative  3.4    6  1   0
+3 7 Dansk Folkeparti 21.1   37  1   1
+4 8 Liberal Alliance  7.5   13  1   0</code></pre>
+</div>
+<div id="vlg-rkkeflgen-pa-observationer-med-arrange" class="section level2">
+<h2><span class="header-section-number">3.4</span> Vælg rækkefølgen på observationer med <code>arrange()</code></h2>
+<p>Hvis vi gerne vil have ændret rækkefølgen på vores rækker, kan vi bruge <code>arrange()</code>. I nedenstående eksempel sorterer vi observationerne i vores dataramme efter hvor mange stemmer de respektive partier har fået.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(pol, vote)</code></pre></div>
+<pre><code>  X              party vote seat rw big
+1 6       Konservative  3.4    6  1   0
+2 4                 SF  4.2    7  0   0
+3 5           Radikale  4.6    8  0   0
+4 9       Alternativet  4.8    9  0   0
+5 8   Liberal Alliance  7.5   13  1   0
+6 3       Enhedslisten  7.8   14  0   0
+7 1            Venstre 19.5   34  1   0
+8 7   Dansk Folkeparti 21.1   37  1   1
+9 2 Socialdemokraterne 26.3   47  0   1</code></pre>
+<p>Som det kan ses i ovenstående er det parti, der har fået færrest stemmer, placeret øverst. Hvis vi gerne vil have det således, at de partier, der har fået færrest stemmer, er nederst, kan vi angive dette med et minus (<code>-</code>) før variablen:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(pol, -vote)</code></pre></div>
+<pre><code>  X              party vote seat rw big
+1 2 Socialdemokraterne 26.3   47  0   1
+2 7   Dansk Folkeparti 21.1   37  1   1
+3 1            Venstre 19.5   34  1   0
+4 3       Enhedslisten  7.8   14  0   0
+5 8   Liberal Alliance  7.5   13  1   0
+6 9       Alternativet  4.8    9  0   0
+7 5           Radikale  4.6    8  0   0
+8 4                 SF  4.2    7  0   0
+9 6       Konservative  3.4    6  1   0</code></pre>
+</div>
+<div id="skift-navnet-pa-en-variabel-med-rename" class="section level2">
+<h2><span class="header-section-number">3.5</span> Skift navnet på en variabel med <code>rename()</code></h2>
+<p>Hvis man har en variabel, man gerne vil ændre navnet på, kan man anvende funktionen <code>rename()</code>. I nedenstående eksempel ændrer vi navnet på <code>party</code> til <code>partinavn</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rename</span>(pol, <span class="dt">partinavn =</span> party)</code></pre></div>
+<pre><code>  X          partinavn vote seat rw big
+1 1            Venstre 19.5   34  1   0
+2 2 Socialdemokraterne 26.3   47  0   1
+3 3       Enhedslisten  7.8   14  0   0
+4 4                 SF  4.2    7  0   0
+5 5           Radikale  4.6    8  0   0
+6 6       Konservative  3.4    6  1   0
+7 7   Dansk Folkeparti 21.1   37  1   1
+8 8   Liberal Alliance  7.5   13  1   0
+9 9       Alternativet  4.8    9  0   0</code></pre>
+</div>
+<div id="tilfj-variabel-med-mutate" class="section level2">
+<h2><span class="header-section-number">3.6</span> Tilføj variabel med <code>mutate()</code></h2>
+<p>Hvis vi gerne vil tilføje en variabel til vores dataramme, kan vi bruge funktionen <code>mutate()</code>. I nedenstående eksempel tilføjer vi en variabel ved navn <code>vote.m</code>, der angiver hvor mange procentpoint stemmer et parti ligger fra det gennemsnitlige antal stemmer, et parti fik (alså 11.02):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(pol, <span class="dt">vote.m =</span> vote -<span class="st"> </span><span class="kw">mean</span>(vote))</code></pre></div>
+<pre><code>  X              party vote seat rw big    vote.m
+1 1            Venstre 19.5   34  1   0  8.477778
+2 2 Socialdemokraterne 26.3   47  0   1 15.277778
+3 3       Enhedslisten  7.8   14  0   0 -3.222222
+4 4                 SF  4.2    7  0   0 -6.822222
+5 5           Radikale  4.6    8  0   0 -6.422222
+6 6       Konservative  3.4    6  1   0 -7.622222
+7 7   Dansk Folkeparti 21.1   37  1   1 10.077778
+8 8   Liberal Alliance  7.5   13  1   0 -3.522222
+9 9       Alternativet  4.8    9  0   0 -6.222222</code></pre>
+</div>
+<div id="kombination-af-funktioner-med-pipe-operatoren" class="section level2">
+<h2><span class="header-section-number">3.7</span> Kombination af funktioner med pipe operatoren</h2>
+<p>I mange sammenhænge er det ikke tilstrækkeligt blot at bruge én funktion. Det være sig eksempelvis hvis man både skal bruge bestemte kolonner og rækker. Der er heldigvis intet i vejen med at pakke en funktion ind i en anden funktion, som i nedenstående eksempel, hvor vi har <code>select()</code> pakket ind i <code>filter()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(<span class="kw">select</span>(pol, party, vote, rw), rw ==<span class="st"> </span><span class="dv">1</span>)</code></pre></div>
+<pre><code>             party vote rw
+1          Venstre 19.5  1
+2     Konservative  3.4  1
+3 Dansk Folkeparti 21.1  1
+4 Liberal Alliance  7.5  1</code></pre>
+<p>Problemet med dette er, at det kan blive meget kompliceret at læse, især hvis man tager flere funktioner i brug. Når kompleksiteten stiger, stiger sandsynligheden også for, at man laver en dum fejl, evt. med en ekstra parentes et forkert sted. I pakken <code>dplyr</code> er der en operator, der skal hjælpe med at gøre det nemmere at bearbejde datarammer, nemlig pipe operatoren <code>%&gt;%</code>.</p>
+<p>Denne operator anvender en trinvis logik i vores bearbejdning af datarammer. Logikken er, at vi først angiver hvilken dataramme, vi arbejder med, og så dernæst gør én ting ad gangen. I nedenstående eksempel bruger vi pipe operatoren til at gøre det samme som i ovenstående eksempel - bare over flere linjer, der er nemmere at læse og forstå.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(party, vote, rw) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(rw ==<span class="st"> </span><span class="dv">1</span>)</code></pre></div>
+<pre><code>             party vote rw
+1          Venstre 19.5  1
+2     Konservative  3.4  1
+3 Dansk Folkeparti 21.1  1
+4 Liberal Alliance  7.5  1</code></pre>
+<p>På den første linje viser vi, at vi skal bruge datarammen <code>pol</code>. På samme linje slutter vi med <code>%&gt;%</code>, der fortæller, at vi skal bruge denne linje input i næste linje. På anden linje bruger vi <code>select()</code> og vælger variablene <code>party</code>, <code>vote</code> og <code>rw</code>. Her slutter vi også med <code>%&gt;%</code>, så vi fortæller R, at dette skal bruges som input i næste linje. Tredje linje slutter af med at vælge de observationer, der har <code>rw</code> lig med 1 (altså er højreorienterede partier). Bemærk at denne linje <em>ikke</em> slutter med <code>%&gt;%</code>, da vi ikke ønsker at gøre mere ved vores dataramme.</p>
+</div>
+<div id="kr-funktioner-pa-variable-med-apply" class="section level2">
+<h2><span class="header-section-number">3.8</span> Kør funktioner på variable med <code>apply()</code></h2>
+<p>Hvis vi gerne vil køre en funktion på nogle rækker eller en nogle kolonner i vores dataramme, kan vi bruge funktionen <code>apply()</code>. Hvis vi eksempelvis gerne vil have gennemsnittet af <code>vote</code> og <code>seat</code> for de højreorienterede partier, kan vi først angive, at vi vil arbejde med højreorienterede partier (vha. <code>filter()</code>) og så vælge de variable, vi ønsker information om. Vi bruger så <code>apply()</code> på denne dataramme, hvor vi først angiver, at vi er interesseret i at køre funktionen over kolonnerne (2 indikerer kolonner, 1 indikerer rækker), dernæst at vi er interesset i at køre funktionen <code>mean</code>, og til sidst at eventuelle manglende værdier skal fjernes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(rw ==<span class="st"> </span><span class="dv">1</span>) %&gt;%
+<span class="st">  </span><span class="kw">select</span>(vote, seat) %&gt;%
+<span class="st">  </span><span class="kw">apply</span>(<span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>  vote   seat 
+12.875 22.500 </code></pre>
+<p>Ovenstående viser således, at vi kombinere de forskellige funktioner med pipe operatoren og nemt få informationer ud af en dataramme. Bemærk at vi ved <code>apply()</code> først angiver <code>MARGIN</code>, der som beskrevet skal være 1, hvis vi ønsker at applicere funktionen på nogle rækker, og 2 hvis vi ønsker at applicere funktionen på kolonner. Hvis man ønsker at gøre det på begge, skal man angive det med <code>c(1, 2)</code>. Med <code>FUN</code> angiver vi, hvilken funktion vi ønsker at applicere på vores dataramme. Til sidst kan man angive tilføjelser relateret til den funktion, man ønsker at applicere. Det er dog ikke nødvendigt at angive <code>MARGIN</code> eller <code>FUN</code>, hvis man blot har styr på rækkefølgen. I vores eksempel er der heller ingen manglende værdier, hvorfor en tilføjelse relateret til disse ej heller er nødvendig. Derfor kan vi simplicere vores kode til følgende:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(rw ==<span class="st"> </span><span class="dv">1</span>) %&gt;%
+<span class="st">  </span><span class="kw">select</span>(vote, seat) %&gt;%
+<span class="st">  </span><span class="kw">apply</span>(<span class="dv">2</span>, mean)</code></pre></div>
+<pre><code>  vote   seat 
+12.875 22.500 </code></pre>
+</div>
+<div id="aggreger-variable-med-summarize" class="section level2">
+<h2><span class="header-section-number">3.9</span> Aggreger variable med <code>summarize()</code></h2>
+<p>Hvis vi gerne vil lave nye variable med aggregerede informationer, kan vi bruge funktionen <code>summarize()</code>. I nedenstående eksempel får vi informationer om henholdsvis antallet af partier i datarammen, det mindste antal stemmer et parti har fået, det maksimale antal stemmer et parti har fået samt antallet af højreorienterede partier.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">partier =</span> <span class="kw">n</span>(), <span class="dt">mindst =</span> <span class="kw">min</span>(vote), 
+            <span class="dt">stoerst =</span> <span class="kw">max</span>(vote), <span class="dt">hoejreorienteret =</span> <span class="kw">sum</span>(rw))</code></pre></div>
+<pre><code>  partier mindst stoerst hoejreorienteret
+1       9    3.4    26.3                4</code></pre>
+<p>Ved partier bruger vi funktionen <code>n()</code>. Denne er god at anvende, om ikke andet også bare for at sikre, at man har det korrekte antal af rækker i sine data. De andre funktioner, der anvendes, blev introduceret i forrige kapitel. Vi kan ligeledes bruge funktionen <code>group_by()</code>, hvis vi gerne vil have informationer på baggrund af en anden variabel. I nedenstående eksempel får vi de samme typer af informationer, blot for hhv. højreorienterede og venstreorienterede partier.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(rw) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">partier =</span> <span class="kw">n</span>(), <span class="dt">mindst =</span> <span class="kw">min</span>(vote), <span class="dt">stoerst =</span> <span class="kw">max</span>(vote))</code></pre></div>
+<pre><code># A tibble: 2 x 4
+     rw partier mindst stoerst
+  &lt;int&gt;   &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1     0       5    4.2    26.3
+2     1       4    3.4    21.1</code></pre>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="9">
+<li id="fn9"><p>Installation af pakker gennemgås i sektion <a href="2-basics.html#ref-pakker">2.8</a>.<a href="3-data.html#fnref9">↩</a></p></li>
+<li id="fn10"><p>For en anden god introduktion til <code>dplyr</code>, se: <a href="https://bookdown.org/rdpeng/rprogdatascience/managing-data-frames-with-the-dplyr-package.html">Managing Data Frames with the dplyr package</a>.<a href="3-data.html#fnref10">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2-basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4-viz.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": [["Rguide.pdf", "PDF"], ["Rguide.epub", "EPUB"], ["Rguide.docx", "Word"]],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

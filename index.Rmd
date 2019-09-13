@@ -1,0 +1,89 @@
+---
+author: 'Erik Gahner Larsen'
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+title: 'Introduktion til R'
+knit: "bookdown::render_book"
+site: bookdown::bookdown_site
+output: 
+#  thesisdown::thesis_pdf: default
+  thesisdown::thesis_gitbook: default
+#  thesisdown::thesis_epub: default
+bibliography: Rguide.bib
+csl: apa.csl
+lot: false
+lof: false
+#header-includes:
+#- \usepackage{tikz}
+---
+
+```{r include_packages, include = FALSE}
+if(!require(devtools))
+  install.packages("devtools", repos = "http://cran.rstudio.com")
+if(!require(thesisdown))
+  devtools::install_github("ismayc/thesisdown")
+library(thesisdown)
+```
+
+<!-- The {.unnumbered} option here means that the introduction will be "Chapter 0." You can also use {-} for no numbers
+on chapters.
+-->
+
+# Introduktion
+
+Denne bog giver dig en indføring i, hvordan man bruger R til statistiske analyser. Kort fortalt er der ingen grænser for, hvad man kan bruge R til, så nærværende introduktion er på ingen måde udtømmende, men skal blot ses som et grundlag for, at kunne gennemføre bestemte analyser. R er _ikke_ nemt at lære, men det har væsentlige styrker, der gør, at det er bedre end alternativerne (Excel, SPSS, Stata, SAS m.v.). 
+
+Bogens ambition er at give en introduktion til tre vigtige stadier i statistiske analyser. For det første skal vi bearbejde data. Dette kan blandt andet være ved at konstruere variable med bestemte informationer, men også ved at downloade data og importere disse. For det andet skal der gennemføres analyser af datamaterialet. Dette kan være en simpel test for forskelle i to gennemsnit, men også mere komplicerede analyser. For det tredje skal resultaterne af ens analyser præsenteres på den mest pædagogiske og informative måde, dette være sig enten i tabeller eller figurer.
+
+Der findes talrige bøger og ressourcer på nettet, der giver en introduktion til R. En del af dette materiale er uden tvivl mere dybdegående, end det du vil finde her. Der vil af samme grund blive henvist til en del anbefalsesværdigt eksternt materiale i løbet af bogen. Ambitionen med denne bog er udelukkende at give en pædagogisk introduktion til især statskundskabsstuderende, der ønsker en letlæselig introduktion til R på dansk.
+
+I dette kapitel gives en introduktion til R. Dette sker ved først at beskrive nogle af styrkerne og svaghederne ved R, hvorefter det gennemgås, hvordan R installeres og ser ud. Til sidst introduceres logikken bag R, der klæder os på til at bruge R i de kommende kapitler. De efterfølgende kapitler vil blandt andet fokusere på, hvordan man bearbejder og visualiserer sine data, gennemfører lineære regressionsanalyser samt andre statistiske analyser.
+
+Materialet der anvendes i bogen, kan hentes på GitHub: [https://github.com/erikgahner/Rguide](https://github.com/erikgahner/Rguide). Den nyeste version af bogen kan findes her:
+
+- Online: http://erikgahner.dk/Rguide/
+- PDF: http://erikgahner.dk/Rguide/Rguide.pdf
+- EPUB: http://erikgahner.dk/Rguide/Rguide.epub
+
+Hvis du finder fejl og mangler i bogen, må du meget gerne oprette et issue på GitHub eller sende en mail til [erikgahner@gmail.com](mailto:erikgahner@gmail.com). Har du en idé eller et forslag til, hvad der vil kunne styrke bogen, er du også meget velkommen til at kontakte mig på nævnte mail.
+
+## Hvorfor R? Fordele og ulemper ved R
+
+R hjælper dig effektivt fra A til B, men som det også blev beskrevet indledningsvist: R kan være svært - og det tager tid at lære. Der findes masser af statistikprogrammer på markedet, der kan gennemføre statistiske analyser, og mange af disse er nemmere at lære end R. Skal man udelukkende bruge et program til at lave lagkagediagrammer, er det ikke din tid værd at lære R. Med andre ord: Hvis distancen fra A til B er at betegne som gåafstand, giver det ingen mening at lære at køre en Lamborghini (i dette tilfælde R).
+
+Hvorfor så bruge R? For det første er det gratis. Ja, _gratis_. Det er muligt, at du allerede har ``gratis'' adgang til Stata eller SPSS gennem dit universitet eller arbejde, men dette er ikke det samme som, at du vil have adgang for evigt. Tværtimod. Når du bruger et gratis program er du fri for at tænke på, hvilken licens du bruger og hvor stor din pengepung er. Ikke bare nu, men også i fremtiden.
+
+For det andet giver R adgang til en række muligheder, der kun i begrænset omfang er muligt at gennemføre i andre programmer. Dette både hvad angår bearbejdning, analyse og præsentation af data. R er eksempelvis nemt at anvende til at indsamle og analysere forskellige typer af data fra internettet, herunder også fra sociale medier som twitter. R giver med sin objektorienterede struktur (der bliver introduceret i næste kapitel) således mulighed for at arbejde med data på en anden måde end Stata gør. Hvor man i Stata kun kan have ét datasæt åbent af gangen, giver R rig mulighed for at arbejde med og kombinere flere forskellige datasæt.
+
+For det tredje giver R mulighed for at præsentere og visualisere data og analyser på langt pænere måder end andre programmer. Hvis du ser en flot figur i en videnskabelig artikel, vil det bedste gæt være, at den er lavet i R. Flere store medievirksomheder bruger således R - og især en pakke ved navn `ggplot2`, når de skal lave flotte visualiseringer. 
+
+For det fjerde er der et stort _community_ af brugere, der meget gerne står til rådighed og hjælper, hvis du møder et problem. Den gode nyhed er, at du ikke er den første (eller den sidste), der skal til at lære R, hvorfor der er mange brugere, der har haft de samme problemer, som du kommer til at have. Hvis du derfor får en fejlmeddelelse (og tro mig - det gør du!), kommer du som regel langt ved blot at _google_ fejlmeddelelsen, hvor du kan finde information omkring, hvad der er galt og hvordan problemet som regel kan løses.
+
+For det femte er det nemmere at lære et nyt statistikprogram, hvis man kan R, end omvendt. Hvis man bliver bekendt med, hvordan statistiske analyser gennemføres i R, er det relativt nemt at lære at bruge SPSS, Stata og andre programmer. Det samme er ikke nødvendigvis tilfældet, hvis man først lærer eksempelvis SPSS, hvor der kan være mange dårlige vaner, man først skal vænne sig af med. Hvis du lærte statistik med SPSS er du potentielt set begrænset af den menulinje, SPSS benytter sig af. 
+
+For det sjette faciliterer brugen af R et øget fokus på reproducerbarheden af ens resultater. Når man laver noget i R, gør man det som regel gennem funktioner, altså kommandoer (i et _script_), der er let at dokumentere. Dette gør, at man nemt kan sende sit datasæt og R-script til en kollega eller ven, der kan køre _samme_ script på det _samme_ data og (forhåbentlig) få de _samme_ resultater. Det samme er muligt med både SPSS og Stata, men disse programmer giver også rig mulighed for, at man nemt kan omkode variable og gennemføre analyser, uden at man nødvendigvis husker at dokumentere processen heraf. 
+
+På baggrund af ovenstående liste (der ikke er udtømmende), burde det være åbenlyst, at R er værd at bruge tid på. Når dette er sagt, er der ikke desto mindre nogle ulemper forbundet med R. For det første er det, som beskrevet, svært at lære at bruge R. For det andet er der ikke en officiel supportlinje, man kan ringe til, hvis man støder ind i problemer. Dette ændrer dog ikke på, at fordelene ved at lære R langt overstiger ulemperne, så næste afsnit viser, hvordan du installerer R.
+
+## Installation af R og RStudio
+
+Der er to programmer, du skal installere. Det første er R, som er basispakken, der _skal_ installeres. Det andet er RStudio, der er det program, du kommer til at anvende. RStudio er et integreret udviklingsmiljøbrugerflade (_integrated development environment_, IDE), der gør R nemmere at anvende. RStudio er ikke alene langt pænere end basispakken, men rummer også en lang række værktøjer, der gør R nemmere at lære og bruge. Her er de step, du kan følge:
+
+
+1. Gå ind på [r-project.org](http://www.r-project.org/) og klik på menupunktet CRAN under _Download_.
+2. Du er nu på en side med titlen _CRAN Mirrors_. Vælg en af hjemmesiderne, hvorfra du vil hente R.
+3. Vælg hvilket styresystem, du vil hente R til (Windows, Linux eller Mac).
+4. Hvis du bruger Windows, så klik først på _base_ og derefter det link, der indeholder _download_. Hvis du bruger Mac, så klik på den øverste `.pkg` fil.
+5. Når filen er downloadet, kan du følge installationsguiden og dermed installere R.
+6. Efter installationen går du ind på RStudios side, hvor RStudio kan downloades: [rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/).
+7. Klik på den fil under _Installers for Supported Platforms_, der matcher dit styresystem.
+8. Når filen er downloadet, kan du følge installationsguiden og dermed installere RStudio.
+
+Ovenstående bør ikke medføre nogle problemer. Hvis der af en eller anden grund skulle komme en fejlmeddelelse, kan det varmt anbefales blot at _google_ denne. Du har nu installeret R og RStudio og kan åbne RStudio, der med nogle visuelle forskelle (farverne og evt. styresystem), ligner skærmbilledet i Figur \@ref(fig:interface).
+
+```{r interface, echo=FALSE, fig.cap="Det grafiske interface i RStudio", out.width="85%", out.extra="scale=0.65"}
+include_graphics(path = "figure/rstudio.png")
+```
+
+Du er nu i R. Når du ikke har et script åbent (i en _editor_, beskrevet i næste kapitel), er der tre vinduer. For det første er der konsollen, hvor du kan skrive kommandoer. Det er ligeledes her mange resultater og lignende, vil blive vist. For det andet er der dit miljø (_environment_), hvor det bliver synligt, hvilke ting du arbejder med samt hvad du tidligere har gjort. For det tredje har du et _output_ vindue, hvor blandt andet grafer, hjælpedokumenter og lignende vil blive præsenteret.
+
+Når du har installeret R, handler det først og fremmest om at lære det helt grundlæggende. I næste kapitel tager vi fat på dette.

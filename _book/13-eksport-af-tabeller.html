@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introduktion til R</title>
+  <meta name="description" content="Introduktion til R">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introduktion til R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduktion til R" />
+  
+  
+  
+
+<meta name="author" content="Erik Gahner Larsen">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="12-ref-anpakker.html">
+<link rel="next" href="14-referencer.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"></a></li>
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduktion</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#hvorfor-r-fordele-og-ulemper-ved-r"><i class="fa fa-check"></i><b>1.1</b> Hvorfor R? Fordele og ulemper ved R</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installation-af-r-og-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installation af R og RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-basics.html"><a href="2-basics.html"><i class="fa fa-check"></i><b>2</b> Fundamentet</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-basics.html"><a href="2-basics.html#objekter-og-funktioner"><i class="fa fa-check"></i><b>2.1</b> Objekter og funktioner</a></li>
+<li class="chapter" data-level="2.2" data-path="2-basics.html"><a href="2-basics.html#tal-i-objekter"><i class="fa fa-check"></i><b>2.2</b> Tal i objekter</a></li>
+<li class="chapter" data-level="2.3" data-path="2-basics.html"><a href="2-basics.html#logiske-operatorer"><i class="fa fa-check"></i><b>2.3</b> Logiske operatorer</a></li>
+<li class="chapter" data-level="2.4" data-path="2-basics.html"><a href="2-basics.html#manglende-vrdier-na"><i class="fa fa-check"></i><b>2.4</b> Manglende værdier (<code>NA</code>)</a></li>
+<li class="chapter" data-level="2.5" data-path="2-basics.html"><a href="2-basics.html#tekst-i-objekter"><i class="fa fa-check"></i><b>2.5</b> Tekst i objekter</a></li>
+<li class="chapter" data-level="2.6" data-path="2-basics.html"><a href="2-basics.html#datarammer"><i class="fa fa-check"></i><b>2.6</b> Datarammer</a></li>
+<li class="chapter" data-level="2.7" data-path="2-basics.html"><a href="2-basics.html#import-og-eksport-af-datarammer"><i class="fa fa-check"></i><b>2.7</b> Import og eksport af datarammer</a></li>
+<li class="chapter" data-level="2.8" data-path="2-basics.html"><a href="2-basics.html#ref-pakker"><i class="fa fa-check"></i><b>2.8</b> Installation af pakker</a></li>
+<li class="chapter" data-level="2.9" data-path="2-basics.html"><a href="2-basics.html#objekter-i-hukommelsen"><i class="fa fa-check"></i><b>2.9</b> Objekter i hukommelsen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-data.html"><a href="3-data.html"><i class="fa fa-check"></i><b>3</b> Databehandling</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-data.html"><a href="3-data.html#behandling-af-datarammer-med-dplyr"><i class="fa fa-check"></i><b>3.1</b> Behandling af datarammer med <code>dplyr</code></a></li>
+<li class="chapter" data-level="3.2" data-path="3-data.html"><a href="3-data.html#vlg-bestemte-variable-med-select"><i class="fa fa-check"></i><b>3.2</b> Vælg bestemte variable med <code>select()</code></a></li>
+<li class="chapter" data-level="3.3" data-path="3-data.html"><a href="3-data.html#vlg-bestemte-observationer-med-filter"><i class="fa fa-check"></i><b>3.3</b> Vælg bestemte observationer med <code>filter()</code></a></li>
+<li class="chapter" data-level="3.4" data-path="3-data.html"><a href="3-data.html#vlg-rkkeflgen-pa-observationer-med-arrange"><i class="fa fa-check"></i><b>3.4</b> Vælg rækkefølgen på observationer med <code>arrange()</code></a></li>
+<li class="chapter" data-level="3.5" data-path="3-data.html"><a href="3-data.html#skift-navnet-pa-en-variabel-med-rename"><i class="fa fa-check"></i><b>3.5</b> Skift navnet på en variabel med <code>rename()</code></a></li>
+<li class="chapter" data-level="3.6" data-path="3-data.html"><a href="3-data.html#tilfj-variabel-med-mutate"><i class="fa fa-check"></i><b>3.6</b> Tilføj variabel med <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.7" data-path="3-data.html"><a href="3-data.html#kombination-af-funktioner-med-pipe-operatoren"><i class="fa fa-check"></i><b>3.7</b> Kombination af funktioner med pipe operatoren</a></li>
+<li class="chapter" data-level="3.8" data-path="3-data.html"><a href="3-data.html#kr-funktioner-pa-variable-med-apply"><i class="fa fa-check"></i><b>3.8</b> Kør funktioner på variable med <code>apply()</code></a></li>
+<li class="chapter" data-level="3.9" data-path="3-data.html"><a href="3-data.html#aggreger-variable-med-summarize"><i class="fa fa-check"></i><b>3.9</b> Aggreger variable med <code>summarize()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-viz.html"><a href="4-viz.html"><i class="fa fa-check"></i><b>4</b> Visualisering</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-viz.html"><a href="4-viz.html#introducerende-eksempel-med-ggplot2"><i class="fa fa-check"></i><b>4.1</b> Introducerende eksempel med <code>ggplot2</code></a></li>
+<li class="chapter" data-level="4.2" data-path="4-viz.html"><a href="4-viz.html#specifikationer-med-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Specifikationer med <code>ggplot2</code></a></li>
+<li class="chapter" data-level="4.3" data-path="4-viz.html"><a href="4-viz.html#eksempel-venstre-i-meningsmalingerne-i-2015"><i class="fa fa-check"></i><b>4.3</b> Eksempel: Venstre i meningsmålingerne i 2015</a></li>
+<li class="chapter" data-level="4.4" data-path="4-viz.html"><a href="4-viz.html#afsluttende-bemrkninger"><i class="fa fa-check"></i><b>4.4</b> Afsluttende bemærkninger</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-ols-regression.html"><a href="5-ols-regression.html"><i class="fa fa-check"></i><b>5</b> OLS regression</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-ols-regression.html"><a href="5-ols-regression.html#bivariat-analyse"><i class="fa fa-check"></i><b>5.1</b> Bivariat analyse</a></li>
+<li class="chapter" data-level="5.2" data-path="5-ols-regression.html"><a href="5-ols-regression.html#multivariat-analyse"><i class="fa fa-check"></i><b>5.2</b> Multivariat analyse</a></li>
+<li class="chapter" data-level="5.3" data-path="5-ols-regression.html"><a href="5-ols-regression.html#forudstningstests"><i class="fa fa-check"></i><b>5.3</b> Forudsætningstests</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="5-ols-regression.html"><a href="5-ols-regression.html#linearitet"><i class="fa fa-check"></i><b>5.3.1</b> Linearitet</a></li>
+<li class="chapter" data-level="5.3.2" data-path="5-ols-regression.html"><a href="5-ols-regression.html#outliers-og-indflydelsesrige-observationer"><i class="fa fa-check"></i><b>5.3.2</b> Outliers og indflydelsesrige observationer</a></li>
+<li class="chapter" data-level="5.3.3" data-path="5-ols-regression.html"><a href="5-ols-regression.html#normalfordelte-fejlled"><i class="fa fa-check"></i><b>5.3.3</b> Normalfordelte fejlled</a></li>
+<li class="chapter" data-level="5.3.4" data-path="5-ols-regression.html"><a href="5-ols-regression.html#heteroskedasticitet"><i class="fa fa-check"></i><b>5.3.4</b> Heteroskedasticitet</a></li>
+<li class="chapter" data-level="5.3.5" data-path="5-ols-regression.html"><a href="5-ols-regression.html#multikollinaritet"><i class="fa fa-check"></i><b>5.3.5</b> Multikollinaritet</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-interaktionsanalyse.html"><a href="6-interaktionsanalyse.html"><i class="fa fa-check"></i><b>6</b> Interaktionsanalyse</a></li>
+<li class="chapter" data-level="7" data-path="7-logistisk-regression.html"><a href="7-logistisk-regression.html"><i class="fa fa-check"></i><b>7</b> Logistisk regression</a></li>
+<li class="chapter" data-level="8" data-path="8-propensity-score-matching.html"><a href="8-propensity-score-matching.html"><i class="fa fa-check"></i><b>8</b> Propensity Score Matching</a></li>
+<li class="chapter" data-level="9" data-path="9-regressionsdiskontinuitetsdesigns.html"><a href="9-regressionsdiskontinuitetsdesigns.html"><i class="fa fa-check"></i><b>9</b> Regressionsdiskontinuitetsdesigns</a></li>
+<li class="chapter" data-level="" data-path="konklusion.html"><a href="konklusion.html"><i class="fa fa-check"></i>Konklusion</a><ul>
+<li class="chapter" data-level="9.1" data-path="konklusion.html"><a href="konklusion.html#pakkeanbefaling-swirl"><i class="fa fa-check"></i><b>9.1</b> Pakkeanbefaling: swirl</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-funktioner.html"><a href="10-funktioner.html"><i class="fa fa-check"></i><b>10</b> Funktioner</a><ul>
+<li class="chapter" data-level="10.1" data-path="10-funktioner.html"><a href="10-funktioner.html#loops"><i class="fa fa-check"></i><b>10.1</b> Loops</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html"><i class="fa fa-check"></i><b>11</b> Genveje og udvalgte funktioner</a><ul>
+<li class="chapter" data-level="11.1" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html#funktioner-1"><i class="fa fa-check"></i><b>11.1</b> Funktioner</a></li>
+<li class="chapter" data-level="11.2" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html#genveje-i-rstudio"><i class="fa fa-check"></i><b>11.2</b> Genveje i RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="12-ref-anpakker.html"><a href="12-ref-anpakker.html"><i class="fa fa-check"></i><b>12</b> Anbefalede pakker</a></li>
+<li class="chapter" data-level="13" data-path="13-eksport-af-tabeller.html"><a href="13-eksport-af-tabeller.html"><i class="fa fa-check"></i><b>13</b> Eksport af tabeller</a></li>
+<li class="chapter" data-level="14" data-path="14-referencer.html"><a href="14-referencer.html"><i class="fa fa-check"></i><b>14</b> Referencer</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduktion til R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="eksport-af-tabeller" class="section level1">
+<h1><span class="header-section-number">Kapitel 13</span> Eksport af tabeller</h1>
+<p><em>Bliver tilføjet senere.</em></p>
+<p>Der er flere måder at eksportere tabeller fra R til ens tekstbehandlingsprogram. Her vil det i en fremtidig udgave af bogen blive vist, hvordan man gør det med pakken <code>stargazer</code> <span class="citation">(Hlavac, 2015)</span>, der bruges i flere af bogens kapitler.</p>
+
+<!--
+The bib chunk below must go last in this document according to how R Markdown renders.  More info is at http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
+-->
+<p></p>
+<!-- 
+If you'd like to change the name of the bibliography to something else,
+delete "References" and replace it.
+-->
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="12-ref-anpakker.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="14-referencer.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": [["Rguide.pdf", "PDF"], ["Rguide.epub", "EPUB"], ["Rguide.docx", "Word"]],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

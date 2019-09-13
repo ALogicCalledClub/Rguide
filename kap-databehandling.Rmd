@@ -1,0 +1,190 @@
+---
+output: html_document
+---
+
+# Databehandling {#data}
+
+Der er flere måder hvorpå man i `R` kan behandle datarammer på og herunder få lavet nye variable i datarammen. I dette kapitel vil der blive vist forskellige måder til at behandle datarammer, og der vil især blive fokuseret på behandlingen af variable i en dataramme. Her vil der ogeså blive givet et par eksempler på, hvordan vi kan lave en ny variabel baseret på værdierne på en anden variabel. 
+
+Lad os tage udgangspunkt i, at vi gerne vil have lavet en binær variabel, der antager værdien 1, hvis et parti i Folketinget har fået mere end 20 procent af stemmerne, og værdien 0 hvis ikke. Vi vil gerne kalde denne variabel for `big`. For at gøre dette henter vi først de data, vi lavede i forrige kapitel.
+
+```{r}
+pol <- read.csv("data/ft2015.csv")
+```
+
+I nedenstående laver vi først et nyt element (en ny variabel) i vores dataramme med navnet `big`. Denne får vædierne `NA`. Dernæst angiver vi, at `pol$big` skal have værdien 1, men kun for de observationer, hvor `pol$vote` er større end eller lig med 20. Til sidst siger vi, at de observationer der fik mindre end 20 procent af stemmerne, skal værdien være 0. I dette eksempel kunne vi have undladt det sidste step og blot brugt værdien `0` i stedet for `NA`. Til sidst bruger vi funktionen `table()` til at få vist, hvilke partier der har værdien 1 på `pol$big`. Som det kan ses, er det hhv. Dansk Folkeparti og Socialdemokraterne. 
+
+```{r}
+pol$big <- NA
+pol$big[pol$vote >= 20] <- 1
+pol$big[pol$vote < 20] <- 0
+
+table(pol$party, pol$big)
+```
+
+Der er mange måder hvorpå man kan rekode variable. En anden mulighed er at bruge funktionen `ifelse()`, hvor vi fortæller R, at hvis hvis noget er sandt, skal den give en bestemt værdi, og en anden værdi til de resterende observationer. I nedenstående kode undersøger vi igen, om `vote` er større eller lig med 20, og hvis dette er tilfældet, gives værdien 1. Hvis ikke, gives værdien 0. 
+
+```{r}
+pol$big <- ifelse(pol$vote >= 20, 1, 0)
+
+table(pol$party, pol$big)
+```
+
+Hvis vi eksempelvis manuelt ville give Socialdemokraterne og Dansk Folkeparti værdien 1, uden at bruge information omkring deres stemmetal, kunne dette også gøres. Nedenstående kode giver nogle eksempler herpå. Den første linje giver `big` værdien 1 hvis `party` er lig Socialdemokraterne _eller_ Dansk Folkeparti. Den anden linje giver `big` værdien 1 hvis værdien i `party` er i (angivet ved `%in%`) vektoren med Socialdemokraterne og Dansk Folkeparti. De resterende linjer er eksempler dernæst på, hvor værdien 0 gives. Bemærk især den sidste linje, hvor funktionen `is.na()` bruges til at undersøge, om der er nogle manglende værdier, og hvis der er, gives værdien 0.
+
+```{r}
+pol$big[pol$party == "Socialdemokraterne" | 
+          pol$party == "Dansk Folkeparti"] <- 1
+pol$big[pol$party %in% c("Socialdemokraterne", 
+                         "Dansk Folkeparti")] <- 1
+
+pol$big[pol$party != "Socialdemokraterne" & 
+          pol$party != "Dansk Folkeparti"] <- 0
+pol$big[is.na(pol$big)] <- 0
+```
+
+
+## Behandling af datarammer med `dplyr`
+
+Der er forskellige pakker, der kan bruges til at bearbejde datarammer, men den bedste er uden sammenligning `dplyr` [@wickhamfrancois2016]. Et andet eksempel på en pakke, der kan bruges til at rekode variable i datarammer er pakken `car` [@foxweisberg2011], der har funktionen `recode()`, men vi vil fokusere på `dplyr` i resten af kapitlet. Det første vi gør - og forudsætningen for at resterende funktioner i kapitlet virker - er, at åbne `dplyr`[^10].
+
+```{r}
+library("dplyr")
+```
+
+[^10]: Installation af pakker gennemgås i sektion \@ref(ref-pakker).
+
+Pakken giver nogle helt basale funktioner, der gør det nemt at bearbejde datarammer. Funktionerne heri inkluderer `select()`, `filter()`, `arrange()`, `rename()`, `mutate()` og `summarize()`[^11]. `select()` og `filter()` bruges til henholdsvis at udvælge kolonner (_variable_) og rækker (_observationer_). `mutate()` bruges til at tilføje eller ændre eksisterende kolonner. `arrange()` bruges til at sortere rækker. `rename()` bruges til at ændre navnet på en kolonne. `summarize()` bruges til at aggregere rækker. 
+
+[^11]: For en anden god introduktion til `dplyr`, se: [Managing Data Frames with the dplyr package](https://bookdown.org/rdpeng/rprogdatascience/managing-data-frames-with-the-dplyr-package.html).
+
+Fælles for alle disse funktioner er, at de tager udgangspunkt i en dataramme. De lader sig dermed ikke applicere på andre typer af klasser end datarammer. De returnerer ligeledes alle en ny datarammer. Ved at kunne bruge disse funktioner og kombinere dem i ens arbejde, har man styr på hvad det kræver at bearbejde datarammer.
+
+## Vælg bestemte variable med `select()`
+
+Hvis vi kun skal bruge bestemte variable i vores dataramme, eksempelvis partinavn (`party`) og om det er et højreorienteret parti (`rw`), kan vi anvende funktionen `select()`:
+
+```{r}
+select(pol, party, rw)
+```
+
+Der er forskellige funktioner, der kan bruges til at finde de variable, vi gerne vil vælge. Hvis vi gerne vil vælge en eller flere variable, der indeholder bestemt tekst i variabelnavnet, kan vi bruge `contains()`:
+
+```{r}
+select(pol, contains("par"))
+```
+
+
+Foruden `contains()` er der mulighed for at bruge blandet andet `starts_with()`, `ends_with()`, `matches()`, `num_range()`, `one_of()` og `everything()`. 
+
+Hvis vi gerne vil fjerne en variabel fra en dataramme, kan vi bruge minustegnet. I dette eksempel fjerner vi `rw` fra datarammen:
+
+```{r}
+select(pol, -rw)
+```
+
+## Vælg bestemte observationer med `filter()`
+
+Hvis vi gerne vil have hele datarammen, altså alle kolonner, men blot for udvalgte rækker (observationer), kan vi bruge funktionen `filter()`. I nedenstående eksempel tager vi datarammen `pol` men viser kun rækkerne for de højreorienterede partier, altså der hvor `rw` er lig med 1.
+
+```{r}
+filter(pol, rw == 1)
+```
+
+Det er vigtigt at nævne igen, at det at køre ovenstående kommando ikke ændrer noget i datarammen `pol`. Dette vil kun ske, hvis vi overskriver den eksisterende dataramme. Ligeledes ville ovenstående nemt kunne gemmes i sin egen dataramme, evt. ved at lave en ny dataramme med navnet `pol.rw`. 
+
+```{r}
+pol.rw <- filter(pol, rw == 1)
+pol.rw
+```
+
+## Vælg rækkefølgen på observationer med `arrange()`
+
+Hvis vi gerne vil have ændret rækkefølgen på vores rækker, kan vi bruge `arrange()`. I nedenstående eksempel sorterer vi observationerne i vores dataramme efter hvor mange stemmer de respektive partier har fået.
+
+```{r}
+arrange(pol, vote)
+```
+
+Som det kan ses i ovenstående er det parti, der har fået færrest stemmer, placeret øverst. Hvis vi gerne vil have det således, at de partier, der har fået færrest stemmer, er nederst, kan vi angive dette med et minus (`-`) før variablen:
+
+```{r}
+arrange(pol, -vote)
+```
+
+## Skift navnet på en variabel med `rename()`
+
+Hvis man har en variabel, man gerne vil ændre navnet på, kan man anvende funktionen `rename()`. I nedenstående eksempel ændrer vi navnet på `party` til `partinavn`:
+
+```{r}
+rename(pol, partinavn = party)
+```
+
+## Tilføj variabel med `mutate()`
+
+Hvis vi gerne vil tilføje en variabel til vores dataramme, kan vi bruge funktionen `mutate()`. I nedenstående eksempel tilføjer vi en variabel ved navn `vote.m`, der angiver hvor mange procentpoint stemmer et parti ligger fra det gennemsnitlige antal stemmer, et parti fik (alså `r round(mean(pol$vote),2)`):
+
+```{r}
+mutate(pol, vote.m = vote - mean(vote))
+```
+
+## Kombination af funktioner med pipe operatoren
+
+I mange sammenhænge er det ikke tilstrækkeligt blot at bruge én funktion. Det være sig eksempelvis hvis man både skal bruge bestemte kolonner og rækker. Der er heldigvis intet i vejen med at pakke en funktion ind i en anden funktion, som i nedenstående eksempel, hvor vi har `select()` pakket ind i `filter()`.
+
+```{r}
+filter(select(pol, party, vote, rw), rw == 1)
+```
+
+Problemet med dette er, at det kan blive meget kompliceret at læse, især hvis man tager flere funktioner i brug. Når kompleksiteten stiger, stiger sandsynligheden også for, at man laver en dum fejl, evt. med en ekstra parentes et forkert sted. I pakken `dplyr` er der en operator, der skal hjælpe med at gøre det nemmere at bearbejde datarammer, nemlig pipe operatoren `%>%`. 
+
+Denne operator anvender en trinvis logik i vores bearbejdning af datarammer. Logikken er, at vi først angiver hvilken dataramme, vi arbejder med, og så dernæst gør én ting ad gangen. I nedenstående eksempel bruger vi pipe operatoren til at gøre det samme som i ovenstående eksempel - bare over flere linjer, der er nemmere at læse og forstå.
+
+```{r}
+pol %>% 
+  select(party, vote, rw) %>%
+  filter(rw == 1)
+```
+
+
+På den første linje viser vi, at vi skal bruge datarammen `pol`. På samme linje slutter vi med `%>%`, der fortæller, at vi skal bruge denne linje input i næste linje. På anden linje bruger vi `select()` og vælger variablene `party`, `vote` og `rw`. Her slutter vi også med `%>%`, så vi fortæller R, at dette skal bruges som input i næste linje. Tredje linje slutter af med at vælge de observationer, der har `rw` lig med 1 (altså er højreorienterede partier). Bemærk at denne linje _ikke_ slutter med `%>%`, da vi ikke ønsker at gøre mere ved vores dataramme.
+
+## Kør funktioner på variable med `apply()`
+
+Hvis vi gerne vil køre en funktion på nogle rækker eller en nogle kolonner i vores dataramme, kan vi bruge funktionen `apply()`. Hvis vi eksempelvis gerne vil have gennemsnittet af `vote` og `seat` for de højreorienterede partier, kan vi først angive, at vi vil arbejde med højreorienterede partier (vha. `filter()`) og så vælge de variable, vi ønsker information om. Vi bruger så `apply()` på denne dataramme, hvor vi først angiver, at vi er interesseret i at køre funktionen over kolonnerne (2 indikerer kolonner, 1 indikerer rækker), dernæst at vi er interesset i at køre funktionen `mean`, og til sidst at eventuelle manglende værdier skal fjernes.
+
+
+```{r}
+pol %>%
+  filter(rw == 1) %>%
+  select(vote, seat) %>%
+  apply(MARGIN = 2, FUN = mean, na.rm = TRUE)
+```
+
+Ovenstående viser således, at vi kombinere de forskellige funktioner med pipe operatoren og nemt få informationer ud af en dataramme. Bemærk at vi ved `apply()` først angiver `MARGIN`, der som beskrevet skal være 1, hvis vi ønsker at applicere funktionen på nogle rækker, og 2 hvis vi ønsker at applicere funktionen på kolonner. Hvis man ønsker at gøre det på begge, skal man angive det med `c(1, 2)`. Med `FUN` angiver vi, hvilken funktion vi ønsker at applicere på vores dataramme. Til sidst kan man angive tilføjelser relateret til den funktion, man ønsker at applicere. Det er dog ikke nødvendigt at angive `MARGIN` eller `FUN`, hvis man blot har styr på rækkefølgen. I vores eksempel er der heller ingen manglende værdier, hvorfor en tilføjelse relateret til disse ej heller er nødvendig. Derfor kan vi simplicere vores kode til følgende:
+
+```{r}
+pol %>%
+  filter(rw == 1) %>%
+  select(vote, seat) %>%
+  apply(2, mean)
+```
+
+## Aggreger variable med `summarize()`
+
+Hvis vi gerne vil lave nye variable med aggregerede informationer, kan vi bruge funktionen `summarize()`. I nedenstående eksempel får vi informationer om henholdsvis antallet af partier i datarammen, det mindste antal stemmer et parti har fået, det maksimale antal stemmer et parti har fået samt antallet af højreorienterede partier.
+
+```{r}
+pol %>%
+  summarize(partier = n(), mindst = min(vote), 
+            stoerst = max(vote), hoejreorienteret = sum(rw))
+```
+
+Ved partier bruger vi funktionen `n()`. Denne er god at anvende, om ikke andet også bare for at sikre, at man har det korrekte antal af rækker i sine data. De andre funktioner, der anvendes, blev introduceret i forrige kapitel. Vi kan ligeledes bruge funktionen `group_by()`, hvis vi gerne vil have informationer på baggrund af en anden variabel. I nedenstående eksempel får vi de samme typer af informationer, blot for hhv. højreorienterede og venstreorienterede partier.
+
+```{r}
+pol %>%
+  group_by(rw) %>%
+  summarize(partier = n(), mindst = min(vote), stoerst = max(vote))
+```
+

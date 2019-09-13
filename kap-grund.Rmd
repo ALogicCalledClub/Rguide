@@ -1,0 +1,426 @@
+---
+output: html_document
+---
+
+# Fundamentet {#basics}
+
+## Objekter og funktioner
+
+Alt du laver i R, kan skrives som kommandoer. Dette sikrer, at du altid kan dokumentere dit arbejde, modsat hvis du eksempelvis bruger menulinjer, hvor det ikke altid er klart, hvilke analyser, der er gennemført. Nederst i programmet ser du en prompt (`>`), hvor du kan skrive, hvad R skal gøre. Prøv at skrive `2+2` og tryk `ENTER`. Dette burde gerne resultere i følgende:
+
+```{r}
+2+2
+```
+
+Ovenstående viser hvilken kommando, der er kørt, samt resultatet heraf[^1]. Da du kommer til at køre mange forskellige kommandoer, hvor mange skal køres i en bestemt rækkefølge, er det godt allerede nu at begynde at dokumentere, hvad du gør. Den bedste måde at gøre dette er i en script-fil (`R`), også kaldet et R-script. Åbn et nyt R-script ved i menuen at vælge `File` $\rightarrow$ `New File` $\rightarrow$ `R Script`. 
+
+[^1]: Dette svarer til at skrive `display 2+2` i Stata.
+
+Sørg for allerede nu at dokumentere dit arbejde. Det vil sige, at alle kommandoer du bruger, kan skrives ind i dit R-script. Sørg desuden for at skrive kommentarer i R-scriptet, så du og andre kan se beskrivelser af, hvad der gøres. Kommentarer begynder med `#` (for at fortælle R, at den ikke skal læse teksten som kode), og kan tilføjes på deres egne linjer eller i forlængelse af en kommando[^2].
+
+[^2]: Dette svarer til `*` og `//` i Stata.
+
+Når du har indtastet noget kode i dit R-script, kan du køre det i konsollen ved at markere koden og bruge tastaturgenvejen `CTRL+R` (Windows) eller `CMD+ENTER` (Mac). Forsøg at indtaste nedenstående kode, marker det hele og kør det.
+
+```{r, eval=FALSE}
+50*149
+3**2        # 3^2
+2**3        # 2^3
+sqrt(81)    # 81^0.5
+```
+
+## Tal i objekter
+
+Du er nu i stand til at bruge R som en lommeregner. Det næste vi skal have styr på er objekter. Kort fortalt er alt hvad vi vil bruge i R, gemt i objekter. Dette være sig lige fra ét tal til hele datasæt. Fordelen ved dette er, at vi kan have flere datasæt åbne i hukommelsen på samme tid gemt som hvert deres objekt (modsat eksempelvis Stata). Med andre ord kan _alt_ vi arbejder med i R gemmes i objekter. Lad os forsøge at gemme tallet 2 i objektet `x`.
+
+```{r results='hide'}
+x <- 2
+```
+
+Når du kører ovenstående kommando, gemmer du tallet 2 i objektet `x`. Du kan nu bruge `x` i stedet for 2. Lad os prøve en række forskellige simple operationer. Indtast dem i dit R-script og kør dem én efter én.
+
+```{r, eval=FALSE}
+x
+x * 2
+x * x 
+x + x
+```
+
+Når du kører disse linjer, burde du gerne få værdierne `2`, `4`, `4` og `4`. Hvis du ændrer `x` til at have værdien 3, vil du kunne køre linjerne igen og få andre værdier[^3]. Generelt, når du laver scripts, må du genre arbejde på at få så mange informationer til at være i objekter, så du er fri for at ændre tal mere end én gang, hvis du skal lave ændringer[^4].
+
+[^3]: Helt præcist `3`, `6`, `9` og `6`.
+
+[^4]: En anden fordel er, at du på denne måde reducerer sandsynligheden for, at lave fejl ved at have forskellige informationer flere steder.
+
+## Logiske operatorer
+
+En stor del af det vi skal lave i R, bygger på logiske operatorer. Med en logisk operator tester vi sandhedsværdien af et udsagn, der kan være enten sand eller falsk. Dette bliver især brugbart når vi skal lave omkodninger og kun bruge bestemte værdier i et objekt. I `R` er en logisk operator `TRUE` (sand) eller `FALSE` (falsk). Kør nedenstående kode og se, hvad de respektive kommandoer returnerer.
+
+```{r, eval=FALSE}
+x == 2        # "==" betyder "lig med"
+x == 3        
+x != 2        # "!=" betyder "ikke lig med"
+x < 1         # "<" betyder "mindre end"
+x > 1         # ">" betyder "større end"
+x <= 2        # "<=" betyder "mindre eller lig med"
+x >= 2.01     # ">=" betyder "større eller lig med"
+```
+
+Hvis `x` er 2, vil værdierne være hhv. `TRUE`, `FALSE`, `FALSE`, `FALSE`, `TRUE`, `TRUE` og `FALSE`. Hvis `x` ændres til 3 og scriptet køres igen, vil andre sandhedsværdier returneres. 
+
+Objekter kan videre bruges til at skabe andre objekter. I følgende eksempel laver vi et nyt objekt `y`, der giver os summen af `x` og 7. Bemærk desuden at hele kommandoen er skrevet i en parentes, der gør, at vi også får værdien af y returneret. Hvis vi ikke gør dette, laver vi objektet `y`, men uden at få det vist med det samme.
+
+```{r}
+(y <- x + 7)
+```
+
+I vores objekter er vi heller ikke begrænset til kun at have ét tal. Tværtimod vil de fleste objekter vi arbejder med have mere end én værdi. Nedenstående giver således en talrække med tallene fra 1 til 10.
+
+```{r}
+1:10
+```
+
+Denne talrække kan vi gemme i et objekt (med `<-`), men også bruge direkte uden at have den i et objekt. Vi kan eksempelvis tage hvert tal i talrækken og addere 2 til hvert tal i rækken.
+
+```{r}
+1:10 + 2
+```
+
+Når der skal arbejdes med flere tal, kan vi ikke blot skrive en talrække. Først skal R vide, at det er en talrække, der arbejdes med. Til dette bruger vi `c()`, der fortæller R, at vi arbejder med vektorer[^5]. Funktionen `c()` står for _concatenate_ eller _combine_[^6]. Alt der sker i R, sker med funktioner. En vektor kan således se ud som følger.
+
+[^5]: I eksemplet med `1:10` svarer det til at vi skriver `c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)`. I `1:10` er der således en skjult funktion, `c()`.
+
+[^6]: `c()` opretter således en vektor med alle elementer i parentesen. Da en vektor kun kan indeholde én type data, og ikke eksempelvis både numre og karakterer (der bliver introduceret i næste afsnit), vil `c()` også sikre, at de værdier der gives, reduceres til det maksimale niveau. Er der således blot én værdi der er karakterbaseret, vil alle andre værdier i vektoren også blive det.
+
+```{r}
+c(2, 2, 2)
+```
+
+Ovenstående er en numerisk vektor. En vektor er således en samling af værdier af samme type af data. Hvis vi gerne vil gemme vektoren i et objekt, kan det også lade sig gøre uden problemer. I nedenstående gemmer vi fire tal (14, 6, 23, 2) i objektet `x`. 
+
+```{r}
+x <- c(14, 6, 23, 2)
+x
+```
+
+Denne vektor kan vi behandle efter forgodtbefindende, eksempelvis ved at få alle værdierne i vektoren multipliceret med 2. 
+
+```{r}
+x * 2
+```
+
+Vi kan ligeledes hente information ud af vektoren. Til at gøre dette skal vi bruge de firkantede parenteser, altså `[ ]`, som placeres i forlængelse af objektet. Ved at placere tallet 3 i den firkantede parentes (på engelsk kaldet _brackets_), får vi det tredje tal i vektoren.
+
+```{r}
+x[3]
+```
+
+På samme måde kan vi også få alle værdier i vektoren med undtagelse af et bestemt tal, blot ved at tilføje et minustegn til parentesen. I nedenstående eksempel får vi vektoren uden tal nummer to ved at skrive -2. Bemærk også, at vores objekt `x` ikke ændres, da vi ikke overskriver vores objekt (med `<-`).
+
+```{r}
+x[-2]
+```
+
+Med udgangspunkt i vores objekt, kan vi bruge en række funktioner til at få nogle informationer ud omkring vores objekt, som gennemsnittet af værdierne, den mindste værdi med videre.
+
+```{r, eval=FALSE}
+length(x)     # antallet af numre i vektoren
+min(x)        # minimumsværdien
+max(x)        # maksimumværdien
+median(x)     # medianen
+sum(x)        # summen
+mean(x)       # gennemsnittet
+var(x)        # variansen
+sd(x)         # standardafvigelsen
+```
+
+Ovenstående skulle gerne returnere værdierne 4, 2, 23, 10, 45, 11.25, 86.25 og 9.287088. Vi kan bruge resultaterne fra de forskellige funktioner til at undersøge om eksempelvis kvadratroden af variansen er lig standardafvigelsen. Dette er, som man lærer i introducerende statistikfag, tilfældet.
+
+```{r}
+sqrt(var(x)) == sd(x)
+```
+
+Hvis vi har glemt at tilføje et tal til vores vektor, er der heldigvis en nem måde at opdatere vores vektor og og gemme det i objektet. Dette kan vi gøre ved at overskrive vores objekt (eller lave et nyt), med en ny vektor der består af vores objekt og en ekstra værdi:
+
+```{r}
+x <- c(x, 5)
+x
+```
+
+Som det kan ses, er der nu fem værdier i vores vektor i stedet for fire. Værdien 5, der blev tilføjet, har den sidste placering i vektoren, da vi placerede den til sidst, da vi lavede et nyt objekt. Hvis vi havde placeret 5 før `x`, ville vi have værdien 5 i begyndelsen af den nye vektor. Vi kan eksempelvis forsøge at tage gennemsnittet af vores opdaterede objekt.
+
+```{r}
+mean(x)
+```
+
+Nu er gennemsnittet 10 (før vi tilføjede værdien 5 var gennemsnittet 11.25). 
+
+## Manglende værdier (`NA`)
+
+Heldigvis har alle værdier, vi har arbejdet med til nu, været numeriske og nemme at arbejde med. I de fleste af de data, vi arbejder med, er der dog også manglende værdier, altså værdier, vi ikke ved hvad er. Hvis man arbejder med større datasæt vil der sjældent være objekter, der ikke rummer manglende værdier. I Stata betegnes manglende værdier med et punktum ('.'), hvor der i R bruges `NA`. Lad os tilføje en manglende værdi til vores objekt `x` og tage gennemsnittet af det nye objekt.
+
+```{r}
+x <- c(x, NA)
+
+mean(x) 
+```
+
+Som det kan ses, får vi nu ikke et gennemsnit, men blot `NA`. Dette skyldes, at R ikke kan finde gennemsnittet af en vektor, hvor `NA` er med. Heldigvis kan vi tilføje en ekstra specifikation til `mean()`, der fortæller, at den skal fjerne manglende værdier, før den tager gennemsnittet.
+
+```{r}
+mean(x, na.rm=TRUE)
+```
+
+Her får vi gennemsnittet 10 (ligesom ovenfor, før vi tilføjede `NA`). Bemærk at der er tilføjet et komma og `na.rm=TRUE`. De fleste funktioner i R har en lang række af ekstra specifikationer, man kan tilføje. Som standard er `na.rm` sat til `FALSE`, hvorfor det kræver, at man ændrer dette, hvis man har manglende værdier i sine data.
+
+## Tekst i objekter
+
+Foruden tal kan vi også arbejde med tekst. Tekst i R adskiller sig fra tal ved, at tekst pakkes ind i citationstegn[^7]. Som eksempel kan vi lave et objekt `z`, der indeholder partierne Venstre og Socialdemokraterne.
+
+[^7]: Alternativt kan man også bruge ' i stedet for ".
+
+```{r}
+z <- c("Venstre", "Socialdemokraterne") 
+
+z
+```
+
+For at se hvilken type data, vi har i `z`, kan vi bruge funktionen `class()`. Denne funktion returnerer, hvilken type data vi har at gøre med i et objekt. Hvis vi bruger funktionen på vores objekt, ser vi, at det pågældende objekt med tekst indeholder karakterer (altså _"character"_).
+
+```{r}
+class(z)
+```
+
+Til sammenligning kan vi gøre det samme med vores objekt `x`, der som bekendt kun har numeriske værdier. Her ser vi, at funktionen `class()` for `x` returnerer `"numeric"`. De forskellige klasser en vektor kan have er hhv. `character` (tekst), `numeric` (numeriske tal), `integer` (hele tal), `factor` (kategorier) og `logical` (logisk). 
+
+```{r}
+class(x)
+```
+
+Hvis vi vil vide, om vores objekt er numerisk, kan vi bruge funktionen `is.numeric()`, der returnerer `TRUE`, hvis objektet er numerisk. På samme måde kan man også bruge funktionen `is.character()`. I eksemplet returnerer de hhv. `TRUE` og `FALSE`.
+
+```{r, eval=FALSE}
+is.numeric(x)
+is.character(x)
+```
+
+Prøv gerne at bruge funktionerne `is.numeric()` og `is.character()` på objektet `z`. Med vores objekt `z` og de resterende partinavne repræsenteret i Folketinget i 2016, kan vi lave et objekt med navnet `party`. I scriptet vil `z` automatisk blive erstattet med Venstre og Socialdemokraterne, som vi tildelte til `z` i ovenstående (med andre ord kan vi også lave nye objekter med vores eksisterende objekter, når det kommer til tekst). Bemærk at placeringen på navnet i objektet, når vi får vist alle partinavnene, er angivet i tallene i de firkantede parenteser.
+
+```{r}
+party <- c(z, "Enhedslisten", "SF", "Radikale", "Konservative", 
+           "Dansk Folkeparti", "Liberal Alliance", "Alternativet")
+
+party
+```
+
+## Datarammer
+
+For de partier vi arbejder med, vil vi gerne tilføje mere information. Derfor laver vi nogle ekstra objekter, der indeholder information om, hvorvidt det er et højreorienteret parti (`rw`, forkortelse for _right-wing_), hvor mange stemmer det fik ved folketingsvalget i 2015 (`vote`) og hvor mange mandater partiet fik (`seat`). Disse objekter laver vi med nedenstående kode. Bemærk at rækkefølgen af værdierne er afgørende, og skal matche rækkefølgen af partierne i `party` (så vi begynder med Venstre og ender med Alternativet).
+
+```{r}
+rw <- c(1, 0, 0, 0, 0, 1, 1, 1, 0)
+vote <- c(19.5, 26.3, 7.8, 4.2, 4.6, 3.4, 21.1, 7.5, 4.8)
+seat <- c(34, 47, 14, 7, 8, 6, 37, 13, 9)
+```
+Det næste vi skal gøre er at samle disse objekter til ét objekt. Dette gør vi i en dataramme (_data frame_), der kan sammenlignes med et datasæt i Stata. En dataramme er kort fortalt en samling af forskellige vektorer, der har den samme længde, og derved kan sættes sammen som kolonner. Bare rolig - hvis du forsøger at sætte forskellige vektorer sammen, der ikke har samme længde, skal R nok give dig en fejlmeddelelse. 
+
+I en dataramme kan vi have forskellige typer af variable, der kan gennemføres analyser på. Der findes andre typer af objekter i R, eksempelvis også matricer, men vi vil for nu udelukkende fokusere på datarammer. Til dette bruger vi funktionen `data.frame()` og gemmer det i objektet `pol`.
+
+```{r}
+pol <- data.frame(party, vote, seat, rw)
+```
+
+Nu kan vi bruge `class()` til at vise, at `pol` er en dataramme:
+
+```{r}
+class(pol)
+```
+
+Hvis vi gerne vil vide, hvilken _class_ de enkelte variable i vores dataramme er, kan vi bruge funktionen `sapply()`. Funktionen gør det muligt at applicere en funktion på en liste eller en vektor, hvor vi i nedenstående applicerer `class()` på alle de enkelte variable i objektet `pol`:
+
+```{r}
+sapply(pol, class)
+```
+
+Her kan vi se, at vi har én `factor` (partinavnene) og tre numeriske variable. Lignende informationer om vores variable i datarammen kan vi få ved at bruge `str()`, der giver data på strukturen i datarammen:
+
+```{r}
+str(pol)
+```
+
+Datarammen består således af 9 observationer og 4 variable. Hvis rækkerne har navne, kan disse findes ved hjælp af funktionen `rownames()`. Navnene på kolonnerne, altså de respektive variable i vores dataramme, kan findes ved hjælp af `colnames()`:
+
+```{r}
+colnames(pol)
+```
+
+Hvis vi gerne vil have antallet af kolonner og rækker i vores dataramme, kan de findes ved at bruge hhv. `ncol()` og `nrow()`:
+
+```{r}
+ncol(pol)
+nrow(pol)
+```
+
+Her kan vi ligeledes se, at der er fire kolonner og ni rækker. Hele datarammen kan vi få vist ved blot at skrive navnet på objektet, `pol`:
+
+```{r}
+pol
+```
+
+Dette er overkommeligt at vise i dette tilfælde, men når man arbejder med større datarammer, oftest med flere tusinde eller millioner af observationer, bliver det hurtigt uoverskueligt at vise hele datarammer. Heldigvis har R flere funktioner, der gør det let at få et overblik over, hvilke variable, vi har i vores dataramme. Med funktionen `head()` kan man få vist de seks første observationer i ens dataramme (altså de første seks rækker), og man kan tilføje et tal som argument efter ens objekt, hvis man gerne vil have vist et præcist antal observationer. Skulle man have lyst til at se de sidste observationer i ens dataramme, kan man bruge `tail()`.
+
+```{r, eval=FALSE}
+head(pol)     # viser de første seks rækker
+head(pol, 3)  # viser de første tre rækker
+tail(pol)     # viser de sidste seks rækker
+```
+
+Det er ligeledes muligt at få vist ens dataramme i et nyt vindue, ligesom med `browse` i Stata, ved at bruge funktionen `View()` (bemærk det store V - ikke v).
+
+```{r, eval=FALSE}
+View(pol)
+```
+
+```{r View, echo=FALSE, cache=TRUE, fig.cap="Dataramme vist med View(), RStudio", out.extra="scale=0.65"}
+include_graphics(path = "figure/View.png")
+```
+
+Når man arbejder med datarammer vil man som regel arbejde med specifikke variable heri. Måden hvorpå man angiver bestemte variable i en dataramme er med $ (altså et dollartegn, i dette tilfælde brugt som en _component selector_). Hvis vi eksempelvis gerne vil have alle stemmetallene ud fra `pol`, skriver vi:
+
+```{r}
+pol$vote
+```
+
+Modsat ved en vektor, der er én dimension, har vi to dimensioner i en dataramme, altså rækker og kolonner (horisontalt og vertikalt). Her skal vi ligeledes bruge de firkantede parenteser, `[ ]`, som placeres i forlængelse af objektet, hvor vi blot skal tilføje to argumenter, mere specifikt i forhold til både hvilke rækker og kolonner, vi er interesseret i. Er vi eksempelvis interesseret i hele den første række, kan vi bruge `[1,]` i forlængelse af objektet, hvor kommaet adskiller informationen, og den manglende information efter kommaet indikerer, at vi er interesseret i alle kolonner for den specifikke række.
+
+```{r}
+pol[1,] # første række
+```
+
+Havde vi også tilføjet et tal ved kolonnen, ville vi få information ud for den pågældende række og kolonne. I nedenstående eksempel tilføjer vi 1 efter kommaet, for at fortælle, at vi ikke alene er interesseret i første række, men også i informationen i første kolonne (i dette eksempel under `party`).
+
+```{r}
+pol[1,1] # første række, første kolonne
+```
+
+Som det kan ses er værdien på første række i første kolonne `Venstre`. Hvis vi er interesseret i at få alle partierne, altså informationen gemt i første kolonne, kan vi fjerne argumentet om, at vi kun vil have første række.
+
+```{r}
+pol[,1] # første kolonne
+```
+
+Vi kan stadig bruge de funktioner, vi har gennemgået til nu, på vores datarammer. En nyttig funktion, der vil blive brugt til at få et overblik over informationen i et objekt, er `summary()`. For en dataramme giver `summary()` deskriptiv statistik for alle elementerne i vores dataramme (for de numeriske variable er dette minimum, første kvartil, medianen, gennemsnit, tredje kvartil og maksimum).
+
+```{r}
+summary(pol)
+```
+
+Hvis vi blot ønsker at få værdien ud på det maksimale antal stemmer givet til et parti, kan vi bruge `max()` funktionen.
+
+```{r}
+max(pol$vote)
+```
+
+Hvis vi gerne vil have værdien på en bestemt række i en variabel i vores dataramme, kan vi bruge både `$` og `[ ]`. I nedenstående får vi værdien 2 i `party`.
+
+```{r}
+pol$party[2]
+```
+
+Med det vi har lært til nu kan vi hente information ud om, hvilket parti der har fået flest stemmer (eller partier, hvis der er to partier, der har fået lige mange stemmer). Til dette specificerer vi, at vi gerne vil have information om variablen `party`, for de partier for hvem tilfældet er, at deres stemmetal er lig (`==`) det maksimale antal stemmer (`max(pol$vote)`).
+
+```{r}
+pol$party[pol$vote == max(pol$vote)]
+```
+
+Det var dermed Socialdemokraterne, der fik flest stemmer ved folketingsvalget i 2015. Samme procedure kan vi bruge med funktionen `min()` for at finde det parti, der fik færrest stemmer. Det var således, jævnfør nedenstående, de Konservative, der fik færrest stemmer ved folketingsvalget i 2015. 
+
+```{r}
+pol$party[pol$vote == min(pol$vote)]
+```
+
+Der er ingen begrænsninger for, hvad vi kan lave med denne og lignende datarammer, herunder også statistiske analyser. For blot at give et eksempel, kan vi finde korrelationen mellem, hvor mange stemmer et parti har fået ved valget og antallet af mandater i Folketinget.
+
+```{r}
+cor(pol$vote, pol$seat)
+```
+
+Nu har du styr på, hvad en dataramme er. 
+
+## Import og eksport af datarammer
+
+De fleste datarammer vil ikke blive lavet fra bunden i `R`, men tværtimod importeret fra andre filer. Det er heldigvis nemt at importere forskellige typer af data (også fra Stata og SPSS), men et af de mest anvendte og nyttige formater er kommaseparerede filer (\texttt{.csv}). Til at eksportere og importere datarammer fra og til R, bruger vi hhv. `write.csv()` og `read.csv()`.
+
+Før vi arbejder med dette, er det vigtigt at have styr på, hvor man gemmer sine data til. I R arbejder man med et _working directory_, og ved at skrive `getwd()`, kan man se, hvor ens data vil blive gemt til. 
+
+```{r, eval=FALSE}
+getwd()
+```
+
+Hvis jeg gerne vil ændre dette, eksempelvis hvis jeg har en mappe på mit Skrivebord ved navn `Rguide`, jeg hellere vil have som mit _working directory_, kan jeg bruge funktionen `setwd()`.
+
+```{r, eval=FALSE}
+setwd("C:/Users/Erik/Desktop/Rguide")
+```
+
+En nem måde at have styr på sit _working directory_ er ved at åbne RStudio gennem sit R-script, hvorved ens _working directory_ automatisk bliver det sted, hvor ens R-script ligger. Når vi har styr på, hvor vores data vil blive gemt, kan vi begynde at gemme dem. Her vil vi gemme vores dataramme `pol` til en fil (`ft2015.csv`). Til dette bruger vi `write.csv()`.
+
+```{r, eval=FALSE}
+write.csv(pol, "ft2015.csv")
+```
+
+Bemærk at vi først angiver i funktionen, hvilken dataramme vi vil gemme, og derefter hvad filen skal hedde. Det er desuden vigtigt, at filen angives i citationstegn. Når vi har gemt filen kan vi først undersøge manuelt, om filen er gemt i vores _working directory_[^12]. Hvis vi omvendt gerne vil importere et datasæt, kan vi bruge funktionen `read.csv() og gemme datasættet i en dataramme.
+
+[^12]: I R kan man evt. bruge funktionen `file.exists()` til at se, om filen eksisterer.
+
+```{r, eval=FALSE}
+pol <- read.csv("ft2015.csv")
+```
+
+Som med alt i R er der som regel flere pakker, der kan håndtere ting, herunder også især import og eksport af filer. Blandt de nævneværdige er pakkerne `foreign` [@rcoreteam2015foreign], `rio` [@chanetal2016] og `readr` [@wickhamfrancois2015] (installation af pakker gennemgås i næste sektion).
+
+## Installation af pakker {#ref-pakker}
+
+Pakker er noget af det, der gør R fantastisk. Der er ingen grænser for, hvad man kan bruge R til, og dette skyldes især de talrige pakker, der er lavet til R. Der er to funktioner, der skal bruges i denne sammenhæng. For det første en funktion til at installere pakker, `install.packages()`, og en funktion til at åbne en pakke, `library()` (alternativt kan man også bruge `require()`).
+
+En pakke skal kun installeres én gang. Det vil sige, at når du har brugt `install.packages()` til at installere en pakke, er du fri for at gøre det igen. I dette eksempel vil vi bruge funktionen til at installere pakken `ggplot2`, som vi vil bruge til at lave figurer senere. Bemærk desuden citationstegnene, der også er nødvendige i denne sammenhæng.
+
+```{r, eval=FALSE}
+install.packages("ggplot2")
+```
+
+Når en pakke er installeret skal den hentes ind i R. Du kan have utallige pakker installeret på din computer, men der er ingen grund til at R skal bruge alle pakker, hver gang du åbner R. Derfor skal du hver gang, du bruger en bestemt pakke, bruge `library()` til at hente pakken. Det er med andre ord en god idé at begynde dine scripts med, at åbne alle de pakker, du får brug for i analyserne.
+
+```{r, eval=FALSE}
+library("ggplot2")
+```
+
+Når du installerer `ggplot2` vil du desuden opdage, at R også installerer en række andre pakker. Dette fordi `ggplot2` anvender andre pakker, der også skal installeres, for at pakken fungerer hensigtsmæssigt. Disse pakker åbnes også automatisk, hver gang du bruger `library()` til at åbne `ggplot2`.
+
+Der er et hav af forskellige pakker til R, og hvilke der er relevante at bruge afhænger af, hvad man ønsker at bruge R til. Ikke desto mindre er der en lille oversigt i Bilag \@ref(ref-anpakker), hvor en række anbefalelsesværdige pakker nævnes.
+
+## Objekter i hukommelsen
+
+Vi har nu arbejdet med en lang række af objekter. For at se hvilke objekter, vi har gang i - og evt. for at fjerne nogle af dem - er der et par enkelte nyttige funktioner, du bør kende til. Den første er `ls()`, der viser, hvilke objekter vi har i hukommelsen (_ls_ står for _list objects_). Som det kan ses har vi otte objekter i hukommelsen.
+
+```{r}
+ls()
+```
+
+Hvis vi gerne vil fjerne et objekt fra hukommelsen, kan vi bruge funktionen `rm()` (_rm_ er en forkortelse af _remove_). I nedenstående eksempel bruger vi først `rm()` til at fjerne objektet `x` og dernæst `ls()` til at se, om `x` er fjernet.
+
+```{r}
+rm(x)
+
+ls()
+```
+
+Hvis vi gerne vil fjerne _alt_ i hukommelsen, kan vi bruge `ls()` i kombination med `rm()`.
+
+```{r}
+rm(list = ls())
+
+ls()
+```
+
+Ligeledes kan man i RStudio se hvilke objekter, funktioner m.v. man har åbent under 'Environment' (i boksen hvor der også er 'History', hvor man kan se en historik over de kommandoer, man har kørt i ens nuværende session).

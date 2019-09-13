@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introduktion til R</title>
+  <meta name="description" content="Introduktion til R">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introduktion til R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduktion til R" />
+  
+  
+  
+
+<meta name="author" content="Erik Gahner Larsen">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="2-basics.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"></a></li>
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduktion</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#hvorfor-r-fordele-og-ulemper-ved-r"><i class="fa fa-check"></i><b>1.1</b> Hvorfor R? Fordele og ulemper ved R</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installation-af-r-og-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installation af R og RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-basics.html"><a href="2-basics.html"><i class="fa fa-check"></i><b>2</b> Fundamentet</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-basics.html"><a href="2-basics.html#objekter-og-funktioner"><i class="fa fa-check"></i><b>2.1</b> Objekter og funktioner</a></li>
+<li class="chapter" data-level="2.2" data-path="2-basics.html"><a href="2-basics.html#tal-i-objekter"><i class="fa fa-check"></i><b>2.2</b> Tal i objekter</a></li>
+<li class="chapter" data-level="2.3" data-path="2-basics.html"><a href="2-basics.html#logiske-operatorer"><i class="fa fa-check"></i><b>2.3</b> Logiske operatorer</a></li>
+<li class="chapter" data-level="2.4" data-path="2-basics.html"><a href="2-basics.html#manglende-vrdier-na"><i class="fa fa-check"></i><b>2.4</b> Manglende værdier (<code>NA</code>)</a></li>
+<li class="chapter" data-level="2.5" data-path="2-basics.html"><a href="2-basics.html#tekst-i-objekter"><i class="fa fa-check"></i><b>2.5</b> Tekst i objekter</a></li>
+<li class="chapter" data-level="2.6" data-path="2-basics.html"><a href="2-basics.html#datarammer"><i class="fa fa-check"></i><b>2.6</b> Datarammer</a></li>
+<li class="chapter" data-level="2.7" data-path="2-basics.html"><a href="2-basics.html#import-og-eksport-af-datarammer"><i class="fa fa-check"></i><b>2.7</b> Import og eksport af datarammer</a></li>
+<li class="chapter" data-level="2.8" data-path="2-basics.html"><a href="2-basics.html#ref-pakker"><i class="fa fa-check"></i><b>2.8</b> Installation af pakker</a></li>
+<li class="chapter" data-level="2.9" data-path="2-basics.html"><a href="2-basics.html#objekter-i-hukommelsen"><i class="fa fa-check"></i><b>2.9</b> Objekter i hukommelsen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-data.html"><a href="3-data.html"><i class="fa fa-check"></i><b>3</b> Databehandling</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-data.html"><a href="3-data.html#behandling-af-datarammer-med-dplyr"><i class="fa fa-check"></i><b>3.1</b> Behandling af datarammer med <code>dplyr</code></a></li>
+<li class="chapter" data-level="3.2" data-path="3-data.html"><a href="3-data.html#vlg-bestemte-variable-med-select"><i class="fa fa-check"></i><b>3.2</b> Vælg bestemte variable med <code>select()</code></a></li>
+<li class="chapter" data-level="3.3" data-path="3-data.html"><a href="3-data.html#vlg-bestemte-observationer-med-filter"><i class="fa fa-check"></i><b>3.3</b> Vælg bestemte observationer med <code>filter()</code></a></li>
+<li class="chapter" data-level="3.4" data-path="3-data.html"><a href="3-data.html#vlg-rkkeflgen-pa-observationer-med-arrange"><i class="fa fa-check"></i><b>3.4</b> Vælg rækkefølgen på observationer med <code>arrange()</code></a></li>
+<li class="chapter" data-level="3.5" data-path="3-data.html"><a href="3-data.html#skift-navnet-pa-en-variabel-med-rename"><i class="fa fa-check"></i><b>3.5</b> Skift navnet på en variabel med <code>rename()</code></a></li>
+<li class="chapter" data-level="3.6" data-path="3-data.html"><a href="3-data.html#tilfj-variabel-med-mutate"><i class="fa fa-check"></i><b>3.6</b> Tilføj variabel med <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.7" data-path="3-data.html"><a href="3-data.html#kombination-af-funktioner-med-pipe-operatoren"><i class="fa fa-check"></i><b>3.7</b> Kombination af funktioner med pipe operatoren</a></li>
+<li class="chapter" data-level="3.8" data-path="3-data.html"><a href="3-data.html#kr-funktioner-pa-variable-med-apply"><i class="fa fa-check"></i><b>3.8</b> Kør funktioner på variable med <code>apply()</code></a></li>
+<li class="chapter" data-level="3.9" data-path="3-data.html"><a href="3-data.html#aggreger-variable-med-summarize"><i class="fa fa-check"></i><b>3.9</b> Aggreger variable med <code>summarize()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-viz.html"><a href="4-viz.html"><i class="fa fa-check"></i><b>4</b> Visualisering</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-viz.html"><a href="4-viz.html#introducerende-eksempel-med-ggplot2"><i class="fa fa-check"></i><b>4.1</b> Introducerende eksempel med <code>ggplot2</code></a></li>
+<li class="chapter" data-level="4.2" data-path="4-viz.html"><a href="4-viz.html#specifikationer-med-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Specifikationer med <code>ggplot2</code></a></li>
+<li class="chapter" data-level="4.3" data-path="4-viz.html"><a href="4-viz.html#eksempel-venstre-i-meningsmalingerne-i-2015"><i class="fa fa-check"></i><b>4.3</b> Eksempel: Venstre i meningsmålingerne i 2015</a></li>
+<li class="chapter" data-level="4.4" data-path="4-viz.html"><a href="4-viz.html#afsluttende-bemrkninger"><i class="fa fa-check"></i><b>4.4</b> Afsluttende bemærkninger</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-ols-regression.html"><a href="5-ols-regression.html"><i class="fa fa-check"></i><b>5</b> OLS regression</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-ols-regression.html"><a href="5-ols-regression.html#bivariat-analyse"><i class="fa fa-check"></i><b>5.1</b> Bivariat analyse</a></li>
+<li class="chapter" data-level="5.2" data-path="5-ols-regression.html"><a href="5-ols-regression.html#multivariat-analyse"><i class="fa fa-check"></i><b>5.2</b> Multivariat analyse</a></li>
+<li class="chapter" data-level="5.3" data-path="5-ols-regression.html"><a href="5-ols-regression.html#forudstningstests"><i class="fa fa-check"></i><b>5.3</b> Forudsætningstests</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="5-ols-regression.html"><a href="5-ols-regression.html#linearitet"><i class="fa fa-check"></i><b>5.3.1</b> Linearitet</a></li>
+<li class="chapter" data-level="5.3.2" data-path="5-ols-regression.html"><a href="5-ols-regression.html#outliers-og-indflydelsesrige-observationer"><i class="fa fa-check"></i><b>5.3.2</b> Outliers og indflydelsesrige observationer</a></li>
+<li class="chapter" data-level="5.3.3" data-path="5-ols-regression.html"><a href="5-ols-regression.html#normalfordelte-fejlled"><i class="fa fa-check"></i><b>5.3.3</b> Normalfordelte fejlled</a></li>
+<li class="chapter" data-level="5.3.4" data-path="5-ols-regression.html"><a href="5-ols-regression.html#heteroskedasticitet"><i class="fa fa-check"></i><b>5.3.4</b> Heteroskedasticitet</a></li>
+<li class="chapter" data-level="5.3.5" data-path="5-ols-regression.html"><a href="5-ols-regression.html#multikollinaritet"><i class="fa fa-check"></i><b>5.3.5</b> Multikollinaritet</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-interaktionsanalyse.html"><a href="6-interaktionsanalyse.html"><i class="fa fa-check"></i><b>6</b> Interaktionsanalyse</a></li>
+<li class="chapter" data-level="7" data-path="7-logistisk-regression.html"><a href="7-logistisk-regression.html"><i class="fa fa-check"></i><b>7</b> Logistisk regression</a></li>
+<li class="chapter" data-level="8" data-path="8-propensity-score-matching.html"><a href="8-propensity-score-matching.html"><i class="fa fa-check"></i><b>8</b> Propensity Score Matching</a></li>
+<li class="chapter" data-level="9" data-path="9-regressionsdiskontinuitetsdesigns.html"><a href="9-regressionsdiskontinuitetsdesigns.html"><i class="fa fa-check"></i><b>9</b> Regressionsdiskontinuitetsdesigns</a></li>
+<li class="chapter" data-level="" data-path="konklusion.html"><a href="konklusion.html"><i class="fa fa-check"></i>Konklusion</a><ul>
+<li class="chapter" data-level="9.1" data-path="konklusion.html"><a href="konklusion.html#pakkeanbefaling-swirl"><i class="fa fa-check"></i><b>9.1</b> Pakkeanbefaling: swirl</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-funktioner.html"><a href="10-funktioner.html"><i class="fa fa-check"></i><b>10</b> Funktioner</a><ul>
+<li class="chapter" data-level="10.1" data-path="10-funktioner.html"><a href="10-funktioner.html#loops"><i class="fa fa-check"></i><b>10.1</b> Loops</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html"><i class="fa fa-check"></i><b>11</b> Genveje og udvalgte funktioner</a><ul>
+<li class="chapter" data-level="11.1" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html#funktioner-1"><i class="fa fa-check"></i><b>11.1</b> Funktioner</a></li>
+<li class="chapter" data-level="11.2" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html#genveje-i-rstudio"><i class="fa fa-check"></i><b>11.2</b> Genveje i RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="12-ref-anpakker.html"><a href="12-ref-anpakker.html"><i class="fa fa-check"></i><b>12</b> Anbefalede pakker</a></li>
+<li class="chapter" data-level="13" data-path="13-eksport-af-tabeller.html"><a href="13-eksport-af-tabeller.html"><i class="fa fa-check"></i><b>13</b> Eksport af tabeller</a></li>
+<li class="chapter" data-level="14" data-path="14-referencer.html"><a href="14-referencer.html"><i class="fa fa-check"></i><b>14</b> Referencer</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduktion til R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Introduktion til R</h1>
+<h4 class="author"><em>Erik Gahner Larsen</em></h4>
+<h4 class="date"><em>Oktober 28, 2017</em></h4>
+</div>
+<div id="introduktion" class="section level1">
+<h1><span class="header-section-number">Kapitel 1</span> Introduktion</h1>
+<p>Denne bog giver dig en indføring i, hvordan man bruger R til statistiske analyser. Kort fortalt er der ingen grænser for, hvad man kan bruge R til, så nærværende introduktion er på ingen måde udtømmende, men skal blot ses som et grundlag for, at kunne gennemføre bestemte analyser. R er <em>ikke</em> nemt at lære, men det har væsentlige styrker, der gør, at det er bedre end alternativerne (Excel, SPSS, Stata, SAS m.v.).</p>
+<p>Bogens ambition er at give en introduktion til tre vigtige stadier i statistiske analyser. For det første skal vi bearbejde data. Dette kan blandt andet være ved at konstruere variable med bestemte informationer, men også ved at downloade data og importere disse. For det andet skal der gennemføres analyser af ens datamateriale. Dette kan være en simpel test for forskelle i to gennemsnit, men også mere komplicerede analyser. For det tredje skal resultaterne af ens analyser præsenteres på den mest pædagogiske og informative måde, dette være sig enten i tabeller eller figurer.</p>
+<p>Der findes talrige bøger og ressourcer på nettet, der giver en introduktion til R. En del af dette materiale er uden tvivl mere dybdegående, end det du vil finde her. Der vil af samme grund blive henvist til en del anbefalsesværdigt eksternt materiale i løbet af bogen. Ambitionen med denne bog er udelukkende at give en pædagogisk introduktion til især statskundskabsstuderende, der ønsker en letlæselig introduktion til R på dansk.</p>
+<p>I dette kapitel gives en introduktion til R. Dette sker ved først at beskrive nogle af styrkerne og svaghederne ved R, hvorefter det gennemgås, hvordan R installeres og ser ud. Til sidst introduceres logikken bag R, der klæder os på til at bruge R i de kommende kapitler. De efterfølgende kapitler vil blandt andet fokusere på, hvordan man bearbejder og visualiserer sine data, gennemfører lineære regressionsanalyser samt andre statistiske analyser.</p>
+<p>Materialet der anvendes i bogen, kan hentes på GitHub: <a href="https://github.com/erikgahner/Rguide" class="uri">https://github.com/erikgahner/Rguide</a>. Den nyeste version af bogen kan findes her:</p>
+<ul>
+<li>Online: <a href="http://erikgahner.dk/Rguide/" class="uri">http://erikgahner.dk/Rguide/</a></li>
+<li>PDF: <a href="http://erikgahner.dk/Rguide/Rguide.pdf" class="uri">http://erikgahner.dk/Rguide/Rguide.pdf</a></li>
+<li>EPUB: <a href="http://erikgahner.dk/Rguide/Rguide.epub" class="uri">http://erikgahner.dk/Rguide/Rguide.epub</a></li>
+</ul>
+<p>Hvis du finder fejl og mangler i bogen, må du meget gerne oprette et issue på GitHub eller sende en mail til <a href="mailto:erikgahner@gmail.com">erikgahner@gmail.com</a>. Har du en idé eller et forslag til, hvad der vil kunne styrke bogen, er du også meget velkommen til at kontakte mig på nævnte mail.</p>
+<div id="hvorfor-r-fordele-og-ulemper-ved-r" class="section level2">
+<h2><span class="header-section-number">1.1</span> Hvorfor R? Fordele og ulemper ved R</h2>
+<p>R hjælper dig effektivt fra A til B, men som det også blev beskrevet indledningsvist: R kan være svært - og det tager tid at lære. Der findes masser af statistikprogrammer på markedet, der kan gennemføre statistiske analyser, og mange af disse er nemmere at lære end R. Skal man udelukkende bruge et program til at lave lagkagediagrammer, er det ikke din tid værd at lære R. Med andre ord: Hvis distancen fra A til B er at betegne som gåafstand, giver det ingen mening at lære at køre en Lamborghini (i dette tilfælde R).</p>
+<p>Hvorfor så bruge R? For det første er det gratis. Ja, <em>gratis</em>. Det er muligt, at du allerede har ``gratis’’ adgang til Stata eller SPSS gennem dit universitet eller arbejde, men dette er ikke det samme som, at du vil have adgang for evigt. Tværtimod. Når du bruger et gratis program er du fri for at tænke på, hvilken licens du bruger og hvor stor din pengepung er. Ikke bare nu, men også i fremtiden.</p>
+<p>For det andet giver R adgang til en række muligheder, der kun i begrænset omfang er muligt at gennemføre i andre programmer. Dette både hvad angår bearbejdning, analyse og præsentation af data. R er eksempelvis nemt at anvende til at indsamle og analysere forskellige typer af data fra internettet, herunder også fra sociale medier som twitter. R giver med sin objektorienterede struktur (der bliver introduceret i næste kapitel) således mulighed for at arbejde med data på en anden måde end Stata gør. Hvor man i Stata kun kan have ét datasæt åbent af gangen, giver R rig mulighed for at arbejde med og kombinere flere forskellige datasæt.</p>
+<p>For det tredje giver R mulighed for at præsentere og visualisere data og analyser på langt pænere måder end andre programmer. Hvis du ser en flot figur i en videnskabelig artikel, vil det bedste gæt være, at den er lavet i R. Flere store medievirksomheder bruger således R - og især en pakke ved navn <code>ggplot2</code>, når de skal lave flotte visualiseringer.</p>
+<p>For det fjerde er der et stort <em>community</em> af brugere, der meget gerne står til rådighed og hjælper, hvis du møder et problem. Den gode nyhed er, at du ikke er den første (eller den sidste), der skal til at lære R, hvorfor der er mange brugere, der har haft de samme problemer, som du kommer til at have. Hvis du derfor får en fejlmeddelelse (og tro mig - det gør du!), kommer du som regel langt ved blot at <em>google</em> fejlmeddelelsen, hvor du kan finde information omkring, hvad der er galt og hvordan problemet som regel kan løses.</p>
+<p>For det femte er det nemmere at lære et nyt statistikprogram, hvis man kan R, end omvendt. Hvis man bliver bekendt med, hvordan statistiske analyser gennemføres i R, er det relativt nemt at lære at bruge SPSS, Stata og andre programmer. Det samme er ikke nødvendigvis tilfældet, hvis man først lærer eksempelvis SPSS, hvor der kan være mange dårlige vaner, man først skal vænne sig af med. Hvis du lærte statistik med SPSS er du potentielt set begrænset af den menulinje, SPSS benytter sig af.</p>
+<p>For det sjette faciliterer brugen af R et øget fokus på reproducerbarheden af ens resultater. Når man laver noget i R, gør man det som regel gennem funktioner, altså kommandoer (i et <em>script</em>), der er let at dokumentere. Dette gør, at man nemt kan sende sit datasæt og R-script til en kollega eller ven, der kan køre <em>samme</em> script på det <em>samme</em> data og (forhåbentlig) få de <em>samme</em> resultater. Det samme er muligt med både SPSS og Stata, men disse programmer giver også rig mulighed for, at man nemt kan omkode variable og gennemføre analyser, uden at man nødvendigvis husker at dokumentere processen heraf.</p>
+<p>På baggrund af ovenstående liste (der ikke er udtømmende), burde det være åbenlyst, at R er værd at bruge tid på. Når dette er sagt, er der ikke desto mindre nogle ulemper forbundet med R. For det første er det, som beskrevet, svært at lære at bruge R. For det andet er der ikke en officiel supportlinje, man kan ringe til, hvis man støder ind i problemer. Dette ændrer dog ikke på, at fordelene ved at lære R langt overstiger ulemperne, så næste afsnit viser, hvordan du installerer R.</p>
+</div>
+<div id="installation-af-r-og-rstudio" class="section level2">
+<h2><span class="header-section-number">1.2</span> Installation af R og RStudio</h2>
+<p>Der er to programmer, du skal installere. Det første er R, som er basispakken, der <em>skal</em> installeres. Det andet er RStudio, der er det program, du kommer til at anvende. RStudio er et integreret udviklingsmiljøbrugerflade (<em>integrated development environment</em>, IDE), der gør R nemmere at anvende. RStudio er ikke alene langt pænere end basispakken, men rummer også en lang række værktøjer, der gør R nemmere at lære og bruge. Her er de step, du kan følge:</p>
+<ol style="list-style-type: decimal">
+<li>Gå ind på <a href="http://www.r-project.org/">r-project.org</a> og klik på menupunktet CRAN under <em>Download</em>.</li>
+<li>Du er nu på en side med titlen <em>CRAN Mirrors</em>. Vælg en af hjemmesiderne, hvorfra du vil hente R.</li>
+<li>Vælg hvilket styresystem, du vil hente R til (Windows, Linux eller Mac).</li>
+<li>Hvis du bruger Windows, så klik først på <em>base</em> og derefter det link, der indeholder <em>download</em>. Hvis du bruger Mac, så klik på den øverste <code>.pkg</code> fil.</li>
+<li>Når filen er downloadet, kan du følge installationsguiden og dermed installere R.</li>
+<li>Efter installationen går du ind på RStudios side, hvor RStudio kan downloades: <a href="https://www.rstudio.com/products/rstudio/download/">rstudio.com/products/rstudio/download/</a>.</li>
+<li>Klik på den fil under <em>Installers for Supported Platforms</em>, der matcher dit styresystem.</li>
+<li>Når filen er downloadet, kan du følge installationsguiden og dermed installere RStudio.</li>
+</ol>
+<p>Ovenstående bør ikke medføre nogle problemer. Hvis der af en eller anden grund skulle komme en fejlmeddelelse, kan det varmt anbefales blot at <em>google</em> denne. Du har nu installeret R og RStudio og kan åbne RStudio, der med nogle visuelle forskelle (farverne og evt. styresystem), ligner skærmbilledet i Figur <a href="index.html#fig:interface">1.1</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:interface"></span>
+<img src="figure/rstudio.png" alt="Det grafiske interface i RStudio" width="85%" scale=0.65 />
+<p class="caption">
+Figure 1.1: Det grafiske interface i RStudio
+</p>
+</div>
+<p>Du er nu i R. Når du ikke har et script åbent (i en <em>editor</em>, beskrevet i næste kapitel), er der tre vinduer. For det første er der konsollen, hvor du kan skrive kommandoer. Det er ligeledes her mange resultater og lignende, vil blive vist. For det andet er der dit miljø (<em>environment</em>), hvor det bliver synligt, hvilke ting du arbejder med samt hvad du tidligere har gjort. For det tredje har du et <em>output</em> vindue, hvor blandt andet grafer, hjælpedokumenter og lignende vil blive præsenteret.</p>
+<p>Når du har installeret R, handler det først og fremmest om at lære det helt grundlæggende. I næste kapitel tager vi fat på dette.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="2-basics.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": [["Rguide.pdf", "PDF"], ["Rguide.epub", "EPUB"], ["Rguide.docx", "Word"]],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
