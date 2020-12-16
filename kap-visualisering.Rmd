@@ -190,7 +190,7 @@ plot.tufte <- plot.standard + theme_tufte() + xlab("theme_tufte()")
 grid.arrange(plot.standard, plot.bw, plot.minimal, plot.classic, plot.base, plot.economist, plot.fivethirtyeight, plot.tufte, ncol=2)
 ```
 
-Der findes flere ressourcer online, der beskæftiger sig med temaer til ggplot2, og foruden ovenstående kan [ggthemr](https://github.com/cttobin/ggthemr) og [ggplot2 extensions](https://www.ggplot2-exts.org/) anbefales.
+Der findes flere ressourcer online, der beskæftiger sig med temaer til ggplot2, og foruden ovenstående kan [ggthemr](https://github.com/cttobin/ggthemr) og [ggplot2 extensions](https://exts.ggplot2.tidyverse.org/) anbefales.
 
 ## Eksempel: Venstre i meningsmålingerne i 2015
 
