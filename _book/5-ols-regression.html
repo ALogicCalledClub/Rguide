@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Introduktion til R</title>
-  <meta name="description" content="Introduktion til R">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Kapitel 5 OLS regression | Introduktion til R</title>
+  <meta name="description" content="Kapitel 5 OLS regression | Introduktion til R" />
+  <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introduktion til R" />
+  <meta property="og:title" content="Kapitel 5 OLS regression | Introduktion til R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,28 +16,32 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduktion til R" />
+  <meta name="twitter:title" content="Kapitel 5 OLS regression | Introduktion til R" />
   
   
   
 
-<meta name="author" content="Erik Gahner Larsen">
+<meta name="author" content="Erik Gahner Larsen" />
 
 
+<meta name="date" content="2020-12-16" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="4-viz.html">
-<link rel="next" href="6-interaktionsanalyse.html">
+<link rel="prev" href="4-viz.html"/>
+<link rel="next" href="6-interaktionsanalyse.html"/>
+<script src="libs/header-attrs-2.6.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -46,44 +49,97 @@
 
 
 
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 </head>
@@ -100,42 +156,48 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul class="summary">
 <li><a href="./"></a></li>
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduktion</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduktion</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#hvorfor-r-fordele-og-ulemper-ved-r"><i class="fa fa-check"></i><b>1.1</b> Hvorfor R? Fordele og ulemper ved R</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installation-af-r-og-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installation af R og RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="2-basics.html"><a href="2-basics.html"><i class="fa fa-check"></i><b>2</b> Fundamentet</a><ul>
+<li class="chapter" data-level="2" data-path="2-basics.html"><a href="2-basics.html"><i class="fa fa-check"></i><b>2</b> Fundamentet</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="2-basics.html"><a href="2-basics.html#objekter-og-funktioner"><i class="fa fa-check"></i><b>2.1</b> Objekter og funktioner</a></li>
 <li class="chapter" data-level="2.2" data-path="2-basics.html"><a href="2-basics.html#tal-i-objekter"><i class="fa fa-check"></i><b>2.2</b> Tal i objekter</a></li>
 <li class="chapter" data-level="2.3" data-path="2-basics.html"><a href="2-basics.html#logiske-operatorer"><i class="fa fa-check"></i><b>2.3</b> Logiske operatorer</a></li>
-<li class="chapter" data-level="2.4" data-path="2-basics.html"><a href="2-basics.html#manglende-vrdier-na"><i class="fa fa-check"></i><b>2.4</b> Manglende værdier (<code>NA</code>)</a></li>
+<li class="chapter" data-level="2.4" data-path="2-basics.html"><a href="2-basics.html#manglende-værdier-na"><i class="fa fa-check"></i><b>2.4</b> Manglende værdier (<code>NA</code>)</a></li>
 <li class="chapter" data-level="2.5" data-path="2-basics.html"><a href="2-basics.html#tekst-i-objekter"><i class="fa fa-check"></i><b>2.5</b> Tekst i objekter</a></li>
 <li class="chapter" data-level="2.6" data-path="2-basics.html"><a href="2-basics.html#datarammer"><i class="fa fa-check"></i><b>2.6</b> Datarammer</a></li>
 <li class="chapter" data-level="2.7" data-path="2-basics.html"><a href="2-basics.html#import-og-eksport-af-datarammer"><i class="fa fa-check"></i><b>2.7</b> Import og eksport af datarammer</a></li>
 <li class="chapter" data-level="2.8" data-path="2-basics.html"><a href="2-basics.html#ref-pakker"><i class="fa fa-check"></i><b>2.8</b> Installation af pakker</a></li>
 <li class="chapter" data-level="2.9" data-path="2-basics.html"><a href="2-basics.html#objekter-i-hukommelsen"><i class="fa fa-check"></i><b>2.9</b> Objekter i hukommelsen</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="3-data.html"><a href="3-data.html"><i class="fa fa-check"></i><b>3</b> Databehandling</a><ul>
+<li class="chapter" data-level="3" data-path="3-data.html"><a href="3-data.html"><i class="fa fa-check"></i><b>3</b> Databehandling</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="3-data.html"><a href="3-data.html#behandling-af-datarammer-med-dplyr"><i class="fa fa-check"></i><b>3.1</b> Behandling af datarammer med <code>dplyr</code></a></li>
-<li class="chapter" data-level="3.2" data-path="3-data.html"><a href="3-data.html#vlg-bestemte-variable-med-select"><i class="fa fa-check"></i><b>3.2</b> Vælg bestemte variable med <code>select()</code></a></li>
-<li class="chapter" data-level="3.3" data-path="3-data.html"><a href="3-data.html#vlg-bestemte-observationer-med-filter"><i class="fa fa-check"></i><b>3.3</b> Vælg bestemte observationer med <code>filter()</code></a></li>
-<li class="chapter" data-level="3.4" data-path="3-data.html"><a href="3-data.html#vlg-rkkeflgen-pa-observationer-med-arrange"><i class="fa fa-check"></i><b>3.4</b> Vælg rækkefølgen på observationer med <code>arrange()</code></a></li>
-<li class="chapter" data-level="3.5" data-path="3-data.html"><a href="3-data.html#skift-navnet-pa-en-variabel-med-rename"><i class="fa fa-check"></i><b>3.5</b> Skift navnet på en variabel med <code>rename()</code></a></li>
-<li class="chapter" data-level="3.6" data-path="3-data.html"><a href="3-data.html#tilfj-variabel-med-mutate"><i class="fa fa-check"></i><b>3.6</b> Tilføj variabel med <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.2" data-path="3-data.html"><a href="3-data.html#vælg-bestemte-variable-med-select"><i class="fa fa-check"></i><b>3.2</b> Vælg bestemte variable med <code>select()</code></a></li>
+<li class="chapter" data-level="3.3" data-path="3-data.html"><a href="3-data.html#vælg-bestemte-observationer-med-filter"><i class="fa fa-check"></i><b>3.3</b> Vælg bestemte observationer med <code>filter()</code></a></li>
+<li class="chapter" data-level="3.4" data-path="3-data.html"><a href="3-data.html#vælg-rækkefølgen-på-observationer-med-arrange"><i class="fa fa-check"></i><b>3.4</b> Vælg rækkefølgen på observationer med <code>arrange()</code></a></li>
+<li class="chapter" data-level="3.5" data-path="3-data.html"><a href="3-data.html#skift-navnet-på-en-variabel-med-rename"><i class="fa fa-check"></i><b>3.5</b> Skift navnet på en variabel med <code>rename()</code></a></li>
+<li class="chapter" data-level="3.6" data-path="3-data.html"><a href="3-data.html#tilføj-variabel-med-mutate"><i class="fa fa-check"></i><b>3.6</b> Tilføj variabel med <code>mutate()</code></a></li>
 <li class="chapter" data-level="3.7" data-path="3-data.html"><a href="3-data.html#kombination-af-funktioner-med-pipe-operatoren"><i class="fa fa-check"></i><b>3.7</b> Kombination af funktioner med pipe operatoren</a></li>
-<li class="chapter" data-level="3.8" data-path="3-data.html"><a href="3-data.html#kr-funktioner-pa-variable-med-apply"><i class="fa fa-check"></i><b>3.8</b> Kør funktioner på variable med <code>apply()</code></a></li>
+<li class="chapter" data-level="3.8" data-path="3-data.html"><a href="3-data.html#kør-funktioner-på-variable-med-apply"><i class="fa fa-check"></i><b>3.8</b> Kør funktioner på variable med <code>apply()</code></a></li>
 <li class="chapter" data-level="3.9" data-path="3-data.html"><a href="3-data.html#aggreger-variable-med-summarize"><i class="fa fa-check"></i><b>3.9</b> Aggreger variable med <code>summarize()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="4-viz.html"><a href="4-viz.html"><i class="fa fa-check"></i><b>4</b> Visualisering</a><ul>
+<li class="chapter" data-level="4" data-path="4-viz.html"><a href="4-viz.html"><i class="fa fa-check"></i><b>4</b> Visualisering</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="4-viz.html"><a href="4-viz.html#introducerende-eksempel-med-ggplot2"><i class="fa fa-check"></i><b>4.1</b> Introducerende eksempel med <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.2" data-path="4-viz.html"><a href="4-viz.html#specifikationer-med-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Specifikationer med <code>ggplot2</code></a></li>
-<li class="chapter" data-level="4.3" data-path="4-viz.html"><a href="4-viz.html#eksempel-venstre-i-meningsmalingerne-i-2015"><i class="fa fa-check"></i><b>4.3</b> Eksempel: Venstre i meningsmålingerne i 2015</a></li>
-<li class="chapter" data-level="4.4" data-path="4-viz.html"><a href="4-viz.html#afsluttende-bemrkninger"><i class="fa fa-check"></i><b>4.4</b> Afsluttende bemærkninger</a></li>
+<li class="chapter" data-level="4.3" data-path="4-viz.html"><a href="4-viz.html#eksempel-venstre-i-meningsmålingerne-i-2015"><i class="fa fa-check"></i><b>4.3</b> Eksempel: Venstre i meningsmålingerne i 2015</a></li>
+<li class="chapter" data-level="4.4" data-path="4-viz.html"><a href="4-viz.html#afsluttende-bemærkninger"><i class="fa fa-check"></i><b>4.4</b> Afsluttende bemærkninger</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="5-ols-regression.html"><a href="5-ols-regression.html"><i class="fa fa-check"></i><b>5</b> OLS regression</a><ul>
+<li class="chapter" data-level="5" data-path="5-ols-regression.html"><a href="5-ols-regression.html"><i class="fa fa-check"></i><b>5</b> OLS regression</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="5-ols-regression.html"><a href="5-ols-regression.html#bivariat-analyse"><i class="fa fa-check"></i><b>5.1</b> Bivariat analyse</a></li>
 <li class="chapter" data-level="5.2" data-path="5-ols-regression.html"><a href="5-ols-regression.html#multivariat-analyse"><i class="fa fa-check"></i><b>5.2</b> Multivariat analyse</a></li>
-<li class="chapter" data-level="5.3" data-path="5-ols-regression.html"><a href="5-ols-regression.html#forudstningstests"><i class="fa fa-check"></i><b>5.3</b> Forudsætningstests</a><ul>
+<li class="chapter" data-level="5.3" data-path="5-ols-regression.html"><a href="5-ols-regression.html#forudsætningstests"><i class="fa fa-check"></i><b>5.3</b> Forudsætningstests</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="5-ols-regression.html"><a href="5-ols-regression.html#linearitet"><i class="fa fa-check"></i><b>5.3.1</b> Linearitet</a></li>
 <li class="chapter" data-level="5.3.2" data-path="5-ols-regression.html"><a href="5-ols-regression.html#outliers-og-indflydelsesrige-observationer"><i class="fa fa-check"></i><b>5.3.2</b> Outliers og indflydelsesrige observationer</a></li>
 <li class="chapter" data-level="5.3.3" data-path="5-ols-regression.html"><a href="5-ols-regression.html#normalfordelte-fejlled"><i class="fa fa-check"></i><b>5.3.3</b> Normalfordelte fejlled</a></li>
@@ -147,13 +209,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7" data-path="7-logistisk-regression.html"><a href="7-logistisk-regression.html"><i class="fa fa-check"></i><b>7</b> Logistisk regression</a></li>
 <li class="chapter" data-level="8" data-path="8-propensity-score-matching.html"><a href="8-propensity-score-matching.html"><i class="fa fa-check"></i><b>8</b> Propensity Score Matching</a></li>
 <li class="chapter" data-level="9" data-path="9-regressionsdiskontinuitetsdesigns.html"><a href="9-regressionsdiskontinuitetsdesigns.html"><i class="fa fa-check"></i><b>9</b> Regressionsdiskontinuitetsdesigns</a></li>
-<li class="chapter" data-level="" data-path="konklusion.html"><a href="konklusion.html"><i class="fa fa-check"></i>Konklusion</a><ul>
+<li class="chapter" data-level="" data-path="konklusion.html"><a href="konklusion.html"><i class="fa fa-check"></i>Konklusion</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="konklusion.html"><a href="konklusion.html#pakkeanbefaling-swirl"><i class="fa fa-check"></i><b>9.1</b> Pakkeanbefaling: swirl</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10-funktioner.html"><a href="10-funktioner.html"><i class="fa fa-check"></i><b>10</b> Funktioner</a><ul>
+<li class="chapter" data-level="10" data-path="10-funktioner.html"><a href="10-funktioner.html"><i class="fa fa-check"></i><b>10</b> Funktioner</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="10-funktioner.html"><a href="10-funktioner.html#loops"><i class="fa fa-check"></i><b>10.1</b> Loops</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html"><i class="fa fa-check"></i><b>11</b> Genveje og udvalgte funktioner</a><ul>
+<li class="chapter" data-level="11" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html"><i class="fa fa-check"></i><b>11</b> Genveje og udvalgte funktioner</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html#funktioner-1"><i class="fa fa-check"></i><b>11.1</b> Funktioner</a></li>
 <li class="chapter" data-level="11.2" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html#genveje-i-rstudio"><i class="fa fa-check"></i><b>11.2</b> Genveje i RStudio</a></li>
 </ul></li>
@@ -161,7 +226,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13" data-path="13-eksport-af-tabeller.html"><a href="13-eksport-af-tabeller.html"><i class="fa fa-check"></i><b>13</b> Eksport af tabeller</a></li>
 <li class="chapter" data-level="14" data-path="14-referencer.html"><a href="14-referencer.html"><i class="fa fa-check"></i><b>14</b> Referencer</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<li><a href="https://github.com/rstudio/bookdown target="blank">Published with bookdown</a></li>
 </ul>
 
       </nav>
@@ -179,15 +244,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ols-regression" class="section level1">
+<div id="ols-regression" class="section level1" number="5">
 <h1><span class="header-section-number">Kapitel 5</span> OLS regression</h1>
 <p>OLS (eller <em>mindste kvadraters metode</em> på dansk) regression er et af de mest anvendte redskaber i den politologiske værktøjskasse. Den simple lineære regressionsanalyse kan skrives som:</p>
 <p><span class="math display">\[Y_i = \alpha + \beta X_i + \epsilon_i\]</span></p>
 <p>Her er <span class="math inline">\(Y_i\)</span> den afhængige variabel, vi ønsker at forklare forskelle i (eksempelvis hvor højreorienterede forskellige vælgere er). <span class="math inline">\(\alpha\)</span> er konstanten, en parameter der angiver værdien på den afhængige variabel, når den uafhængige variabel (eller de uafhængige variable) er 0. <span class="math inline">\(\beta\)</span> angiver ændringen i <span class="math inline">\(Y\)</span> når <span class="math inline">\(X\)</span> stiger med én enhed. Det er oftest <span class="math inline">\(\beta\)</span>, vi er interesseret i at undersøge effekten af på <span class="math inline">\(Y_i\)</span>. <span class="math inline">\(\epsilon_i\)</span> er fejlleddet.</p>
 <p>Vi vil i dette kapitel anvende den danske del af <em>European Social Survey</em> fra 2014. Bemærk at dette ikke er det fulde datasæt, så det er ikke alle observationer (<em>rækker</em>) såvel som variable (<em>kolonner</em>), der er med. Det fulde datasæt kan hentes i forskellige formater hos <a href="http://europeansocialsurvey.org">europeansocialsurvey.org</a>. Det første vi gør er at indlæse vores datasæt i objektet <code>ess</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ess &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/ess.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="5-ols-regression.html#cb154-1" aria-hidden="true" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/ess.csv&quot;</span>)</span></code></pre></div>
 <p>For at få et indblik i de inkluderede variable i datarammen og observationerne deri, bruger vi først <code>head()</code>-funktionen:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ess)</code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="5-ols-regression.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ess)</span></code></pre></div>
 <pre><code>  male age edu inc union lrscale
 1    0  66   6   4     0       4
 2    1  57   5   9     1       7
@@ -196,7 +261,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 5    0  49   4   9     1       8
 6    1  58   3   3     1       5</code></pre>
 <p>Som det kan ses er der seks variable. De er alle numeriske variable. <code>male</code> er køn, hvor 1 er mand og 0 er kvinde. <code>age</code> er alder i år. <code>edu</code> er uddannelse (i ISCED kategorier). <code>inc</code> er indkomst angivet i indkomstdecil (hvorfor der er 10 værdier). <code>union</code> angiver om man er medlem af en fagforening eller ej. <code>lrscale</code> er politisk orientering målt på en venstre-højre skala (hvor 0 er meget venstreorienteret og 10 er meget højreorienteret). Vi bruger <code>summary()</code> til at få deskriptiv statistik på de respektive variable:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(ess)</code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="5-ols-regression.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ess)</span></code></pre></div>
 <pre><code>      male             age             edu             inc        
  Min.   :0.0000   Min.   :15.00   Min.   :1.000   Min.   : 1.000  
  1st Qu.:0.0000   1st Qu.:35.00   1st Qu.:3.000   1st Qu.: 4.000  
@@ -212,22 +277,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
  3rd Qu.:1.0000   3rd Qu.: 7.000  
  Max.   :1.0000   Max.   :10.000  </code></pre>
 <p>Alternativt kan vi også bruge funktionen <code>glimpse()</code>, der kan bruges, hvis du har åbnet pakken <code>dplyr</code>. Denne viser også antallet af observationer, der er i datarammen.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(ess)</code></pre></div>
-<pre><code>Observations: 1,285
-Variables: 6
-$ male    &lt;int&gt; 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
-$ age     &lt;int&gt; 66, 57, 56, 74, 49, 58, 21, 65, 37, 27, 65, 27, 17, 74...
-$ edu     &lt;int&gt; 6, 5, 6, 3, 4, 3, 2, 3, 7, 6, 3, 7, 2, 3, 3, 3, 7, 7, ...
-$ inc     &lt;int&gt; 4, 9, 6, 2, 9, 3, 2, 6, 7, 9, 3, 7, 8, 5, 9, 6, 9, 10,...
-$ union   &lt;int&gt; 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, ...
-$ lrscale &lt;int&gt; 4, 7, 5, 5, 8, 5, 10, 8, 6, 7, 5, 7, 8, 2, 9, 7, 7, 8,...</code></pre>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="5-ols-regression.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(ess)</span></code></pre></div>
+<pre><code>Rows: 1,285
+Columns: 6
+$ male    &lt;int&gt; 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+$ age     &lt;int&gt; 66, 57, 56, 74, 49, 58, 21, 65, 37, 27, 65, 27, 17, 74, 69, 6…
+$ edu     &lt;int&gt; 6, 5, 6, 3, 4, 3, 2, 3, 7, 6, 3, 7, 2, 3, 3, 3, 7, 7, 3, 5, 6…
+$ inc     &lt;int&gt; 4, 9, 6, 2, 9, 3, 2, 6, 7, 9, 3, 7, 8, 5, 9, 6, 9, 10, 6, 5, …
+$ union   &lt;int&gt; 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0…
+$ lrscale &lt;int&gt; 4, 7, 5, 5, 8, 5, 10, 8, 6, 7, 5, 7, 8, 2, 9, 7, 7, 8, 8, 2, …</code></pre>
 <p>I den resterende del af kapitlet gives først en introduktion til bivariate regressioner (altså med én uafhængig variabel), dernæst multivariate regressioner og til sidst introduceres en række relevante forudsætningstests.</p>
-<div id="bivariat-analyse" class="section level2">
+<div id="bivariat-analyse" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Bivariat analyse</h2>
 <p>For at lave en OLS regression bruger vi funktionen <code>lm()</code>, der står for <em>linear model</em>. Denne funktion er en del af basispakken i R og kræver dermed ikke, at du åbner en bestemt pakke. For at lave en simpel OLS regression med en afhængig variabel og én uafhængig variabel, angiver vi den afhængige variabel før ‘~’ i funktionen og den uafhængige variabel efter. Sidst angiver vi datasættet. I nedenstående ønsker vi at undersøge om folk der har en højere indkomst, er mere højreorienteret (politisk orientering er dermed den afhængige variabel). Dette ønsker vi at undersøge med datarammen <code>ess</code>, hvilket vi gemmer i objektet <code>reg.lr</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg.lr &lt;-<span class="st"> </span><span class="kw">lm</span>(lrscale ~<span class="st"> </span>inc, <span class="dt">data=</span>ess)</code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="5-ols-regression.html#cb161-1" aria-hidden="true" tabindex="-1"></a>reg.lr <span class="ot">&lt;-</span> <span class="fu">lm</span>(lrscale <span class="sc">~</span> inc, <span class="at">data=</span>ess)</span></code></pre></div>
 <p>Når vi har kørt ovenstående funktion får vi et objekt, der, når man bruger funktionen <code>class()</code> giver <code>lm</code>. Dette gør blandt andet, at når vi bruger funktioner på vores objekt, vil der blive taget højde for, at det er en lineær model (eksempelvis vil funktionen <code>plot()</code> på objektet kalde funktionen <code>plot.lm()</code>). For at se resultaterne af regressionen kan vi prøve at se, hvad der er i objektet <code>reg.lr</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg.lr</code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="5-ols-regression.html#cb162-1" aria-hidden="true" tabindex="-1"></a>reg.lr</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = lrscale ~ inc, data = ess)
@@ -236,7 +301,7 @@ Coefficients:
 (Intercept)          inc  
     5.13282      0.05959  </code></pre>
 <p>Som det kan ses af ovenstående, får vi ikke anden information frem end koefficienterne i modellen. Dette betyder i dette tilfælde konstanten (altså værdien på den afhængige variabel når <code>inc</code> er 0) og koefficienten for <code>inc</code>. Konstanten er 5.13282, hvilket betyder, at når <code>inc</code> er 0, er værdien på den afhængige variabel 5,13 (skæringen med y-aksen). Koefficienten for indkomst er 0.05959, hvilket betyder, at når indkomst stiger med én enhed, stiger politisk orientering med 0,0596. Disse informationer er generelt ikke tilstrækkelige, hvorfor det anbefales, at man bruger eksempelvis <code>summary()</code>, når man skal se resultaterne fra ens regression.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(reg.lr)</code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="5-ols-regression.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg.lr)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = lrscale ~ inc, data = ess)
@@ -257,9 +322,9 @@ Multiple R-squared:  0.005442,  Adjusted R-squared:  0.004667
 F-statistic:  7.02 on 1 and 1283 DF,  p-value: 0.008158</code></pre>
 <p>Her får vi et meget større <em>output</em>, der også indeholder signifikanstests, som vi ofte er interesseret i. Under <code>Estimate</code> ses koefficienterne (som ligeledes er angivet ovenfor). Under <code>Std. Error</code> får vi standardfejlene. <code>t value</code> viser t værdien og <code>Pr(&gt;|t|)</code> giver p-værdien (og ved siden af disse er der, såfremt der er tale om et statistisk signifikant estimat, en indikator herfor). Nedenunder er en lang række af modelestimater, herunder frihedsgrader, determinationskoefficient, F-test m.v.</p>
 <p>Hvis man finder ovenstående uoverskueligt, er der andre måder, at få præsenteret resultaterne i R. Én metode er at anvende pakken <code>stargazer</code>, der ofte anvendes til at eksportere tabeller. Først indlæser vi pakken (husk at installere den først, såfremt du ikke har den):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;stargazer&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="5-ols-regression.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;stargazer&quot;</span>)</span></code></pre></div>
 <p>Med pakken kan vi bruge funktionen <code>stargazer()</code>. Her angiver vi først, at vi er interesseret i objektet <code>reg.lr</code> og ønsker at få det præsenteret som tekst (standard er LaTeX-kode).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stargazer</span>(reg.lr, <span class="dt">type=</span><span class="st">&quot;text&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="5-ols-regression.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(reg.lr, <span class="at">type=</span><span class="st">&quot;text&quot;</span>)</span></code></pre></div>
 <pre><code>
 ===============================================
                         Dependent variable:    
@@ -281,20 +346,21 @@ F Statistic           7.020*** (df = 1; 1283)
 ===============================================
 Note:               *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
 <p>Her ses et mere brugervenligt <em>output</em>, der i format ligner det, man vil finde i artikler og bøger. Her kan vi ligeledes nemt se antallet af observationer i vores model (hvilket ikke var angivet eksplicit, da vi brugte <code>summary()</code>). Hvis vi gerne vil illustrere den lineære regressionslinje, kan vi bruge <code>ggplot2</code> med tilføjelsen <code>geom_smooth()</code> og specificere, at det skal være en lineær model, der skal vises:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ess, <span class="kw">aes</span>(<span class="dt">x=</span>inc, <span class="dt">y=</span>lrscale)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) +
-<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="5-ols-regression.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ess, <span class="fu">aes</span>(<span class="at">x=</span>inc, <span class="at">y=</span>lrscale)) <span class="sc">+</span> </span>
+<span id="cb169-2"><a href="5-ols-regression.html#cb169-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb169-3"><a href="5-ols-regression.html#cb169-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Rguide_files/figure-html/unnamed-chunk-102-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Her kan det også ses, at når <code>inc</code> er 0, er værdien på y-aksen 5,13.</p>
 </div>
-<div id="multivariat-analyse" class="section level2">
+<div id="multivariat-analyse" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Multivariat analyse</h2>
 <p>Til nu har vi blot kørt en bivariat regressionsanalyse. Det er heldigvis nemt at udvide denne med flere uafhængige variable, der giver mulighed for at kontrollere for andre variable:</p>
 <p><span class="math display">\[Y_i = \alpha + \beta_1 X_i + \beta_2 Z_i + \epsilon_i\]</span></p>
 <p>For at gøre dette i <code>R</code> tilføjer vi et plus (<code>+</code>) efter den uafhængige variabel og derefter navnet på endnu en variabel, der skal inkluderes i modellen. Dette kan man fortsætte med at gøre, til ens model er korekt specificeret. I nedenstående er indkomst, køn, alder, uddannelse og fagforeningsmedlemsskab uafhængige variable.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reg.lr.c &lt;-<span class="st"> </span><span class="kw">lm</span>(lrscale ~<span class="st"> </span>inc +<span class="st"> </span>male +<span class="st"> </span>age +<span class="st"> </span>edu +<span class="st"> </span>union, <span class="dt">data=</span>ess)</code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="5-ols-regression.html#cb171-1" aria-hidden="true" tabindex="-1"></a>reg.lr.c <span class="ot">&lt;-</span> <span class="fu">lm</span>(lrscale <span class="sc">~</span> inc <span class="sc">+</span> male <span class="sc">+</span> age <span class="sc">+</span> edu <span class="sc">+</span> union, <span class="at">data=</span>ess)</span></code></pre></div>
 <p>Dette er gemt i objektet <code>reg.lr.c</code>. Ligesom i den bivariate analyse kan vi få resultaterne af modellen frem ved hjælp af funktionen <code>summary()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(reg.lr.c )</code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="5-ols-regression.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg.lr.c )</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = lrscale ~ inc + male + age + edu + union, data = ess)
@@ -318,7 +384,7 @@ Residual standard error: 2.294 on 1279 degrees of freedom
 Multiple R-squared:  0.04013,   Adjusted R-squared:  0.03637 
 F-statistic: 10.69 on 5 and 1279 DF,  p-value: 4.383e-10</code></pre>
 <p><em>Outputtet</em> følger samme struktur som i den bivariate analyse. Den eneste forskel er, at der nu er tilføjet fire ekstra variable og dermed fire ekstra estimater og dertilhørende standardfejl og statistiske tests. Hvis vi gerne vil sammenligne resultaterne i denne regression med den bivariate analyse, kan vi bruge <code>stargazer()</code> til at vise resultaterne fra begge modeller i én tabel. Dette gør vi ved at tilføje begge modeller til funktionen, adskilt af et komma:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stargazer</span>(reg.lr, reg.lr.c, <span class="dt">type=</span><span class="st">&quot;text&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="5-ols-regression.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(reg.lr, reg.lr.c, <span class="at">type=</span><span class="st">&quot;text&quot;</span>)</span></code></pre></div>
 <pre><code>
 ====================================================================
                                   Dependent variable:               
@@ -354,94 +420,91 @@ F Statistic         7.020*** (df = 1; 1283) 10.693*** (df = 5; 1279)
 Note:                                    *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
 <p>Tolkningen af resultaterne er anderledes i den multivariate regression. Koefficienten for <code>inc</code> skal nu tolkes partielt, og altså som korrelationen mellem <code>inc</code> og <code>lrscale</code>, når vi kontrollerer for de andre variable (køn, alder, uddannelse og fagforeningsmedlemsskab). Konstanten er i denne sammenhæng værdien på den afhængige variabel, når alle andre variable har værdien 0.</p>
 </div>
-<div id="forudstningstests" class="section level2">
+<div id="forudsætningstests" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Forudsætningstests</h2>
 <p>I Model 4 i Figur <a href="4-viz.html#fig:anscombe">4.1</a> kan det ses, at én observation gør det muligt at lave en regressionslinje. Dette viser vigtigheden af at kende sine data, og især om de modeller der estimeres, bygger på realistiske antagelser. Som med alle modeller vi estimerer, bygger disse på bestemte antagelser. Disse antagelser kan være meget heroiske i forhold til strukturen af vores data, og dermed blive brudt. Nogle af disse antagelser kan heldigvis belyses empirisk, hvor andre kræver viden omkring selve den proces, der har genereret vores data.</p>
 <p>Det er for det første vigtigt, at vi har et godt forskningsdesign. Dette holder for <em>alt</em> vi laver - ikke kun lineære regressionsanalyser. Som det siges: <em>You can’t fix by analysis what you bungled by design</em>.</p>
 <p>Det er for det andet vigtigt, at vi bruger de rigtige variable - og hverken færre eller flere. Med andre ord skal vi sikre os, at vi har den korrekte model, og ikke en fejlspecificeret model. Hvis vores model er underspecificeret, altså vi undlader vigtige variable, får vi <em>biased</em> estimater. Det samme kan vi få, hvis vi overspecificerer vores model, eksempelvis ved at smide alle variable ind i vores model. Det er derfor vigtigt, at vi bruger vores teoretiske viden, når vi specificerer vores regression.</p>
 <p>I den resterende del af kapitlet vil forskellige forudsætningstests blive gennemgået. Til at gøre dette vil vi bruge to forskellige pakker, <code>car</code> og <code>MASS</code>. Det første vi gør er at åbne pakkerne (husk at installere dem først, hvis du ikke har dem).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;car&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;MASS&quot;</span>)</code></pre></div>
-<div id="linearitet" class="section level3">
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="5-ols-regression.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;car&quot;</span>)</span>
+<span id="cb176-2"><a href="5-ols-regression.html#cb176-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;MASS&quot;</span>)</span></code></pre></div>
+<div id="linearitet" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Linearitet</h3>
 <p>Det første vi skal undersøge empirisk er, om der et lineært forhold mellem vores uafhængige og afhængige variable. Hvis der ikke er dette, vil vi få <em>biased</em> estimater, og dermed kan vi ikke tro på resultaterne. Vi kunne gøre dette ved at kigge på punktdiagrammer for den afhængige variabel og hver af de uafhængige variable, men dette vil ikke tage højde for, at relationen mellem den afhængige variabel og én uafhængig variabel, kan ændres, når man tager højde for de andre uafhængige variable. Derfor er vi nødt til at kigge på partielle korrelationer.</p>
 <p>Til at gøre dette vil vi bruge funktionen <code>crp()</code>, der er en forkortelse for <em>component + residual plot</em>. Disse plots giver os en grafisk illustration af, om der er et lineært forhold mellem hver af den afhængige variable og hver af de uafhængige variable, når der tages højde for de andre variable.</p>
 <p>Det gode ved disse plots er, at de også tilføjer en linje, der bedst passer til data (den grønne linje). Den røde linje er den lineære relation. Vi vil gerne have, at der er et klart overlap mellem de to linjer, så der rent faktisk er et lineært forhold mellem vores variable. Her kører vi funktionen <code>crp()</code> på vores objekt med den multiple lineære regression, vi estimerede i forrige sektion.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">crp</span>(reg.lr.c)</code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="5-ols-regression.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crp</span>(reg.lr.c)</span></code></pre></div>
 <p><img src="Rguide_files/figure-html/unnamed-chunk-107-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Der er et pænt overlap i de figurer, hvor det er muligt at estimere begge linjer. Dette er ikke muligt i alle tilfælde, og mere specifikt ikke for de uafhængige variable, der er binære.</p>
 <p>Hvis der er problemer med ovenstående, skal man overveje en alternativ modelspecifikation. Dette kan være ved at inkludere variable, der giver et mere lineært forhold mellem de respektive variable i modellen, eller transformere de eksisterende variale i modellen (eksempelvis via en logaritmisk transformation).</p>
 </div>
-<div id="outliers-og-indflydelsesrige-observationer" class="section level3">
+<div id="outliers-og-indflydelsesrige-observationer" class="section level3" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> Outliers og indflydelsesrige observationer</h3>
 <p>Det næste vi skal belyse er forekomsten af outliers og indflydelsesrige observationer. En outlier er en observation, der ligger langt fra den den lineære tendenslinje og dermed ikke følger den trend, man burde forvente med udgangspunkt i de andre observationer. For at undersøge dette skal vi teste residualet for en observation. Til at gøre dette estimerer vi studentiserede residualer, der fortæller os, hvor overraskende et punkt er relativt til tendenslinjen uden det pågældende punkt. Her bruger vi funktionen <code>outlierTest()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">outlierTest</span>(reg.lr.c) </code></pre></div>
-<pre><code>
-No Studentized residuals with Bonferonni p &lt; 0.05
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="5-ols-regression.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">outlierTest</span>(reg.lr.c) </span></code></pre></div>
+<pre><code>No Studentized residuals with Bonferroni p &lt; 0.05
 Largest |rstudent|:
-    rstudent unadjusted p-value Bonferonni p
+    rstudent unadjusted p-value Bonferroni p
 597 -2.72712          0.0064764           NA</code></pre>
 <p>I outputtet er vi interesserede i Bonferonni p-værdier, og konkret vil vi gerne have, at ingen af disse er signifikante. I outputtet kan vi i ovenstående se, at der ikke er studentiserede residualer med Bonferonni p-værdier lavere end 0,05, hvorfor der ikke er et problem med ekstreme observationer.</p>
 <p>Det næste vi kigger på er såkaldte <em>leverage plots</em>, der skal belyse om der er problemer med ekstreme værdier forudsagt af hver af de uafhængige variable. Til at få dette, bruger vi funktionen <code>leveragePlots()</code>. Her finder vi en lige fordeling omkring de horisontale linjer, hvilket indikerer, at der ikke er problemer med outliers.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">leveragePlots</span>(reg.lr.c) </code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="5-ols-regression.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveragePlots</span>(reg.lr.c) </span></code></pre></div>
 <p><img src="Rguide_files/figure-html/unnamed-chunk-109-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Lignende plots der bruges til at kigge på indflydelsesrige observationer, er <em>added-variable plots</em>, der laves med funktionen <code>avPlots()</code>. Disse undersøger effekten af de uafhængige variable på den afhængige variabel, hvor vi i nedenstående ikke finder evidens for, at enkelte observationer afviger betydeligt og ekstremt fra andre.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">avPlots</span>(reg.lr.c)</code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="5-ols-regression.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">avPlots</span>(reg.lr.c)</span></code></pre></div>
 <p><img src="Rguide_files/figure-html/unnamed-chunk-110-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Som det næste kan vi kigge på Cook’s D, hvor skal se hvilke observationer der har Cook’s D værdier der er større end 4/(n-k-1), hvor <em>n</em> er antallet af observationer og <em>k</em> er antallet af variable i vores model.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cutoff &lt;-<span class="st"> </span><span class="dv">4</span> /<span class="st"> </span>(( <span class="kw">nrow</span>(ess) -<span class="st"> </span><span class="kw">length</span>(reg.lr.c$coefficients) -<span class="st"> </span><span class="dv">1</span> -<span class="st"> </span><span class="dv">1</span> )) 
-<span class="kw">plot</span>(reg.lr.c, <span class="dt">which=</span><span class="dv">4</span>, <span class="dt">cook.levels=</span>cutoff)</code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="5-ols-regression.html#cb182-1" aria-hidden="true" tabindex="-1"></a>cutoff <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="sc">/</span> (( <span class="fu">nrow</span>(ess) <span class="sc">-</span> <span class="fu">length</span>(reg.lr.c<span class="sc">$</span>coefficients) <span class="sc">-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="dv">1</span> )) </span>
+<span id="cb182-2"><a href="5-ols-regression.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(reg.lr.c, <span class="at">which=</span><span class="dv">4</span>, <span class="at">cook.levels=</span>cutoff)</span></code></pre></div>
 <p><img src="Rguide_files/figure-html/unnamed-chunk-111-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Vores <em>cutoff</em> er 0.0031323, og i figuren vises de observationer, der overskrider denne værdi.</p>
 <p>Det næste vi kan gøre er at kigge på et</p>
 </div>
-<div id="normalfordelte-fejlled" class="section level3">
+<div id="normalfordelte-fejlled" class="section level3" number="5.3.3">
 <h3><span class="header-section-number">5.3.3</span> Normalfordelte fejlled</h3>
 <p><em>Bliver tilføjet senere.</em></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qqPlot</span>(reg.lr.c, <span class="dt">main=</span><span class="st">&quot;QQ Plot&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="5-ols-regression.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(reg.lr.c, <span class="at">main=</span><span class="st">&quot;QQ Plot&quot;</span>)</span></code></pre></div>
 <p><img src="Rguide_files/figure-html/unnamed-chunk-112-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] 597 813</code></pre>
 <p>–</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sresid &lt;-<span class="st"> </span><span class="kw">studres</span>(reg.lr.c) 
-<span class="kw">hist</span>(sresid, <span class="dt">freq=</span><span class="ot">FALSE</span>, 
-   <span class="dt">main=</span><span class="st">&quot;Distribution of Studentized Residuals&quot;</span>)
-xfit&lt;-<span class="kw">seq</span>(<span class="kw">min</span>(sresid),<span class="kw">max</span>(sresid),<span class="dt">length=</span><span class="dv">40</span>) 
-yfit&lt;-<span class="kw">dnorm</span>(xfit) 
-<span class="kw">lines</span>(xfit, yfit)</code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="5-ols-regression.html#cb185-1" aria-hidden="true" tabindex="-1"></a>sresid <span class="ot">&lt;-</span> <span class="fu">studres</span>(reg.lr.c) </span>
+<span id="cb185-2"><a href="5-ols-regression.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sresid, <span class="at">freq=</span><span class="cn">FALSE</span>, </span>
+<span id="cb185-3"><a href="5-ols-regression.html#cb185-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">main=</span><span class="st">&quot;Distribution of Studentized Residuals&quot;</span>)</span>
+<span id="cb185-4"><a href="5-ols-regression.html#cb185-4" aria-hidden="true" tabindex="-1"></a>xfit<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="fu">min</span>(sresid),<span class="fu">max</span>(sresid),<span class="at">length=</span><span class="dv">40</span>) </span>
+<span id="cb185-5"><a href="5-ols-regression.html#cb185-5" aria-hidden="true" tabindex="-1"></a>yfit<span class="ot">&lt;-</span><span class="fu">dnorm</span>(xfit) </span>
+<span id="cb185-6"><a href="5-ols-regression.html#cb185-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xfit, yfit)</span></code></pre></div>
 <p><img src="Rguide_files/figure-html/unnamed-chunk-113-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>–</p>
 </div>
-<div id="heteroskedasticitet" class="section level3">
+<div id="heteroskedasticitet" class="section level3" number="5.3.4">
 <h3><span class="header-section-number">5.3.4</span> Heteroskedasticitet</h3>
 <p><em>Bliver tilføjet senere.</em></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncvTest</span>(reg.lr.c)</code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="5-ols-regression.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvTest</span>(reg.lr.c)</span></code></pre></div>
 <pre><code>Non-constant Variance Score Test 
 Variance formula: ~ fitted.values 
-Chisquare = 0.06267413    Df = 1     p = 0.8023182 </code></pre>
+Chisquare = 0.06267413, Df = 1, p = 0.80232</code></pre>
 <p>–</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">spreadLevelPlot</span>(reg.lr.c)</code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="5-ols-regression.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spreadLevelPlot</span>(reg.lr.c)</span></code></pre></div>
 <p><img src="Rguide_files/figure-html/unnamed-chunk-115-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 Suggested power transformation:  0.9625135 </code></pre>
 <p>–</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;lmtest&quot;</span>)</code></pre></div>
-<pre><code>Warning: package &#39;lmtest&#39; was built under R version 3.3.2</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="5-ols-regression.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;lmtest&quot;</span>)</span></code></pre></div>
 <pre><code>Loading required package: zoo</code></pre>
-<pre><code>Warning: package &#39;zoo&#39; was built under R version 3.3.2</code></pre>
 <pre><code>
 Attaching package: &#39;zoo&#39;</code></pre>
 <pre><code>The following objects are masked from &#39;package:base&#39;:
 
     as.Date, as.Date.numeric</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bptest</span>(reg.lr.c, <span class="dt">studentize =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="5-ols-regression.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(reg.lr.c, <span class="at">studentize =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>
     Breusch-Pagan test
 
 data:  reg.lr.c
 BP = 14.36, df = 5, p-value = 0.01348</code></pre>
 <p>–</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;sandwich&quot;</span>)</code></pre></div>
-<pre><code>Warning: package &#39;sandwich&#39; was built under R version 3.3.2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coeftest</span>(reg.lr.c)                              </code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="5-ols-regression.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;sandwich&quot;</span>)</span>
+<span id="cb196-2"><a href="5-ols-regression.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(reg.lr.c)                              </span></code></pre></div>
 <pre><code>
 t test of coefficients:
 
@@ -454,7 +517,7 @@ edu         -0.1763603  0.0379581 -4.6462 3.731e-06 ***
 union       -0.2704461  0.1409507 -1.9187 0.0552411 .  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coeftest</span>(reg.lr.c,<span class="dt">vcov=</span><span class="kw">vcovHC</span>(reg.lr.c,<span class="dt">type=</span><span class="st">&quot;HC0&quot;</span>)) </code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="5-ols-regression.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(reg.lr.c,<span class="at">vcov=</span><span class="fu">vcovHC</span>(reg.lr.c,<span class="at">type=</span><span class="st">&quot;HC0&quot;</span>)) </span></code></pre></div>
 <pre><code>
 t test of coefficients:
 
@@ -467,7 +530,7 @@ edu         -0.1763603  0.0376846 -4.6799 3.175e-06 ***
 union       -0.2704461  0.1405988 -1.9235  0.054635 .  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coeftest</span>(reg.lr.c,<span class="dt">vcov=</span><span class="kw">vcovHC</span>(reg.lr.c,<span class="dt">type=</span><span class="st">&quot;HC1&quot;</span>)) </code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="5-ols-regression.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(reg.lr.c,<span class="at">vcov=</span><span class="fu">vcovHC</span>(reg.lr.c,<span class="at">type=</span><span class="st">&quot;HC1&quot;</span>)) </span></code></pre></div>
 <pre><code>
 t test of coefficients:
 
@@ -482,13 +545,13 @@ union       -0.2704461  0.1409282 -1.9190 0.0552024 .
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>–</p>
 </div>
-<div id="multikollinaritet" class="section level3">
+<div id="multikollinaritet" class="section level3" number="5.3.5">
 <h3><span class="header-section-number">5.3.5</span> Multikollinaritet</h3>
 <p><em>Bliver tilføjet senere.</em></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">vif</span>(reg.lr.c) </code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="5-ols-regression.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(reg.lr.c) </span></code></pre></div>
 <pre><code>     inc     male      age      edu    union 
 1.263889 1.016578 1.048884 1.190281 1.144920 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="kw">vif</span>(reg.lr.c)) &gt;<span class="st"> </span><span class="dv">2</span> </code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="5-ols-regression.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">vif</span>(reg.lr.c)) <span class="sc">&gt;</span> <span class="dv">2</span> </span></code></pre></div>
 <pre><code>  inc  male   age   edu union 
 FALSE FALSE FALSE FALSE FALSE </code></pre>
 <p>–</p>
@@ -507,11 +570,13 @@ FALSE FALSE FALSE FALSE FALSE </code></pre>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -519,11 +584,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
+"linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -531,6 +596,14 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -547,9 +620,12 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

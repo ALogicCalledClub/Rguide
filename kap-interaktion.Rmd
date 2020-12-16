@@ -9,11 +9,3 @@ _Bliver tilføjet senere._
 $$Y_i = \alpha + \beta_1 X_i + \beta_2 Z_i + \beta_3 ( X_i \times Z_i ) + \epsilon_i$$
 
 --
-
-```{r results='hide', message=FALSE, warning=FALSE}
-library("margins")
-library("interplot")
-library("interflex")
-```
-
---

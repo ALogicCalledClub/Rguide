@@ -22,6 +22,7 @@ if(!require(devtools))
 if(!require(thesisdown))
   devtools::install_github("ismayc/thesisdown")
 library(thesisdown)
+library(knitr)
 ```
 
 <!-- The {.unnumbered} option here means that the introduction will be "Chapter 0." You can also use {-} for no numbers

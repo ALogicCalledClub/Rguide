@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Introduktion til R</title>
-  <meta name="description" content="Introduktion til R">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Kapitel 2 Fundamentet | Introduktion til R</title>
+  <meta name="description" content="Kapitel 2 Fundamentet | Introduktion til R" />
+  <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introduktion til R" />
+  <meta property="og:title" content="Kapitel 2 Fundamentet | Introduktion til R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,28 +16,32 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduktion til R" />
+  <meta name="twitter:title" content="Kapitel 2 Fundamentet | Introduktion til R" />
   
   
   
 
-<meta name="author" content="Erik Gahner Larsen">
+<meta name="author" content="Erik Gahner Larsen" />
 
 
+<meta name="date" content="2020-12-16" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="3-data.html">
+<link rel="prev" href="index.html"/>
+<link rel="next" href="3-data.html"/>
+<script src="libs/header-attrs-2.6.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -46,44 +49,97 @@
 
 
 
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 </head>
@@ -100,42 +156,48 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul class="summary">
 <li><a href="./"></a></li>
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduktion</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduktion</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#hvorfor-r-fordele-og-ulemper-ved-r"><i class="fa fa-check"></i><b>1.1</b> Hvorfor R? Fordele og ulemper ved R</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installation-af-r-og-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installation af R og RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="2-basics.html"><a href="2-basics.html"><i class="fa fa-check"></i><b>2</b> Fundamentet</a><ul>
+<li class="chapter" data-level="2" data-path="2-basics.html"><a href="2-basics.html"><i class="fa fa-check"></i><b>2</b> Fundamentet</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="2-basics.html"><a href="2-basics.html#objekter-og-funktioner"><i class="fa fa-check"></i><b>2.1</b> Objekter og funktioner</a></li>
 <li class="chapter" data-level="2.2" data-path="2-basics.html"><a href="2-basics.html#tal-i-objekter"><i class="fa fa-check"></i><b>2.2</b> Tal i objekter</a></li>
 <li class="chapter" data-level="2.3" data-path="2-basics.html"><a href="2-basics.html#logiske-operatorer"><i class="fa fa-check"></i><b>2.3</b> Logiske operatorer</a></li>
-<li class="chapter" data-level="2.4" data-path="2-basics.html"><a href="2-basics.html#manglende-vrdier-na"><i class="fa fa-check"></i><b>2.4</b> Manglende værdier (<code>NA</code>)</a></li>
+<li class="chapter" data-level="2.4" data-path="2-basics.html"><a href="2-basics.html#manglende-værdier-na"><i class="fa fa-check"></i><b>2.4</b> Manglende værdier (<code>NA</code>)</a></li>
 <li class="chapter" data-level="2.5" data-path="2-basics.html"><a href="2-basics.html#tekst-i-objekter"><i class="fa fa-check"></i><b>2.5</b> Tekst i objekter</a></li>
 <li class="chapter" data-level="2.6" data-path="2-basics.html"><a href="2-basics.html#datarammer"><i class="fa fa-check"></i><b>2.6</b> Datarammer</a></li>
 <li class="chapter" data-level="2.7" data-path="2-basics.html"><a href="2-basics.html#import-og-eksport-af-datarammer"><i class="fa fa-check"></i><b>2.7</b> Import og eksport af datarammer</a></li>
 <li class="chapter" data-level="2.8" data-path="2-basics.html"><a href="2-basics.html#ref-pakker"><i class="fa fa-check"></i><b>2.8</b> Installation af pakker</a></li>
 <li class="chapter" data-level="2.9" data-path="2-basics.html"><a href="2-basics.html#objekter-i-hukommelsen"><i class="fa fa-check"></i><b>2.9</b> Objekter i hukommelsen</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="3-data.html"><a href="3-data.html"><i class="fa fa-check"></i><b>3</b> Databehandling</a><ul>
+<li class="chapter" data-level="3" data-path="3-data.html"><a href="3-data.html"><i class="fa fa-check"></i><b>3</b> Databehandling</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="3-data.html"><a href="3-data.html#behandling-af-datarammer-med-dplyr"><i class="fa fa-check"></i><b>3.1</b> Behandling af datarammer med <code>dplyr</code></a></li>
-<li class="chapter" data-level="3.2" data-path="3-data.html"><a href="3-data.html#vlg-bestemte-variable-med-select"><i class="fa fa-check"></i><b>3.2</b> Vælg bestemte variable med <code>select()</code></a></li>
-<li class="chapter" data-level="3.3" data-path="3-data.html"><a href="3-data.html#vlg-bestemte-observationer-med-filter"><i class="fa fa-check"></i><b>3.3</b> Vælg bestemte observationer med <code>filter()</code></a></li>
-<li class="chapter" data-level="3.4" data-path="3-data.html"><a href="3-data.html#vlg-rkkeflgen-pa-observationer-med-arrange"><i class="fa fa-check"></i><b>3.4</b> Vælg rækkefølgen på observationer med <code>arrange()</code></a></li>
-<li class="chapter" data-level="3.5" data-path="3-data.html"><a href="3-data.html#skift-navnet-pa-en-variabel-med-rename"><i class="fa fa-check"></i><b>3.5</b> Skift navnet på en variabel med <code>rename()</code></a></li>
-<li class="chapter" data-level="3.6" data-path="3-data.html"><a href="3-data.html#tilfj-variabel-med-mutate"><i class="fa fa-check"></i><b>3.6</b> Tilføj variabel med <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.2" data-path="3-data.html"><a href="3-data.html#vælg-bestemte-variable-med-select"><i class="fa fa-check"></i><b>3.2</b> Vælg bestemte variable med <code>select()</code></a></li>
+<li class="chapter" data-level="3.3" data-path="3-data.html"><a href="3-data.html#vælg-bestemte-observationer-med-filter"><i class="fa fa-check"></i><b>3.3</b> Vælg bestemte observationer med <code>filter()</code></a></li>
+<li class="chapter" data-level="3.4" data-path="3-data.html"><a href="3-data.html#vælg-rækkefølgen-på-observationer-med-arrange"><i class="fa fa-check"></i><b>3.4</b> Vælg rækkefølgen på observationer med <code>arrange()</code></a></li>
+<li class="chapter" data-level="3.5" data-path="3-data.html"><a href="3-data.html#skift-navnet-på-en-variabel-med-rename"><i class="fa fa-check"></i><b>3.5</b> Skift navnet på en variabel med <code>rename()</code></a></li>
+<li class="chapter" data-level="3.6" data-path="3-data.html"><a href="3-data.html#tilføj-variabel-med-mutate"><i class="fa fa-check"></i><b>3.6</b> Tilføj variabel med <code>mutate()</code></a></li>
 <li class="chapter" data-level="3.7" data-path="3-data.html"><a href="3-data.html#kombination-af-funktioner-med-pipe-operatoren"><i class="fa fa-check"></i><b>3.7</b> Kombination af funktioner med pipe operatoren</a></li>
-<li class="chapter" data-level="3.8" data-path="3-data.html"><a href="3-data.html#kr-funktioner-pa-variable-med-apply"><i class="fa fa-check"></i><b>3.8</b> Kør funktioner på variable med <code>apply()</code></a></li>
+<li class="chapter" data-level="3.8" data-path="3-data.html"><a href="3-data.html#kør-funktioner-på-variable-med-apply"><i class="fa fa-check"></i><b>3.8</b> Kør funktioner på variable med <code>apply()</code></a></li>
 <li class="chapter" data-level="3.9" data-path="3-data.html"><a href="3-data.html#aggreger-variable-med-summarize"><i class="fa fa-check"></i><b>3.9</b> Aggreger variable med <code>summarize()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="4-viz.html"><a href="4-viz.html"><i class="fa fa-check"></i><b>4</b> Visualisering</a><ul>
+<li class="chapter" data-level="4" data-path="4-viz.html"><a href="4-viz.html"><i class="fa fa-check"></i><b>4</b> Visualisering</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="4-viz.html"><a href="4-viz.html#introducerende-eksempel-med-ggplot2"><i class="fa fa-check"></i><b>4.1</b> Introducerende eksempel med <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.2" data-path="4-viz.html"><a href="4-viz.html#specifikationer-med-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Specifikationer med <code>ggplot2</code></a></li>
-<li class="chapter" data-level="4.3" data-path="4-viz.html"><a href="4-viz.html#eksempel-venstre-i-meningsmalingerne-i-2015"><i class="fa fa-check"></i><b>4.3</b> Eksempel: Venstre i meningsmålingerne i 2015</a></li>
-<li class="chapter" data-level="4.4" data-path="4-viz.html"><a href="4-viz.html#afsluttende-bemrkninger"><i class="fa fa-check"></i><b>4.4</b> Afsluttende bemærkninger</a></li>
+<li class="chapter" data-level="4.3" data-path="4-viz.html"><a href="4-viz.html#eksempel-venstre-i-meningsmålingerne-i-2015"><i class="fa fa-check"></i><b>4.3</b> Eksempel: Venstre i meningsmålingerne i 2015</a></li>
+<li class="chapter" data-level="4.4" data-path="4-viz.html"><a href="4-viz.html#afsluttende-bemærkninger"><i class="fa fa-check"></i><b>4.4</b> Afsluttende bemærkninger</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="5-ols-regression.html"><a href="5-ols-regression.html"><i class="fa fa-check"></i><b>5</b> OLS regression</a><ul>
+<li class="chapter" data-level="5" data-path="5-ols-regression.html"><a href="5-ols-regression.html"><i class="fa fa-check"></i><b>5</b> OLS regression</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="5-ols-regression.html"><a href="5-ols-regression.html#bivariat-analyse"><i class="fa fa-check"></i><b>5.1</b> Bivariat analyse</a></li>
 <li class="chapter" data-level="5.2" data-path="5-ols-regression.html"><a href="5-ols-regression.html#multivariat-analyse"><i class="fa fa-check"></i><b>5.2</b> Multivariat analyse</a></li>
-<li class="chapter" data-level="5.3" data-path="5-ols-regression.html"><a href="5-ols-regression.html#forudstningstests"><i class="fa fa-check"></i><b>5.3</b> Forudsætningstests</a><ul>
+<li class="chapter" data-level="5.3" data-path="5-ols-regression.html"><a href="5-ols-regression.html#forudsætningstests"><i class="fa fa-check"></i><b>5.3</b> Forudsætningstests</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="5-ols-regression.html"><a href="5-ols-regression.html#linearitet"><i class="fa fa-check"></i><b>5.3.1</b> Linearitet</a></li>
 <li class="chapter" data-level="5.3.2" data-path="5-ols-regression.html"><a href="5-ols-regression.html#outliers-og-indflydelsesrige-observationer"><i class="fa fa-check"></i><b>5.3.2</b> Outliers og indflydelsesrige observationer</a></li>
 <li class="chapter" data-level="5.3.3" data-path="5-ols-regression.html"><a href="5-ols-regression.html#normalfordelte-fejlled"><i class="fa fa-check"></i><b>5.3.3</b> Normalfordelte fejlled</a></li>
@@ -147,13 +209,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7" data-path="7-logistisk-regression.html"><a href="7-logistisk-regression.html"><i class="fa fa-check"></i><b>7</b> Logistisk regression</a></li>
 <li class="chapter" data-level="8" data-path="8-propensity-score-matching.html"><a href="8-propensity-score-matching.html"><i class="fa fa-check"></i><b>8</b> Propensity Score Matching</a></li>
 <li class="chapter" data-level="9" data-path="9-regressionsdiskontinuitetsdesigns.html"><a href="9-regressionsdiskontinuitetsdesigns.html"><i class="fa fa-check"></i><b>9</b> Regressionsdiskontinuitetsdesigns</a></li>
-<li class="chapter" data-level="" data-path="konklusion.html"><a href="konklusion.html"><i class="fa fa-check"></i>Konklusion</a><ul>
+<li class="chapter" data-level="" data-path="konklusion.html"><a href="konklusion.html"><i class="fa fa-check"></i>Konklusion</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="konklusion.html"><a href="konklusion.html#pakkeanbefaling-swirl"><i class="fa fa-check"></i><b>9.1</b> Pakkeanbefaling: swirl</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10-funktioner.html"><a href="10-funktioner.html"><i class="fa fa-check"></i><b>10</b> Funktioner</a><ul>
+<li class="chapter" data-level="10" data-path="10-funktioner.html"><a href="10-funktioner.html"><i class="fa fa-check"></i><b>10</b> Funktioner</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="10-funktioner.html"><a href="10-funktioner.html#loops"><i class="fa fa-check"></i><b>10.1</b> Loops</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html"><i class="fa fa-check"></i><b>11</b> Genveje og udvalgte funktioner</a><ul>
+<li class="chapter" data-level="11" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html"><i class="fa fa-check"></i><b>11</b> Genveje og udvalgte funktioner</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html#funktioner-1"><i class="fa fa-check"></i><b>11.1</b> Funktioner</a></li>
 <li class="chapter" data-level="11.2" data-path="11-genveje-og-udvalgte-funktioner.html"><a href="11-genveje-og-udvalgte-funktioner.html#genveje-i-rstudio"><i class="fa fa-check"></i><b>11.2</b> Genveje i RStudio</a></li>
 </ul></li>
@@ -161,7 +226,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13" data-path="13-eksport-af-tabeller.html"><a href="13-eksport-af-tabeller.html"><i class="fa fa-check"></i><b>13</b> Eksport af tabeller</a></li>
 <li class="chapter" data-level="14" data-path="14-referencer.html"><a href="14-referencer.html"><i class="fa fa-check"></i><b>14</b> Referencer</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<li><a href="https://github.com/rstudio/bookdown target="blank">Published with bookdown</a></li>
 </ul>
 
       </nav>
@@ -179,159 +244,159 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="basics" class="section level1">
+<div id="basics" class="section level1" number="2">
 <h1><span class="header-section-number">Kapitel 2</span> Fundamentet</h1>
-<div id="objekter-og-funktioner" class="section level2">
+<div id="objekter-og-funktioner" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Objekter og funktioner</h2>
 <p>Alt du laver i R, kan skrives som kommandoer. Dette sikrer, at du altid kan dokumentere dit arbejde, modsat hvis du eksempelvis bruger menulinjer, hvor det ikke altid er klart, hvilke analyser, der er gennemført. Nederst i programmet ser du en prompt (<code>&gt;</code>), hvor du kan skrive, hvad R skal gøre. Prøv at skrive <code>2+2</code> og tryk <code>ENTER</code>. Dette burde gerne resultere i følgende:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2+2</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="2-basics.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>[1] 4</code></pre>
-<p>Ovenstående viser hvilken kommando, der er kørt, samt resultatet heraf<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Da du kommer til at køre mange forskellige kommandoer, hvor mange skal køres i en bestemt rækkefølge, er det godt allerede nu at begynde at dokumentere, hvad du gør. Den bedste måde at gøre dette er i en script-fil (<code>R</code>), også kaldet et R-script. Åbn et nyt R-script ved i menuen at vælge <code>File</code> <span class="math inline">\(\rightarrow\)</span> <code>New File</code> <span class="math inline">\(\rightarrow\)</span> <code>R Script</code>.</p>
-<p>Sørg for allerede nu at dokumentere dit arbejde. Det vil sige, at alle kommandoer du bruger, kan skrives ind i dit R-script. Sørg desuden for at skrive kommentarer i R-scriptet, så du og andre kan se beskrivelser af, hvad der gøres. Kommentarer begynder med <code>#</code> (for at fortælle R, at den ikke skal læse teksten som kode), og kan tilføjes på deres egne linjer eller i forlængelse af en kommando<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>.</p>
+<p>Ovenstående viser hvilken kommando, der er kørt, samt resultatet heraf<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Da du kommer til at køre mange forskellige kommandoer, hvor mange skal køres i en bestemt rækkefølge, er det godt allerede nu at begynde at dokumentere, hvad du gør. Den bedste måde at gøre dette er i en script-fil (<code>R</code>), også kaldet et R-script. Åbn et nyt R-script ved i menuen at vælge <code>File</code> <span class="math inline">\(\rightarrow\)</span> <code>New File</code> <span class="math inline">\(\rightarrow\)</span> <code>R Script</code>.</p>
+<p>Sørg for allerede nu at dokumentere dit arbejde. Det vil sige, at alle kommandoer du bruger, kan skrives ind i dit R-script. Sørg desuden for at skrive kommentarer i R-scriptet, så du og andre kan se beskrivelser af, hvad der gøres. Kommentarer begynder med <code>#</code> (for at fortælle R, at den ikke skal læse teksten som kode), og kan tilføjes på deres egne linjer eller i forlængelse af en kommando<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
 <p>Når du har indtastet noget kode i dit R-script, kan du køre det i konsollen ved at markere koden og bruge tastaturgenvejen <code>CTRL+R</code> (Windows) eller <code>CMD+ENTER</code> (Mac). Forsøg at indtaste nedenstående kode, marker det hele og kør det.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">50</span>*<span class="dv">149</span>
-<span class="dv">3</span>**<span class="dv">2</span>        <span class="co"># 3^2</span>
-<span class="dv">2</span>**<span class="dv">3</span>        <span class="co"># 2^3</span>
-<span class="kw">sqrt</span>(<span class="dv">81</span>)    <span class="co"># 81^0.5</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="2-basics.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">50</span><span class="sc">*</span><span class="dv">149</span></span>
+<span id="cb3-2"><a href="2-basics.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">**</span><span class="dv">2</span>        <span class="co"># 3^2</span></span>
+<span id="cb3-3"><a href="2-basics.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">**</span><span class="dv">3</span>        <span class="co"># 2^3</span></span>
+<span id="cb3-4"><a href="2-basics.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">81</span>)    <span class="co"># 81^0.5</span></span></code></pre></div>
 </div>
-<div id="tal-i-objekter" class="section level2">
+<div id="tal-i-objekter" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Tal i objekter</h2>
 <p>Du er nu i stand til at bruge R som en lommeregner. Det næste vi skal have styr på er objekter. Kort fortalt er alt hvad vi vil bruge i R, gemt i objekter. Dette være sig lige fra ét tal til hele datasæt. Fordelen ved dette er, at vi kan have flere datasæt åbne i hukommelsen på samme tid gemt som hvert deres objekt (modsat eksempelvis Stata). Med andre ord kan <em>alt</em> vi arbejder med i R gemmes i objekter. Lad os forsøge at gemme tallet 2 i objektet <code>x</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="2-basics.html#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span></code></pre></div>
 <p>Når du kører ovenstående kommando, gemmer du tallet 2 i objektet <code>x</code>. Du kan nu bruge <code>x</code> i stedet for 2. Lad os prøve en række forskellige simple operationer. Indtast dem i dit R-script og kør dem én efter én.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x
-x *<span class="st"> </span><span class="dv">2</span>
-x *<span class="st"> </span>x 
-x +<span class="st"> </span>x</code></pre></div>
-<p>Når du kører disse linjer, burde du gerne få værdierne <code>2</code>, <code>4</code>, <code>4</code> og <code>4</code>. Hvis du ændrer <code>x</code> til at have værdien 3, vil du kunne køre linjerne igen og få andre værdier<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>. Generelt, når du laver scripts, må du genre arbejde på at få så mange informationer til at være i objekter, så du er fri for at ændre tal mere end én gang, hvis du skal lave ændringer<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="2-basics.html#cb5-1" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb5-2"><a href="2-basics.html#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb5-3"><a href="2-basics.html#cb5-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> x </span>
+<span id="cb5-4"><a href="2-basics.html#cb5-4" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> x</span></code></pre></div>
+<p>Når du kører disse linjer, burde du gerne få værdierne <code>2</code>, <code>4</code>, <code>4</code> og <code>4</code>. Hvis du ændrer <code>x</code> til at have værdien 3, vil du kunne køre linjerne igen og få andre værdier<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Generelt, når du laver scripts, må du genre arbejde på at få så mange informationer til at være i objekter, så du er fri for at ændre tal mere end én gang, hvis du skal lave ændringer<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
 </div>
-<div id="logiske-operatorer" class="section level2">
+<div id="logiske-operatorer" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> Logiske operatorer</h2>
 <p>En stor del af det vi skal lave i R, bygger på logiske operatorer. Med en logisk operator tester vi sandhedsværdien af et udsagn, der kan være enten sand eller falsk. Dette bliver især brugbart når vi skal lave omkodninger og kun bruge bestemte værdier i et objekt. I <code>R</code> er en logisk operator <code>TRUE</code> (sand) eller <code>FALSE</code> (falsk). Kør nedenstående kode og se, hvad de respektive kommandoer returnerer.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x ==<span class="st"> </span><span class="dv">2</span>        <span class="co"># &quot;==&quot; betyder &quot;lig med&quot;</span>
-x ==<span class="st"> </span><span class="dv">3</span>        
-x !=<span class="st"> </span><span class="dv">2</span>        <span class="co"># &quot;!=&quot; betyder &quot;ikke lig med&quot;</span>
-x &lt;<span class="st"> </span><span class="dv">1</span>         <span class="co"># &quot;&lt;&quot; betyder &quot;mindre end&quot;</span>
-x &gt;<span class="st"> </span><span class="dv">1</span>         <span class="co"># &quot;&gt;&quot; betyder &quot;større end&quot;</span>
-x &lt;=<span class="st"> </span><span class="dv">2</span>        <span class="co"># &quot;&lt;=&quot; betyder &quot;mindre eller lig med&quot;</span>
-x &gt;=<span class="st"> </span><span class="fl">2.01</span>     <span class="co"># &quot;&gt;=&quot; betyder &quot;større eller lig med&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="2-basics.html#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">==</span> <span class="dv">2</span>        <span class="co"># &quot;==&quot; betyder &quot;lig med&quot;</span></span>
+<span id="cb6-2"><a href="2-basics.html#cb6-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">==</span> <span class="dv">3</span>        </span>
+<span id="cb6-3"><a href="2-basics.html#cb6-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">!=</span> <span class="dv">2</span>        <span class="co"># &quot;!=&quot; betyder &quot;ikke lig med&quot;</span></span>
+<span id="cb6-4"><a href="2-basics.html#cb6-4" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&lt;</span> <span class="dv">1</span>         <span class="co"># &quot;&lt;&quot; betyder &quot;mindre end&quot;</span></span>
+<span id="cb6-5"><a href="2-basics.html#cb6-5" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">1</span>         <span class="co"># &quot;&gt;&quot; betyder &quot;større end&quot;</span></span>
+<span id="cb6-6"><a href="2-basics.html#cb6-6" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&lt;=</span> <span class="dv">2</span>        <span class="co"># &quot;&lt;=&quot; betyder &quot;mindre eller lig med&quot;</span></span>
+<span id="cb6-7"><a href="2-basics.html#cb6-7" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;=</span> <span class="fl">2.01</span>     <span class="co"># &quot;&gt;=&quot; betyder &quot;større eller lig med&quot;</span></span></code></pre></div>
 <p>Hvis <code>x</code> er 2, vil værdierne være hhv. <code>TRUE</code>, <code>FALSE</code>, <code>FALSE</code>, <code>FALSE</code>, <code>TRUE</code>, <code>TRUE</code> og <code>FALSE</code>. Hvis <code>x</code> ændres til 3 og scriptet køres igen, vil andre sandhedsværdier returneres.</p>
 <p>Objekter kan videre bruges til at skabe andre objekter. I følgende eksempel laver vi et nyt objekt <code>y</code>, der giver os summen af <code>x</code> og 7. Bemærk desuden at hele kommandoen er skrevet i en parentes, der gør, at vi også får værdien af y returneret. Hvis vi ikke gør dette, laver vi objektet <code>y</code>, men uden at få det vist med det samme.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(y &lt;-<span class="st"> </span>x +<span class="st"> </span><span class="dv">7</span>)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="2-basics.html#cb7-1" aria-hidden="true" tabindex="-1"></a>(y <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">7</span>)</span></code></pre></div>
 <pre><code>[1] 9</code></pre>
 <p>I vores objekter er vi heller ikke begrænset til kun at have ét tal. Tværtimod vil de fleste objekter vi arbejder med have mere end én værdi. Nedenstående giver således en talrække med tallene fra 1 til 10.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span>:<span class="dv">10</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="2-basics.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code></pre></div>
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <p>Denne talrække kan vi gemme i et objekt (med <code>&lt;-</code>), men også bruge direkte uden at have den i et objekt. Vi kan eksempelvis tage hvert tal i talrækken og addere 2 til hvert tal i rækken.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span>:<span class="dv">10</span> +<span class="st"> </span><span class="dv">2</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="2-basics.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code> [1]  3  4  5  6  7  8  9 10 11 12</code></pre>
-<p>Når der skal arbejdes med flere tal, kan vi ikke blot skrive en talrække. Først skal R vide, at det er en talrække, der arbejdes med. Til dette bruger vi <code>c()</code>, der fortæller R, at vi arbejder med vektorer<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>. Funktionen <code>c()</code> står for <em>concatenate</em> eller <em>combine</em><a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>. Alt der sker i R, sker med funktioner. En vektor kan således se ud som følger.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</code></pre></div>
+<p>Når der skal arbejdes med flere tal, kan vi ikke blot skrive en talrække. Først skal R vide, at det er en talrække, der arbejdes med. Til dette bruger vi <code>c()</code>, der fortæller R, at vi arbejder med vektorer<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>. Funktionen <code>c()</code> står for <em>concatenate</em> eller <em>combine</em><a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>. Alt der sker i R, sker med funktioner. En vektor kan således se ud som følger.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="2-basics.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>[1] 2 2 2</code></pre>
 <p>Ovenstående er en numerisk vektor. En vektor er således en samling af værdier af samme type af data. Hvis vi gerne vil gemme vektoren i et objekt, kan det også lade sig gøre uden problemer. I nedenstående gemmer vi fire tal (14, 6, 23, 2) i objektet <code>x</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">14</span>, <span class="dv">6</span>, <span class="dv">23</span>, <span class="dv">2</span>)
-x</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="2-basics.html#cb15-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">6</span>, <span class="dv">23</span>, <span class="dv">2</span>)</span>
+<span id="cb15-2"><a href="2-basics.html#cb15-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>[1] 14  6 23  2</code></pre>
 <p>Denne vektor kan vi behandle efter forgodtbefindende, eksempelvis ved at få alle værdierne i vektoren multipliceret med 2.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x *<span class="st"> </span><span class="dv">2</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="2-basics.html#cb17-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>[1] 28 12 46  4</code></pre>
 <p>Vi kan ligeledes hente information ud af vektoren. Til at gøre dette skal vi bruge de firkantede parenteser, altså <code>[ ]</code>, som placeres i forlængelse af objektet. Ved at placere tallet 3 i den firkantede parentes (på engelsk kaldet <em>brackets</em>), får vi det tredje tal i vektoren.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">3</span>]</code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="2-basics.html#cb19-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>[1] 23</code></pre>
 <p>På samme måde kan vi også få alle værdier i vektoren med undtagelse af et bestemt tal, blot ved at tilføje et minustegn til parentesen. I nedenstående eksempel får vi vektoren uden tal nummer to ved at skrive -2. Bemærk også, at vores objekt <code>x</code> ikke ændres, da vi ikke overskriver vores objekt (med <code>&lt;-</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[-<span class="dv">2</span>]</code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="2-basics.html#cb21-1" aria-hidden="true" tabindex="-1"></a>x[<span class="sc">-</span><span class="dv">2</span>]</span></code></pre></div>
 <pre><code>[1] 14 23  2</code></pre>
 <p>Med udgangspunkt i vores objekt, kan vi bruge en række funktioner til at få nogle informationer ud omkring vores objekt, som gennemsnittet af værdierne, den mindste værdi med videre.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(x)     <span class="co"># antallet af numre i vektoren</span>
-<span class="kw">min</span>(x)        <span class="co"># minimumsværdien</span>
-<span class="kw">max</span>(x)        <span class="co"># maksimumværdien</span>
-<span class="kw">median</span>(x)     <span class="co"># medianen</span>
-<span class="kw">sum</span>(x)        <span class="co"># summen</span>
-<span class="kw">mean</span>(x)       <span class="co"># gennemsnittet</span>
-<span class="kw">var</span>(x)        <span class="co"># variansen</span>
-<span class="kw">sd</span>(x)         <span class="co"># standardafvigelsen</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="2-basics.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x)     <span class="co"># antallet af numre i vektoren</span></span>
+<span id="cb23-2"><a href="2-basics.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(x)        <span class="co"># minimumsværdien</span></span>
+<span id="cb23-3"><a href="2-basics.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(x)        <span class="co"># maksimumværdien</span></span>
+<span id="cb23-4"><a href="2-basics.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(x)     <span class="co"># medianen</span></span>
+<span id="cb23-5"><a href="2-basics.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)        <span class="co"># summen</span></span>
+<span id="cb23-6"><a href="2-basics.html#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)       <span class="co"># gennemsnittet</span></span>
+<span id="cb23-7"><a href="2-basics.html#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(x)        <span class="co"># variansen</span></span>
+<span id="cb23-8"><a href="2-basics.html#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)         <span class="co"># standardafvigelsen</span></span></code></pre></div>
 <p>Ovenstående skulle gerne returnere værdierne 4, 2, 23, 10, 45, 11.25, 86.25 og 9.287088. Vi kan bruge resultaterne fra de forskellige funktioner til at undersøge om eksempelvis kvadratroden af variansen er lig standardafvigelsen. Dette er, som man lærer i introducerende statistikfag, tilfældet.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="kw">var</span>(x)) ==<span class="st"> </span><span class="kw">sd</span>(x)</code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="2-basics.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">var</span>(x)) <span class="sc">==</span> <span class="fu">sd</span>(x)</span></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 <p>Hvis vi har glemt at tilføje et tal til vores vektor, er der heldigvis en nem måde at opdatere vores vektor og og gemme det i objektet. Dette kan vi gøre ved at overskrive vores objekt (eller lave et nyt), med en ny vektor der består af vores objekt og en ekstra værdi:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="dv">5</span>)
-x</code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="2-basics.html#cb26-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="dv">5</span>)</span>
+<span id="cb26-2"><a href="2-basics.html#cb26-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>[1] 14  6 23  2  5</code></pre>
 <p>Som det kan ses, er der nu fem værdier i vores vektor i stedet for fire. Værdien 5, der blev tilføjet, har den sidste placering i vektoren, da vi placerede den til sidst, da vi lavede et nyt objekt. Hvis vi havde placeret 5 før <code>x</code>, ville vi have værdien 5 i begyndelsen af den nye vektor. Vi kan eksempelvis forsøge at tage gennemsnittet af vores opdaterede objekt.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(x)</code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="2-basics.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div>
 <pre><code>[1] 10</code></pre>
 <p>Nu er gennemsnittet 10 (før vi tilføjede værdien 5 var gennemsnittet 11.25).</p>
 </div>
-<div id="manglende-vrdier-na" class="section level2">
+<div id="manglende-værdier-na" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Manglende værdier (<code>NA</code>)</h2>
 <p>Heldigvis har alle værdier, vi har arbejdet med til nu, været numeriske og nemme at arbejde med. I de fleste af de data, vi arbejder med, er der dog også manglende værdier, altså værdier, vi ikke ved hvad er. Hvis man arbejder med større datasæt vil der sjældent være objekter, der ikke rummer manglende værdier. I Stata betegnes manglende værdier med et punktum (‘.’), hvor der i R bruges <code>NA</code>. Lad os tilføje en manglende værdi til vores objekt <code>x</code> og tage gennemsnittet af det nye objekt.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="ot">NA</span>)
-
-<span class="kw">mean</span>(x) </code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="2-basics.html#cb30-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="cn">NA</span>)</span>
+<span id="cb30-2"><a href="2-basics.html#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="2-basics.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x) </span></code></pre></div>
 <pre><code>[1] NA</code></pre>
 <p>Som det kan ses, får vi nu ikke et gennemsnit, men blot <code>NA</code>. Dette skyldes, at R ikke kan finde gennemsnittet af en vektor, hvor <code>NA</code> er med. Heldigvis kan vi tilføje en ekstra specifikation til <code>mean()</code>, der fortæller, at den skal fjerne manglende værdier, før den tager gennemsnittet.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="2-basics.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>[1] 10</code></pre>
 <p>Her får vi gennemsnittet 10 (ligesom ovenfor, før vi tilføjede <code>NA</code>). Bemærk at der er tilføjet et komma og <code>na.rm=TRUE</code>. De fleste funktioner i R har en lang række af ekstra specifikationer, man kan tilføje. Som standard er <code>na.rm</code> sat til <code>FALSE</code>, hvorfor det kræver, at man ændrer dette, hvis man har manglende værdier i sine data.</p>
 </div>
-<div id="tekst-i-objekter" class="section level2">
+<div id="tekst-i-objekter" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> Tekst i objekter</h2>
-<p>Foruden tal kan vi også arbejde med tekst. Tekst i R adskiller sig fra tal ved, at tekst pakkes ind i citationstegn<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a>. Som eksempel kan vi lave et objekt <code>z</code>, der indeholder partierne Venstre og Socialdemokraterne.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Venstre&quot;</span>, <span class="st">&quot;Socialdemokraterne&quot;</span>) 
-
-z</code></pre></div>
+<p>Foruden tal kan vi også arbejde med tekst. Tekst i R adskiller sig fra tal ved, at tekst pakkes ind i citationstegn<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>. Som eksempel kan vi lave et objekt <code>z</code>, der indeholder partierne Venstre og Socialdemokraterne.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="2-basics.html#cb34-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Venstre&quot;</span>, <span class="st">&quot;Socialdemokraterne&quot;</span>) </span>
+<span id="cb34-2"><a href="2-basics.html#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="2-basics.html#cb34-3" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div>
 <pre><code>[1] &quot;Venstre&quot;            &quot;Socialdemokraterne&quot;</code></pre>
 <p>For at se hvilken type data, vi har i <code>z</code>, kan vi bruge funktionen <code>class()</code>. Denne funktion returnerer, hvilken type data vi har at gøre med i et objekt. Hvis vi bruger funktionen på vores objekt, ser vi, at det pågældende objekt med tekst indeholder karakterer (altså <em>“character”</em>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(z)</code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="2-basics.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(z)</span></code></pre></div>
 <pre><code>[1] &quot;character&quot;</code></pre>
-<p>Til sammenligning kan vi gøre det samme med vores objekt <code>x</code>, der som bekendt kun har numeriske værdier. Her ser vi, at funktionen <code>class()</code> for <code>x</code> returnerer <code>&quot;numeric&quot;</code>. De forskellige klasser en vektor kan have er hhv. <code>character</code> (tekst), <code>numeric</code> (numeriske tal), <code>integer</code> (hele tal), <code>factor</code> (kategorier) og <code>logical</code> (logisk).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(x)</code></pre></div>
+<p>Til sammenligning kan vi gøre det samme med vores objekt <code>x</code>, der som bekendt kun har numeriske værdier. Her ser vi, at funktionen <code>class()</code> for <code>x</code> returnerer <code>"numeric"</code>. De forskellige klasser en vektor kan have er hhv. <code>character</code> (tekst), <code>numeric</code> (numeriske tal), <code>integer</code> (hele tal), <code>factor</code> (kategorier) og <code>logical</code> (logisk).</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="2-basics.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
 <pre><code>[1] &quot;numeric&quot;</code></pre>
 <p>Hvis vi vil vide, om vores objekt er numerisk, kan vi bruge funktionen <code>is.numeric()</code>, der returnerer <code>TRUE</code>, hvis objektet er numerisk. På samme måde kan man også bruge funktionen <code>is.character()</code>. I eksemplet returnerer de hhv. <code>TRUE</code> og <code>FALSE</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.numeric</span>(x)
-<span class="kw">is.character</span>(x)</code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="2-basics.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(x)</span>
+<span id="cb40-2"><a href="2-basics.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(x)</span></code></pre></div>
 <p>Prøv gerne at bruge funktionerne <code>is.numeric()</code> og <code>is.character()</code> på objektet <code>z</code>. Med vores objekt <code>z</code> og de resterende partinavne repræsenteret i Folketinget i 2016, kan vi lave et objekt med navnet <code>party</code>. I scriptet vil <code>z</code> automatisk blive erstattet med Venstre og Socialdemokraterne, som vi tildelte til <code>z</code> i ovenstående (med andre ord kan vi også lave nye objekter med vores eksisterende objekter, når det kommer til tekst). Bemærk at placeringen på navnet i objektet, når vi får vist alle partinavnene, er angivet i tallene i de firkantede parenteser.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">party &lt;-<span class="st"> </span><span class="kw">c</span>(z, <span class="st">&quot;Enhedslisten&quot;</span>, <span class="st">&quot;SF&quot;</span>, <span class="st">&quot;Radikale&quot;</span>, <span class="st">&quot;Konservative&quot;</span>, 
-           <span class="st">&quot;Dansk Folkeparti&quot;</span>, <span class="st">&quot;Liberal Alliance&quot;</span>, <span class="st">&quot;Alternativet&quot;</span>)
-
-party</code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="2-basics.html#cb41-1" aria-hidden="true" tabindex="-1"></a>party <span class="ot">&lt;-</span> <span class="fu">c</span>(z, <span class="st">&quot;Enhedslisten&quot;</span>, <span class="st">&quot;SF&quot;</span>, <span class="st">&quot;Radikale&quot;</span>, <span class="st">&quot;Konservative&quot;</span>, </span>
+<span id="cb41-2"><a href="2-basics.html#cb41-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;Dansk Folkeparti&quot;</span>, <span class="st">&quot;Liberal Alliance&quot;</span>, <span class="st">&quot;Alternativet&quot;</span>)</span>
+<span id="cb41-3"><a href="2-basics.html#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="2-basics.html#cb41-4" aria-hidden="true" tabindex="-1"></a>party</span></code></pre></div>
 <pre><code>[1] &quot;Venstre&quot;            &quot;Socialdemokraterne&quot; &quot;Enhedslisten&quot;      
 [4] &quot;SF&quot;                 &quot;Radikale&quot;           &quot;Konservative&quot;      
 [7] &quot;Dansk Folkeparti&quot;   &quot;Liberal Alliance&quot;   &quot;Alternativet&quot;      </code></pre>
 </div>
-<div id="datarammer" class="section level2">
+<div id="datarammer" class="section level2" number="2.6">
 <h2><span class="header-section-number">2.6</span> Datarammer</h2>
 <p>For de partier vi arbejder med, vil vi gerne tilføje mere information. Derfor laver vi nogle ekstra objekter, der indeholder information om, hvorvidt det er et højreorienteret parti (<code>rw</code>, forkortelse for <em>right-wing</em>), hvor mange stemmer det fik ved folketingsvalget i 2015 (<code>vote</code>) og hvor mange mandater partiet fik (<code>seat</code>). Disse objekter laver vi med nedenstående kode. Bemærk at rækkefølgen af værdierne er afgørende, og skal matche rækkefølgen af partierne i <code>party</code> (så vi begynder med Venstre og ender med Alternativet).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rw &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)
-vote &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">19.5</span>, <span class="fl">26.3</span>, <span class="fl">7.8</span>, <span class="fl">4.2</span>, <span class="fl">4.6</span>, <span class="fl">3.4</span>, <span class="fl">21.1</span>, <span class="fl">7.5</span>, <span class="fl">4.8</span>)
-seat &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">34</span>, <span class="dv">47</span>, <span class="dv">14</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">37</span>, <span class="dv">13</span>, <span class="dv">9</span>)</code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="2-basics.html#cb43-1" aria-hidden="true" tabindex="-1"></a>rw <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb43-2"><a href="2-basics.html#cb43-2" aria-hidden="true" tabindex="-1"></a>vote <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">19.5</span>, <span class="fl">26.3</span>, <span class="fl">7.8</span>, <span class="fl">4.2</span>, <span class="fl">4.6</span>, <span class="fl">3.4</span>, <span class="fl">21.1</span>, <span class="fl">7.5</span>, <span class="fl">4.8</span>)</span>
+<span id="cb43-3"><a href="2-basics.html#cb43-3" aria-hidden="true" tabindex="-1"></a>seat <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">34</span>, <span class="dv">47</span>, <span class="dv">14</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">37</span>, <span class="dv">13</span>, <span class="dv">9</span>)</span></code></pre></div>
 <p>Det næste vi skal gøre er at samle disse objekter til ét objekt. Dette gør vi i en dataramme (<em>data frame</em>), der kan sammenlignes med et datasæt i Stata. En dataramme er kort fortalt en samling af forskellige vektorer, der har den samme længde, og derved kan sættes sammen som kolonner. Bare rolig - hvis du forsøger at sætte forskellige vektorer sammen, der ikke har samme længde, skal R nok give dig en fejlmeddelelse.</p>
 <p>I en dataramme kan vi have forskellige typer af variable, der kan gennemføres analyser på. Der findes andre typer af objekter i R, eksempelvis også matricer, men vi vil for nu udelukkende fokusere på datarammer. Til dette bruger vi funktionen <code>data.frame()</code> og gemmer det i objektet <code>pol</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol &lt;-<span class="st"> </span><span class="kw">data.frame</span>(party, vote, seat, rw)</code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="2-basics.html#cb44-1" aria-hidden="true" tabindex="-1"></a>pol <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(party, vote, seat, rw)</span></code></pre></div>
 <p>Nu kan vi bruge <code>class()</code> til at vise, at <code>pol</code> er en dataramme:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(pol)</code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="2-basics.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(pol)</span></code></pre></div>
 <pre><code>[1] &quot;data.frame&quot;</code></pre>
 <p>Hvis vi gerne vil vide, hvilken <em>class</em> de enkelte variable i vores dataramme er, kan vi bruge funktionen <code>sapply()</code>. Funktionen gør det muligt at applicere en funktion på en liste eller en vektor, hvor vi i nedenstående applicerer <code>class()</code> på alle de enkelte variable i objektet <code>pol</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(pol, class)</code></pre></div>
-<pre><code>    party      vote      seat        rw 
- &quot;factor&quot; &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot; </code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="2-basics.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(pol, class)</span></code></pre></div>
+<pre><code>      party        vote        seat          rw 
+&quot;character&quot;   &quot;numeric&quot;   &quot;numeric&quot;   &quot;numeric&quot; </code></pre>
 <p>Her kan vi se, at vi har én <code>factor</code> (partinavnene) og tre numeriske variable. Lignende informationer om vores variable i datarammen kan vi få ved at bruge <code>str()</code>, der giver data på strukturen i datarammen:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(pol)</code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="2-basics.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pol)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   9 obs. of  4 variables:
- $ party: Factor w/ 9 levels &quot;Alternativet&quot;,..: 9 8 3 7 6 4 2 5 1
+ $ party: chr  &quot;Venstre&quot; &quot;Socialdemokraterne&quot; &quot;Enhedslisten&quot; &quot;SF&quot; ...
  $ vote : num  19.5 26.3 7.8 4.2 4.6 3.4 21.1 7.5 4.8
  $ seat : num  34 47 14 7 8 6 37 13 9
  $ rw   : num  1 0 0 0 0 1 1 1 0</code></pre>
 <p>Datarammen består således af 9 observationer og 4 variable. Hvis rækkerne har navne, kan disse findes ved hjælp af funktionen <code>rownames()</code>. Navnene på kolonnerne, altså de respektive variable i vores dataramme, kan findes ved hjælp af <code>colnames()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(pol)</code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="2-basics.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pol)</span></code></pre></div>
 <pre><code>[1] &quot;party&quot; &quot;vote&quot;  &quot;seat&quot;  &quot;rw&quot;   </code></pre>
 <p>Hvis vi gerne vil have antallet af kolonner og rækker i vores dataramme, kan de findes ved at bruge hhv. <code>ncol()</code> og <code>nrow()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncol</span>(pol)</code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="2-basics.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(pol)</span></code></pre></div>
 <pre><code>[1] 4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(pol)</code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="2-basics.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(pol)</span></code></pre></div>
 <pre><code>[1] 9</code></pre>
 <p>Her kan vi ligeledes se, at der er fire kolonner og ni rækker. Hele datarammen kan vi få vist ved blot at skrive navnet på objektet, <code>pol</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol</code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="2-basics.html#cb57-1" aria-hidden="true" tabindex="-1"></a>pol</span></code></pre></div>
 <pre><code>               party vote seat rw
 1            Venstre 19.5   34  1
 2 Socialdemokraterne 26.3   47  0
@@ -343,11 +408,11 @@ seat &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">34
 8   Liberal Alliance  7.5   13  1
 9       Alternativet  4.8    9  0</code></pre>
 <p>Dette er overkommeligt at vise i dette tilfælde, men når man arbejder med større datarammer, oftest med flere tusinde eller millioner af observationer, bliver det hurtigt uoverskueligt at vise hele datarammer. Heldigvis har R flere funktioner, der gør det let at få et overblik over, hvilke variable, vi har i vores dataramme. Med funktionen <code>head()</code> kan man få vist de seks første observationer i ens dataramme (altså de første seks rækker), og man kan tilføje et tal som argument efter ens objekt, hvis man gerne vil have vist et præcist antal observationer. Skulle man have lyst til at se de sidste observationer i ens dataramme, kan man bruge <code>tail()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(pol)     <span class="co"># viser de første seks rækker</span>
-<span class="kw">head</span>(pol, <span class="dv">3</span>)  <span class="co"># viser de første tre rækker</span>
-<span class="kw">tail</span>(pol)     <span class="co"># viser de sidste seks rækker</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="2-basics.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pol)     <span class="co"># viser de første seks rækker</span></span>
+<span id="cb59-2"><a href="2-basics.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pol, <span class="dv">3</span>)  <span class="co"># viser de første tre rækker</span></span>
+<span id="cb59-3"><a href="2-basics.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(pol)     <span class="co"># viser de sidste seks rækker</span></span></code></pre></div>
 <p>Det er ligeledes muligt at få vist ens dataramme i et nyt vindue, ligesom med <code>browse</code> i Stata, ved at bruge funktionen <code>View()</code> (bemærk det store V - ikke v).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(pol)</code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="2-basics.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(pol)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:View"></span>
 <img src="figure/View.png" alt="Dataramme vist med View(), RStudio" width="174" scale=0.65 />
 <p class="caption">
@@ -355,105 +420,99 @@ Figure 2.1: Dataramme vist med View(), RStudio
 </p>
 </div>
 <p>Når man arbejder med datarammer vil man som regel arbejde med specifikke variable heri. Måden hvorpå man angiver bestemte variable i en dataramme er med $ (altså et dollartegn, i dette tilfælde brugt som en <em>component selector</em>). Hvis vi eksempelvis gerne vil have alle stemmetallene ud fra <code>pol</code>, skriver vi:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol$vote</code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="2-basics.html#cb61-1" aria-hidden="true" tabindex="-1"></a>pol<span class="sc">$</span>vote</span></code></pre></div>
 <pre><code>[1] 19.5 26.3  7.8  4.2  4.6  3.4 21.1  7.5  4.8</code></pre>
 <p>Modsat ved en vektor, der er én dimension, har vi to dimensioner i en dataramme, altså rækker og kolonner (horisontalt og vertikalt). Her skal vi ligeledes bruge de firkantede parenteser, <code>[ ]</code>, som placeres i forlængelse af objektet, hvor vi blot skal tilføje to argumenter, mere specifikt i forhold til både hvilke rækker og kolonner, vi er interesseret i. Er vi eksempelvis interesseret i hele den første række, kan vi bruge <code>[1,]</code> i forlængelse af objektet, hvor kommaet adskiller informationen, og den manglende information efter kommaet indikerer, at vi er interesseret i alle kolonner for den specifikke række.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol[<span class="dv">1</span>,] <span class="co"># første række</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="2-basics.html#cb63-1" aria-hidden="true" tabindex="-1"></a>pol[<span class="dv">1</span>,] <span class="co"># første række</span></span></code></pre></div>
 <pre><code>    party vote seat rw
 1 Venstre 19.5   34  1</code></pre>
 <p>Havde vi også tilføjet et tal ved kolonnen, ville vi få information ud for den pågældende række og kolonne. I nedenstående eksempel tilføjer vi 1 efter kommaet, for at fortælle, at vi ikke alene er interesseret i første række, men også i informationen i første kolonne (i dette eksempel under <code>party</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol[<span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># første række, første kolonne</span></code></pre></div>
-<pre><code>[1] Venstre
-9 Levels: Alternativet Dansk Folkeparti Enhedslisten ... Venstre</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="2-basics.html#cb65-1" aria-hidden="true" tabindex="-1"></a>pol[<span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># første række, første kolonne</span></span></code></pre></div>
+<pre><code>[1] &quot;Venstre&quot;</code></pre>
 <p>Som det kan ses er værdien på første række i første kolonne <code>Venstre</code>. Hvis vi er interesseret i at få alle partierne, altså informationen gemt i første kolonne, kan vi fjerne argumentet om, at vi kun vil have første række.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol[,<span class="dv">1</span>] <span class="co"># første kolonne</span></code></pre></div>
-<pre><code>[1] Venstre            Socialdemokraterne Enhedslisten      
-[4] SF                 Radikale           Konservative      
-[7] Dansk Folkeparti   Liberal Alliance   Alternativet      
-9 Levels: Alternativet Dansk Folkeparti Enhedslisten ... Venstre</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="2-basics.html#cb67-1" aria-hidden="true" tabindex="-1"></a>pol[,<span class="dv">1</span>] <span class="co"># første kolonne</span></span></code></pre></div>
+<pre><code>[1] &quot;Venstre&quot;            &quot;Socialdemokraterne&quot; &quot;Enhedslisten&quot;      
+[4] &quot;SF&quot;                 &quot;Radikale&quot;           &quot;Konservative&quot;      
+[7] &quot;Dansk Folkeparti&quot;   &quot;Liberal Alliance&quot;   &quot;Alternativet&quot;      </code></pre>
 <p>Vi kan stadig bruge de funktioner, vi har gennemgået til nu, på vores datarammer. En nyttig funktion, der vil blive brugt til at få et overblik over informationen i et objekt, er <code>summary()</code>. For en dataramme giver <code>summary()</code> deskriptiv statistik for alle elementerne i vores dataramme (for de numeriske variable er dette minimum, første kvartil, medianen, gennemsnit, tredje kvartil og maksimum).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(pol)</code></pre></div>
-<pre><code>              party        vote            seat             rw        
- Alternativet    :1   Min.   : 3.40   Min.   : 6.00   Min.   :0.0000  
- Dansk Folkeparti:1   1st Qu.: 4.60   1st Qu.: 8.00   1st Qu.:0.0000  
- Enhedslisten    :1   Median : 7.50   Median :13.00   Median :0.0000  
- Konservative    :1   Mean   :11.02   Mean   :19.44   Mean   :0.4444  
- Liberal Alliance:1   3rd Qu.:19.50   3rd Qu.:34.00   3rd Qu.:1.0000  
- Radikale        :1   Max.   :26.30   Max.   :47.00   Max.   :1.0000  
- (Other)         :3                                                   </code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="2-basics.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pol)</span></code></pre></div>
+<pre><code>    party                vote            seat             rw        
+ Length:9           Min.   : 3.40   Min.   : 6.00   Min.   :0.0000  
+ Class :character   1st Qu.: 4.60   1st Qu.: 8.00   1st Qu.:0.0000  
+ Mode  :character   Median : 7.50   Median :13.00   Median :0.0000  
+                    Mean   :11.02   Mean   :19.44   Mean   :0.4444  
+                    3rd Qu.:19.50   3rd Qu.:34.00   3rd Qu.:1.0000  
+                    Max.   :26.30   Max.   :47.00   Max.   :1.0000  </code></pre>
 <p>Hvis vi blot ønsker at få værdien ud på det maksimale antal stemmer givet til et parti, kan vi bruge <code>max()</code> funktionen.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(pol$vote)</code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="2-basics.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(pol<span class="sc">$</span>vote)</span></code></pre></div>
 <pre><code>[1] 26.3</code></pre>
 <p>Hvis vi gerne vil have værdien på en bestemt række i en variabel i vores dataramme, kan vi bruge både <code>$</code> og <code>[ ]</code>. I nedenstående får vi værdien 2 i <code>party</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol$party[<span class="dv">2</span>]</code></pre></div>
-<pre><code>[1] Socialdemokraterne
-9 Levels: Alternativet Dansk Folkeparti Enhedslisten ... Venstre</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="2-basics.html#cb73-1" aria-hidden="true" tabindex="-1"></a>pol<span class="sc">$</span>party[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>[1] &quot;Socialdemokraterne&quot;</code></pre>
 <p>Med det vi har lært til nu kan vi hente information ud om, hvilket parti der har fået flest stemmer (eller partier, hvis der er to partier, der har fået lige mange stemmer). Til dette specificerer vi, at vi gerne vil have information om variablen <code>party</code>, for de partier for hvem tilfældet er, at deres stemmetal er lig (<code>==</code>) det maksimale antal stemmer (<code>max(pol$vote)</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol$party[pol$vote ==<span class="st"> </span><span class="kw">max</span>(pol$vote)]</code></pre></div>
-<pre><code>[1] Socialdemokraterne
-9 Levels: Alternativet Dansk Folkeparti Enhedslisten ... Venstre</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="2-basics.html#cb75-1" aria-hidden="true" tabindex="-1"></a>pol<span class="sc">$</span>party[pol<span class="sc">$</span>vote <span class="sc">==</span> <span class="fu">max</span>(pol<span class="sc">$</span>vote)]</span></code></pre></div>
+<pre><code>[1] &quot;Socialdemokraterne&quot;</code></pre>
 <p>Det var dermed Socialdemokraterne, der fik flest stemmer ved folketingsvalget i 2015. Samme procedure kan vi bruge med funktionen <code>min()</code> for at finde det parti, der fik færrest stemmer. Det var således, jævnfør nedenstående, de Konservative, der fik færrest stemmer ved folketingsvalget i 2015.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol$party[pol$vote ==<span class="st"> </span><span class="kw">min</span>(pol$vote)]</code></pre></div>
-<pre><code>[1] Konservative
-9 Levels: Alternativet Dansk Folkeparti Enhedslisten ... Venstre</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="2-basics.html#cb77-1" aria-hidden="true" tabindex="-1"></a>pol<span class="sc">$</span>party[pol<span class="sc">$</span>vote <span class="sc">==</span> <span class="fu">min</span>(pol<span class="sc">$</span>vote)]</span></code></pre></div>
+<pre><code>[1] &quot;Konservative&quot;</code></pre>
 <p>Der er ingen begrænsninger for, hvad vi kan lave med denne og lignende datarammer, herunder også statistiske analyser. For blot at give et eksempel, kan vi finde korrelationen mellem, hvor mange stemmer et parti har fået ved valget og antallet af mandater i Folketinget.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(pol$vote, pol$seat)</code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="2-basics.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(pol<span class="sc">$</span>vote, pol<span class="sc">$</span>seat)</span></code></pre></div>
 <pre><code>[1] 0.9997078</code></pre>
 <p>Nu har du styr på, hvad en dataramme er.</p>
 </div>
-<div id="import-og-eksport-af-datarammer" class="section level2">
+<div id="import-og-eksport-af-datarammer" class="section level2" number="2.7">
 <h2><span class="header-section-number">2.7</span> Import og eksport af datarammer</h2>
 <p>De fleste datarammer vil ikke blive lavet fra bunden i <code>R</code>, men tværtimod importeret fra andre filer. Det er heldigvis nemt at importere forskellige typer af data (også fra Stata og SPSS), men et af de mest anvendte og nyttige formater er kommaseparerede filer (). Til at eksportere og importere datarammer fra og til R, bruger vi hhv. <code>write.csv()</code> og <code>read.csv()</code>.</p>
 <p>Før vi arbejder med dette, er det vigtigt at have styr på, hvor man gemmer sine data til. I R arbejder man med et <em>working directory</em>, og ved at skrive <code>getwd()</code>, kan man se, hvor ens data vil blive gemt til.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="2-basics.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
 <p>Hvis jeg gerne vil ændre dette, eksempelvis hvis jeg har en mappe på mit Skrivebord ved navn <code>Rguide</code>, jeg hellere vil have som mit <em>working directory</em>, kan jeg bruge funktionen <code>setwd()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;C:/Users/Erik/Desktop/Rguide&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="2-basics.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/Users/Erik/Desktop/Rguide&quot;</span>)</span></code></pre></div>
 <p>En nem måde at have styr på sit <em>working directory</em> er ved at åbne RStudio gennem sit R-script, hvorved ens <em>working directory</em> automatisk bliver det sted, hvor ens R-script ligger. Når vi har styr på, hvor vores data vil blive gemt, kan vi begynde at gemme dem. Her vil vi gemme vores dataramme <code>pol</code> til en fil (<code>ft2015.csv</code>). Til dette bruger vi <code>write.csv()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(pol, <span class="st">&quot;ft2015.csv&quot;</span>)</code></pre></div>
-<p>Bemærk at vi først angiver i funktionen, hvilken dataramme vi vil gemme, og derefter hvad filen skal hedde. Det er desuden vigtigt, at filen angives i citationstegn. Når vi har gemt filen kan vi først undersøge manuelt, om filen er gemt i vores <em>working directory</em><a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a>. Hvis vi omvendt gerne vil importere et datasæt, kan vi bruge funktionen `read.csv() og gemme datasættet i en dataramme.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pol &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;ft2015.csv&quot;</span>)</code></pre></div>
-<p>Som med alt i R er der som regel flere pakker, der kan håndtere ting, herunder også især import og eksport af filer. Blandt de nævneværdige er pakkerne <code>foreign</code> <span class="citation">(R Core Team, 2015)</span>, <code>rio</code> <span class="citation">(C. Chan, Chan, &amp; Leeper, 2016)</span> og <code>readr</code> <span class="citation">(H. Wickham &amp; Francois, 2015)</span> (installation af pakker gennemgås i næste sektion).</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="2-basics.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(pol, <span class="st">&quot;ft2015.csv&quot;</span>)</span></code></pre></div>
+<p>Bemærk at vi først angiver i funktionen, hvilken dataramme vi vil gemme, og derefter hvad filen skal hedde. Det er desuden vigtigt, at filen angives i citationstegn. Når vi har gemt filen kan vi først undersøge manuelt, om filen er gemt i vores <em>working directory</em><a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>. Hvis vi omvendt gerne vil importere et datasæt, kan vi bruge funktionen `read.csv() og gemme datasættet i en dataramme.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="2-basics.html#cb84-1" aria-hidden="true" tabindex="-1"></a>pol <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ft2015.csv&quot;</span>)</span></code></pre></div>
+<p>Som med alt i R er der som regel flere pakker, der kan håndtere ting, herunder også især import og eksport af filer. Blandt de nævneværdige er pakkerne <code>foreign</code> <span class="citation">(R Core Team, 2015)</span>, <code>rio</code> <span class="citation">(Chan, Chan, &amp; Leeper, 2016)</span> og <code>readr</code> <span class="citation">(H. Wickham &amp; Francois, 2015)</span> (installation af pakker gennemgås i næste sektion).</p>
 </div>
-<div id="ref-pakker" class="section level2">
+<div id="ref-pakker" class="section level2" number="2.8">
 <h2><span class="header-section-number">2.8</span> Installation af pakker</h2>
 <p>Pakker er noget af det, der gør R fantastisk. Der er ingen grænser for, hvad man kan bruge R til, og dette skyldes især de talrige pakker, der er lavet til R. Der er to funktioner, der skal bruges i denne sammenhæng. For det første en funktion til at installere pakker, <code>install.packages()</code>, og en funktion til at åbne en pakke, <code>library()</code> (alternativt kan man også bruge <code>require()</code>).</p>
 <p>En pakke skal kun installeres én gang. Det vil sige, at når du har brugt <code>install.packages()</code> til at installere en pakke, er du fri for at gøre det igen. I dette eksempel vil vi bruge funktionen til at installere pakken <code>ggplot2</code>, som vi vil bruge til at lave figurer senere. Bemærk desuden citationstegnene, der også er nødvendige i denne sammenhæng.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="2-basics.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 <p>Når en pakke er installeret skal den hentes ind i R. Du kan have utallige pakker installeret på din computer, men der er ingen grund til at R skal bruge alle pakker, hver gang du åbner R. Derfor skal du hver gang, du bruger en bestemt pakke, bruge <code>library()</code> til at hente pakken. Det er med andre ord en god idé at begynde dine scripts med, at åbne alle de pakker, du får brug for i analyserne.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="2-basics.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 <p>Når du installerer <code>ggplot2</code> vil du desuden opdage, at R også installerer en række andre pakker. Dette fordi <code>ggplot2</code> anvender andre pakker, der også skal installeres, for at pakken fungerer hensigtsmæssigt. Disse pakker åbnes også automatisk, hver gang du bruger <code>library()</code> til at åbne <code>ggplot2</code>.</p>
 <p>Der er et hav af forskellige pakker til R, og hvilke der er relevante at bruge afhænger af, hvad man ønsker at bruge R til. Ikke desto mindre er der en lille oversigt i Bilag <a href="12-ref-anpakker.html#ref-anpakker">12</a>, hvor en række anbefalelsesværdige pakker nævnes.</p>
 </div>
-<div id="objekter-i-hukommelsen" class="section level2">
+<div id="objekter-i-hukommelsen" class="section level2" number="2.9">
 <h2><span class="header-section-number">2.9</span> Objekter i hukommelsen</h2>
 <p>Vi har nu arbejdet med en lang række af objekter. For at se hvilke objekter, vi har gang i - og evt. for at fjerne nogle af dem - er der et par enkelte nyttige funktioner, du bør kende til. Den første er <code>ls()</code>, der viser, hvilke objekter vi har i hukommelsen (<em>ls</em> står for <em>list objects</em>). Som det kan ses har vi otte objekter i hukommelsen.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="2-basics.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
 <pre><code>[1] &quot;party&quot; &quot;pol&quot;   &quot;rw&quot;    &quot;seat&quot;  &quot;vote&quot;  &quot;x&quot;     &quot;y&quot;     &quot;z&quot;    </code></pre>
 <p>Hvis vi gerne vil fjerne et objekt fra hukommelsen, kan vi bruge funktionen <code>rm()</code> (<em>rm</em> er en forkortelse af <em>remove</em>). I nedenstående eksempel bruger vi først <code>rm()</code> til at fjerne objektet <code>x</code> og dernæst <code>ls()</code> til at se, om <code>x</code> er fjernet.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(x)
-
-<span class="kw">ls</span>()</code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="2-basics.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span>
+<span id="cb89-2"><a href="2-basics.html#cb89-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-3"><a href="2-basics.html#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
 <pre><code>[1] &quot;party&quot; &quot;pol&quot;   &quot;rw&quot;    &quot;seat&quot;  &quot;vote&quot;  &quot;y&quot;     &quot;z&quot;    </code></pre>
 <p>Hvis vi gerne vil fjerne <em>alt</em> i hukommelsen, kan vi bruge <code>ls()</code> i kombination med <code>rm()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())
-
-<span class="kw">ls</span>()</code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="2-basics.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb91-2"><a href="2-basics.html#cb91-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-3"><a href="2-basics.html#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
 <pre><code>character(0)</code></pre>
-<p>Ligeledes kan man i RStudio se hvilke objekter, funktioner m.v. man har åbent under ‘Environment’ (i boksen hvor der også er ‘History’, hvor man kan se en historik over de kommandoer, man har kørt i ens nuværende session).</p>
+<p>Ligeledes kan man i RStudio se hvilke objekter, funktioner m.v. man har åbent under ‘Environment’ (i boksen hvor der også er ‘History,’ hvor man kan se en historik over de kommandoer, man har kørt i ens nuværende session).</p>
 
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>Dette svarer til at skrive <code>display 2+2</code> i Stata.<a href="2-basics.html#fnref1">↩</a></p></li>
-<li id="fn2"><p>Dette svarer til <code>*</code> og <code>//</code> i Stata.<a href="2-basics.html#fnref2">↩</a></p></li>
-<li id="fn3"><p>Helt præcist <code>3</code>, <code>6</code>, <code>9</code> og <code>6</code>.<a href="2-basics.html#fnref3">↩</a></p></li>
-<li id="fn4"><p>En anden fordel er, at du på denne måde reducerer sandsynligheden for, at lave fejl ved at have forskellige informationer flere steder.<a href="2-basics.html#fnref4">↩</a></p></li>
-<li id="fn5"><p>I eksemplet med <code>1:10</code> svarer det til at vi skriver <code>c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)</code>. I <code>1:10</code> er der således en skjult funktion, <code>c()</code>.<a href="2-basics.html#fnref5">↩</a></p></li>
-<li id="fn6"><p><code>c()</code> opretter således en vektor med alle elementer i parentesen. Da en vektor kun kan indeholde én type data, og ikke eksempelvis både numre og karakterer (der bliver introduceret i næste afsnit), vil <code>c()</code> også sikre, at de værdier der gives, reduceres til det maksimale niveau. Er der således blot én værdi der er karakterbaseret, vil alle andre værdier i vektoren også blive det.<a href="2-basics.html#fnref6">↩</a></p></li>
-<li id="fn7"><p>Alternativt kan man også bruge ’ i stedet for “.<a href="2-basics.html#fnref7">↩</a></p></li>
-<li id="fn8"><p>I R kan man evt. bruge funktionen <code>file.exists()</code> til at se, om filen eksisterer.<a href="2-basics.html#fnref8">↩</a></p></li>
+<li id="fn1"><p>Dette svarer til at skrive <code>display 2+2</code> i Stata.<a href="2-basics.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Dette svarer til <code>*</code> og <code>//</code> i Stata.<a href="2-basics.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Helt præcist <code>3</code>, <code>6</code>, <code>9</code> og <code>6</code>.<a href="2-basics.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>En anden fordel er, at du på denne måde reducerer sandsynligheden for, at lave fejl ved at have forskellige informationer flere steder.<a href="2-basics.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>I eksemplet med <code>1:10</code> svarer det til at vi skriver <code>c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)</code>. I <code>1:10</code> er der således en skjult funktion, <code>c()</code>.<a href="2-basics.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p><code>c()</code> opretter således en vektor med alle elementer i parentesen. Da en vektor kun kan indeholde én type data, og ikke eksempelvis både numre og karakterer (der bliver introduceret i næste afsnit), vil <code>c()</code> også sikre, at de værdier der gives, reduceres til det maksimale niveau. Er der således blot én værdi der er karakterbaseret, vil alle andre værdier i vektoren også blive det.<a href="2-basics.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>Alternativt kan man også bruge ’ i stedet for ".<a href="2-basics.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>I R kan man evt. bruge funktionen <code>file.exists()</code> til at se, om filen eksisterer.<a href="2-basics.html#fnref8" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -467,11 +526,13 @@ Figure 2.1: Dataramme vist med View(), RStudio
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -479,11 +540,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
+"linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -491,6 +552,14 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -507,9 +576,12 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
