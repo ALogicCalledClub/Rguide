@@ -5,9 +5,7 @@ title: 'Introduktion til R'
 knit: "bookdown::render_book"
 site: bookdown::bookdown_site
 output: 
-#  thesisdown::thesis_pdf: default
   thesisdown::thesis_gitbook: default
-#  thesisdown::thesis_epub: default
 bibliography: Rguide.bib
 csl: apa.csl
 lot: false
