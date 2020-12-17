@@ -43,10 +43,7 @@ outliers-og-indflydelsesrige-observationer
 normalfordelte-fejlled
 heteroskedasticitet
 multikollinaritet
-interaktionsanalyse
-logistisk-regression
 propensity-score-matching
-regressionsdiskontinuitetsdesigns
 pakkeanbefaling-swirl
 funktioner
 loops

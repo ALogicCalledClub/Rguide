@@ -1,7 +1,0 @@
----
-output: html_document
----
-
-# Regressionsdiskontinuitetsdesigns
-
-_Bliver tilføjet senere._
